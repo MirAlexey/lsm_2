@@ -1,0 +1,675 @@
+commands:
+  - name: 'ATD'
+    desc: 'Проверка связи с модемом'
+    request:
+      command: ''
+      address: False
+      data: 
+        values: 
+          - type: 'str'
+            value: '41'
+          - type: 'str'
+            value: '54'
+          - type: 'str'
+            value: '44'
+          - type: 'str'
+            value: '0D'
+      crc: False
+    response:
+      command: ''
+      address: False
+      data:
+        values:
+          - type: 'str'
+            value: '0D'
+          - type: 'str'
+            value: '0A'
+          - type: 'str'
+            value: '4F'
+          - type: 'str'
+            value: '4B'
+          - type: 'str'
+            value: '0D' 
+          - type: 'str'
+            value: '0A'
+      crc: False      
+    timeout: 1
+  - name: 'link_request'
+    desc: 'Запрос канала связи'
+    request:
+      command: '00'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '80'
+      address: True
+      data: 
+        values: []
+      crc: True
+    timeout: 1
+  - name: 'short_status'
+    desc: 'Запрос текущего краткого состояния ЛСМ'
+    request:
+      command: '01'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '81'
+      address: True
+      data: 
+        values: 
+          - type: 'event_number'
+            values:
+              - 'high'
+          - type: 'event_number'
+            values:
+              - 'low'
+          - type: 'date'
+            values:
+              - 'year'
+          - type: 'date'
+            values:
+              - 'month'
+          - type: 'date'
+            values:
+              - 'number'
+          - type: 'date'
+            values:
+              - 'weeks_day'
+          - type: 'time'
+            values:
+              - 'hour'
+          - type: 'time'
+            values:
+              - 'min'
+          - type: 'time'
+            values: 
+              - 'sec'
+          - type: 'mode'
+            values: 
+              - 'lsm_mdule_0'
+              - 'lsm_mdule_1'
+              - 'lsm_mdule_2'
+              - 'lsm_mdule_3'
+              - 'fotoavtomat'
+              - 'dinamic_power'
+              - 'max_nom_power'
+              - 'current_illumination'
+          - type: 'state_modul'
+            values:
+              - '0'
+          - type: 'state_modul'
+            values:
+              - '1'
+          - type: 'state_modul'
+            values:
+              - '2'
+          - type: 'state_modul'
+            values:
+              - '3'
+      crc: True
+    timeout: 1  
+- name: 'general_status'
+    desc: 'Запрос текущего общего состояния ЛСМ'
+    request:
+      command: '02'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '82'
+      address: True
+      data: 
+        values: 
+          - type: 'event_number'
+            values:
+              - 'high'
+          - type: 'event_number'
+            values:
+              - 'low'
+          - type: 'date'
+            values:
+              - 'year'
+          - type: 'date'
+            values:
+              - 'month'
+          - type: 'date'
+            values:
+              - 'number'
+          - type: 'date'
+            values:
+              - 'weeks_day'
+          - type: 'time'
+            values:
+              - 'hour'
+          - type: 'time'
+            values:
+              - 'min'
+          - type: 'time'
+            values: 
+              - 'sec'
+          - type: 'mode'
+            values: 
+              - 'lsm_mdule_0'
+              - 'lsm_mdule_1'
+              - 'lsm_mdule_2'
+              - 'lsm_mdule_3'
+              - 'fotoavtomat'
+              - 'dinamic_power'
+              - 'max_nom_power'
+              - 'current_illumination'
+          - type: 'state_modul'
+            values:
+              - '0'
+          - type: 'state_modul'
+            values:
+              - '1'
+          - type: 'state_modul'
+            values:
+              - '2'
+          - type: 'state_modul'
+            values:
+              - '3'
+          - type: 'temperature_modul'
+            values:
+              - '0'
+          - type: 'temperature_modul'
+            values:
+              - '1' 
+          - type: 'temperature_modul'
+            values:
+              - '2'
+          - type: 'temperature_modul'
+            values:
+              - '3'
+          - type: 'power_modul'
+            values:
+              - '0'
+          - type: 'power_modul'
+            values:
+              - '1'
+          - type: 'power_modul'
+            values:
+              - '2'
+          - type: 'power_modul'
+            values:
+              - '3'
+      crc: True
+- name: 'full_status'
+    desc: 'Запрос текущего полного состояния ЛСМ '
+    request:
+      command: '03'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '83'
+      address: True
+      data: 
+        values: 
+          - type: 'event_number'
+            values:
+              - 'high'
+          - type: 'event_number'
+            values:
+              - 'low'
+          - type: 'date'
+            values:
+              - 'year'
+          - type: 'date'
+            values:
+              - 'month'
+          - type: 'date'
+            values:
+              - 'number'
+          - type: 'date'
+            values:
+              - 'weeks_day'
+          - type: 'time'
+            values:
+              - 'hour'
+          - type: 'time'
+            values:
+              - 'min'
+          - type: 'time'
+            values: 
+              - 'sec'
+          - type: 'mode'
+            values: 
+              - 'lsm_mdule_0'
+              - 'lsm_mdule_1'
+              - 'lsm_mdule_2'
+              - 'lsm_mdule_3'
+              - 'fotoavtomat'
+              - 'dinamic_power'
+              - 'max_nom_power'
+              - 'current_illumination'
+          - type: 'state_modul'
+            values:
+              - '0'
+          - type: 'state_modul'
+            values:
+              - '1'
+          - type: 'state_modul'
+            values:
+              - '2'
+          - type: 'state_modul'
+            values:
+              - '3'
+          - type: 'temperature_modul'
+            values:
+              - '0'
+          - type: 'temperature_modul'
+            values:
+              - '1' 
+          - type: 'temperature_modul'
+            values:
+              - '2'
+          - type: 'temperature_modul'
+            values:
+              - '3'
+          - type: 'power_modul'
+            values:
+              - '0'
+          - type: 'power_modul'
+            values:
+              - '1'
+          - type: 'power_modul'
+            values:
+              - '2'
+          - type: 'power_modul'
+            values:
+              - '3'
+          - type: 'U'
+            values:
+              - '1'
+          - type: 'U'
+            values:
+              - '2'
+          - type: 'I'
+            values:
+              - '1'
+          - type: 'I'
+            values:
+              - '2'
+          - type: 'T_hull'
+            values:
+              - '1'
+          - type: 'T_hull'
+            values:
+              - '2'
+          - type: 'T_ODT'
+            values:
+              - '1'
+          - type: 'T_ODT'
+            values:
+              - '2'
+          - type: 'Heating'
+            values:
+              - '1'
+          - type: 'Heating'
+            values:
+              - '2'
+          - type: 'Cooling'
+            values:
+              - '1'
+          - type: 'Cooling'
+            values:
+              - '2'
+      crc: True
+- name: 'set_setting'
+    desc: 'Команда установки режима работы ЛСМ'
+    request:
+      command: '04'
+      address: True
+      data: 
+        values: 
+          - type: 'mode'
+            value: 'mode'
+      crc: True
+    response:
+      command: '84'
+      address: True
+      data: 
+        values:
+          - type: 'mode'
+            value: 'mode'
+      crc: True
+- name: 'reset_setting'
+    desc: 'Команда перезагрузки ЛСМ'
+    request:
+      command: '05'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '85'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'set_modem_setting'
+    desc: 'Команда настройки модема'
+    request:
+    command: '20'
+      address: True
+      data: 
+        values:
+          - type: 'modem_setting'
+            value: 'SW'
+          - type: 'modem_setting'
+            value: 'BW'
+          - type: 'modem_setting'
+            value: 'P'
+          - type: 'modem_setting'
+            value: 'CH' 
+      crc: True
+    response:
+      command: 'A0'
+      address: True
+      data: 
+        values: 
+          - type: 'modem_setting'
+            value: 'SW'
+          - type: 'modem_setting'
+            value: 'BW'
+          - type: 'modem_setting'
+            value: 'P'
+          - type: 'modem_setting'
+            value: 'CH'
+      crc: True    
+- name: 'save_modem_setting'
+    desc: 'Команда сохранение настроек модема'
+    request:
+    command: '21'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: 'A1'
+      address: True
+      data: 
+        values:
+          - type: 'modem_setting'
+            value: 'SW'
+          - type: 'modem_setting'
+            value: 'BW'
+          - type: 'modem_setting'
+            value: 'P'
+          - type: 'modem_setting'
+            value: 'CH'
+      crc: True     
+- name: 'set_factory_setting'
+    desc: 'Команда сброса ЛСМ в заводские настройки'
+    request:
+    command: '06'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '86'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'stop'
+    desc: 'Команда остановки ЛСМ («СТОП ЛСМ»)'
+    request:
+      command: '07'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '87'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'start'
+    desc: 'Команда пуска ЛСМ («ПУСК ЛСМ»)'
+    request:
+      command: '08'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '88'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'save_setting'
+    desc: 'Сохранение текущих настроек ЛСМ'
+    request:
+      command: '09'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '89'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'current_time'
+    desc: 'Запрос текущего времени'
+    request:
+      command: '0A'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '8A'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'set_time'
+    desc: 'Команда установки времени'
+    request:
+      command: '0B'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '8B'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'last_event'
+    desc: 'Запрос номера последнего события'
+    request:
+      command: '0C'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '8C'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'number_event'
+    desc: 'Запрос данных из памяти событий'
+    request:
+      command: '0D'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '8D'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'delete_event_memory'
+    desc: 'Стирание данных из памяти событий'
+    request:
+      command: '0E'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '8E'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'address_book'
+    desc: 'Запрос адресной книги'
+    request:
+      command: '0F'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '8F'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'write_to_address_book'
+    desc: 'Команда записи в адресную книгу'
+    request:
+      command: '10'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '90'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'get_max_power'
+    desc: 'Запрос текущей максимальной мощности'
+    request:
+      command: '11'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '91'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'set_max_power'
+    desc: 'Команда установки максимальной мощности'
+    request:
+      command: '12'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '92'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'vertical_correction_request'
+    desc: 'Запрос коррекции вертикальной развертки'
+    request:
+      command: '13'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '93'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'set_vertical_correction'
+    desc: 'Команда коррекции вертикальной развертки'
+    request:
+      command: '14'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '94'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'horizontal_correction_request'
+    desc: 'Запрос коррекции горизонтальной развертки'
+    request:
+      command: '15'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '95'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'set_horizontal_correction'
+    desc: 'Команда коррекции горизонтальной развертки'
+    request:
+      command: '16'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '96'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name: 'test'
+    desc: 'Команда включения тестового режима («ТЕСТ»)'
+    request:
+      command: '17'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '97'
+      address: True
+      data: 
+        values: []
+      crc: True
+- name:  'event_of_change'
+    desc: 'Сообщение об изменении состояния и режима'
+    request:
+      command: '18'
+      address: True
+      data: 
+        values: []
+      crc: True
+    response:
+      command: '98'
+      address: True
+      data: 
+        values: []
+      crc: True

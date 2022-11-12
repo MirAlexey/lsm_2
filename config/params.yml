@@ -1,0 +1,150 @@
+params_modem:
+  - name: 'SF'
+    type: 'list'
+    param:
+      keys: ['7', '8', '9', '10', '11', '12']
+      values: [7, 8, 9, 10, 11, 12]
+  - name: 'BW' 
+    type: 'list'
+    param:
+      keys: ['31.25 кГц', '41.70 кГц', '62.5 кГц','125 кГц']
+      values: [4, 5, 6, 7]
+  - name: 'P'
+    type: 'list' 
+    param:
+      keys: ['2 мВт', '10 мВт', '50 мВт']
+      values: [2, 10, 17]
+  - name: CH
+    type: 'step list'
+    param:
+      keys:
+        start: 433.125
+        end: 434.875
+        step: 0.125
+        name: 'МГц'
+      values:
+        start: 1
+        end: 15
+        step: 1
+paran_lsm:
+    - name: 'date'
+      values:
+        - name: 'year'
+          params:
+            - name: 'десятки'
+              mask: 0b11110000
+              mult: 10
+            - name: 'единицы'
+              mask: 0b00001111
+              mult: 1
+        - name: 'month'
+          params:
+            - name: 'десятки'
+              mask: 0b00010000
+              mult: 10
+            - name: 'единицы'
+              mask: 0b00001111
+              mult: 1
+        - name: 'number'
+          params:
+            - name: 'десятки'
+              mask: 0b11110000
+              mult: 10
+            - name: 'единицы'
+              mask: 0b00001111
+              mult: 1
+        - name: 'weeks_day'
+          params:
+            - name: 'единицы'
+              mask: 0b00000111
+              mult: 1
+    - name: 'time'
+      values:
+        - name: 'hour'
+          params:
+            - name: 'десятки'
+              mask: 0b00110000
+              mult: 10
+            - name: 'единицы'
+              mask: 0b00001111
+              mult: 1
+        - name: 'min'
+          params:
+            - name: 'десятки'
+              mask: 0b01110000
+              mult: 10
+            - name: 'единицы'
+              mask: 0b00001111
+              mult: 1
+        - name: 'sec'
+          params:
+            - name: 'десятки'
+              mask: 0b01110000
+              mult: 10
+            - name: 'единицы'
+              mask: 0b00001111
+              mult: 1
+    - name: 'mode'
+      values:
+        - name: 'lsm_module_0'
+          params:
+            - name: 'единицы'
+              mask: 0b00000001
+              mult: 1
+        - name: 'lsm_module_1'
+          params:
+            - name: 'вкл/выкл'
+              mask: 0b00000010
+              mult: 1
+        - name: 'lsm_module_2'
+          params:
+            - name: 'вкл/выкл'
+              mask: 0b00000100
+              mult: 1           
+        - name: 'lsm_module_3'
+          params:
+            - name: 'вкл/выкл'
+              mask: 0b00001000
+              mult: 1
+        - name: 'fotoavtomat'
+          params:
+            - name: 'фотоавтомат'
+              mask: 0b00010000
+              mult: 1
+        - name: 'dinamic_power'
+          params:
+            - name: 'динамическое управление мощностью'
+              mask: 0b00100000
+              mult: 1
+        - name: 'max_nom_power'
+          params:
+            - name: 'максимальная мощность (1 - макс. / 0 - номин.)'
+              mask: 0b01000000
+              mult: 1           
+        - name: 'current_illumination'
+          params:
+            - name: 'текущая освещенность (1 - день / 0 - ночь.)'
+              mask: 0b10000000
+              mult: 1
+    - name: 'state_modul_1'
+      values:
+        - name: 'radiation'
+          params:
+          - name: 'излучение'
+            mask: 0b00001000
+            mult: 1
+        - name: 'vertical scan'
+          params:
+          - name: 'вертикальная развертка'
+            mask: 0b00000100
+            mult: 1
+        - name: 'horizontal scan'
+          params:
+          - name: 'горизонтальная развертка'
+            mask: 0b00000010
+            mult: 1
+        - name: 'synchronization'
+          params:
+          - name: 'синхронизация'
+            mask: 0b00000001
+            mult: 1

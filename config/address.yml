@@ -1,0 +1,7 @@
+addresses:
+  first:
+    input: '46'
+    output: '64' 
+  second:
+    input: '56'
+    output: '65' 
