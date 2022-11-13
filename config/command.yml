@@ -91,26 +91,38 @@ commands:
               - 'sec'
           - type: 'mode'
             values: 
-              - 'lsm_mdule_0'
-              - 'lsm_mdule_1'
-              - 'lsm_mdule_2'
-              - 'lsm_mdule_3'
+              - 'lsm_module_0'
+              - 'lsm_module_1'
+              - 'lsm_module_2'
+              - 'lsm_module_3'
               - 'fotoavtomat'
-              - 'dinamic_power'
+              - 'dynamic_power'
               - 'max_nom_power'
               - 'current_illumination'
-          - type: 'state_modul'
+          - type: 'state_module_0'
             values:
-              - '0'
-          - type: 'state_modul'
+              - 'radiation'
+              - 'vertical_scan'
+              - 'horizontal_scan'
+              - 'synchronization'
+          - type: 'state_module_1'
             values:
-              - '1'
-          - type: 'state_modul'
+              - 'radiation'
+              - 'vertical_scan'
+              - 'horizontal_scan'
+              - 'synchronization'
+          - type: 'state_module_2'
             values:
-              - '2'
-          - type: 'state_modul'
+              - 'radiation'
+              - 'vertical_scan'
+              - 'horizontal_scan'
+              - 'synchronization'
+          - type: 'state_module_3'
             values:
-              - '3'
+              - 'radiation'
+              - 'vertical_scan'
+              - 'horizontal_scan'
+              - 'synchronization'
       crc: True
     timeout: 1  
   - name: 'general_status'
@@ -155,62 +167,62 @@ commands:
               - 'sec'
           - type: 'mode'
             values: 
-              - 'lsm_mdule_0'
-              - 'lsm_mdule_1'
-              - 'lsm_mdule_2'
-              - 'lsm_mdule_3'
+              - 'lsm_module_0'
+              - 'lsm_module_1'
+              - 'lsm_module_2'
+              - 'lsm_module_3'
               - 'fotoavtomat'
-              - 'dinamic_power'
+              - 'dynamic_power'
               - 'max_nom_power'
               - 'current_illumination'
-          - type: 'state_modul_0'
+          - type: 'state_module_0'
             values:
               - 'radiation'
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'state_modul_1'
+          - type: 'state_module_1'
             values:
               - 'radiation'
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'state_modul_2'
+          - type: 'state_module_2'
             values:
               - 'radiation'
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'state_modul_3'
+          - type: 'state_module_3'
             values:
               - 'radiation'
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'temperature_modul'
+          - type: 'temperature_module_0'
             values:
-              - '0'
-          - type: 'temperature_modul'
+              - 'temperature'
+          - type: 'temperature_module_1'
             values:
-              - '1' 
-          - type: 'temperature_modul'
+              - 'temperature' 
+          - type: 'temperature_module_2'
             values:
-              - '2'
-          - type: 'temperature_modul'
+              - 'temperature'
+          - type: 'temperature_module_3'
             values:
-              - '3'
-          - type: 'power_modul'
+              - 'temperature'
+          - type: 'power_module_0'
             values:
-              - '0'
-          - type: 'power_modul'
+              - 'cur_power'
+          - type: 'power_module_1'
             values:
-              - '1'
-          - type: 'power_modul'
+              - 'cur_power'
+          - type: 'power_module_2'
             values:
-              - '2'
-          - type: 'power_modul'
+              - 'cur_power'
+          - type: 'power_module_3'
             values:
-              - '3'
+              - 'cur_power'
       crc: True
   - name: 'full_status'
     desc: 'Запрос текущего полного состояния ЛСМ '
@@ -254,84 +266,78 @@ commands:
               - 'sec'
           - type: 'mode'
             values: 
-              - 'lsm_mdule_0'
-              - 'lsm_mdule_1'
-              - 'lsm_mdule_2'
-              - 'lsm_mdule_3'
+              - 'lsm_module_0'
+              - 'lsm_module_1'
+              - 'lsm_module_2'
+              - 'lsm_module_3'
               - 'fotoavtomat'
               - 'dynamic_power'
               - 'max_nom_power'
               - 'current_illumination'
           - type: 'state_module_0'
             values:
-              - radiation
-              - vertical_scan
-              - horizontal_scan
-              - synchronization
+              - 'radiation'
+              - 'vertical scan'
+              - 'horizontal scan'
+              - 'synchronization'
           - type: 'state_module_1'
             values:
-              - radiation
-              - vertical_scan
-              - horizontal_scan
-              - synchronization
+              - 'radiation'
+              - 'vertical scan'
+              - 'horizontal scan'
+              - 'synchronization'
           - type: 'state_module_2'
             values:
-              - radiation
-              - vertical_scan
-              - horizontal_scan
-              - synchronization
+              - 'radiation'
+              - 'vertical scan'
+              - 'horizontal scan'
+              - 'synchronization'
           - type: 'state_module_3'
             values:
-              - radiation
-              - vertical_scan
-              - horizontal_scan
-              - synchronization
-          - type: 'temperature_modul'
+              - 'radiation'
+              - 'vertical scan'
+              - 'horizontal scan'
+              - 'synchronization'
+          - type: 'temperature_module_0'
             values:
-              - radiation
-              - vertical_scan
-              - horizontal_scan
-              - synchronization
-          - type: 'temperature_modul'
+              - 'temperature'
+          - type: 'temperature_module_1'
             values:
-              - radiation
-              - vertical_scan
-              - horizontal_scan
-              - synchronization
-          - type: 'temperature_modul'
+              - 'temperature' 
+          - type: 'temperature_module_2'
             values:
-              - '2'
-          - type: 'temperature_modul'
+              - 'temperature'
+          - type: 'temperature_module_3'
             values:
-              - '3'
-          - type: 'power_modul'
+              - 'temperature'
+          - type: 'power_module_0'
             values:
-              - '0'
-          - type: 'power_modul'
+              - 'cur_power'
+          - type: 'power_module_1'
             values:
-              - '1'
-          - type: 'power_modul'
+              - 'cur_power'
+          - type: 'power_module_2'
             values:
-              - '2'
-          - type: 'power_modul'
+              - 'cur_power'
+          - type: 'power_module_3'
             values:
-              - '3'
-          - type: 'U'
+              - 'cur_power'
+          - type: 'U_1'
             values:
-              - '1'
-          - type: 'U'
+              - 'U'
+          - type: 'U_2'
             values:
-              - '2'
-          - type: 'I'
+              - 'U'
+          - type: 'I_1'
             values:
-              - '1'
-          - type: 'I'
+              - 'I'
+          - type: 'I_2'
             values:
-              - '2'
-          - type: 'T_hull'
+              - 'I'
+          - type: 'T_hull_1'
             values:
               - '1'
-          - type: 'T_hull'
+          - type: 'T_hull_2'
             values:
               - '2'
           - type: 'T_ODT'
@@ -340,18 +346,32 @@ commands:
           - type: 'T_ODT'
             values:
               - '2'
-          - type: 'Heating'
+          - type: 'Heating_1'
             values:
-              - '1'
-          - type: 'Heating'
+              - heating_windows_bottom
+              - heating_windows_top
+              - heating_lm
+              - heating_air
+              - peltier_minus_1
+              - peltier_plus_1
+              - peltier_minus_2
+              - peltier_plus_2
+          - type: 'Heating_2'
             values:
-              - '2'
-          - type: 'Cooling'
+              - heating_windows_bottom
+              - heating_windows_top
+              - heating_lm
+              - heating_air
+              - peltier_minus_1
+              - peltier_plus_1
+              - peltier_minus_2
+              - peltier_plus_2
+          - type: 'Cooling_1'
             values:
-              - '1'
-          - type: 'Cooling'
+              - 'cooler'
+          - type: 'Cooling_2'
             values:
-              - '2'
+              - 'cooler'
       crc: True
   - name: 'set_setting'
     desc: 'Команда установки режима работы ЛСМ'
