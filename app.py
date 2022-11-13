@@ -26,7 +26,7 @@ class SetingUSB(QWidget, Ui_Form):
 app = QApplication(sys.argv)
 
 window = MainWindow()
-setting_usb = SetingUSB()
+setting_usb = SettingUSB()
 window.show()
 print([(i.name, i.interface, i.description) for i in list_ports.comports(True)])
 lsm = LSM()

@@ -56,7 +56,7 @@ class Port:
         return res
 
     def send_command(self, command, params):
-        str_command, time_out, len_response = self._bild_command(command, params)
+        str_command, time_out, len_response = self._build_command(command, params)
         return self._write_and_read(str_command, time_out, len_response)
 
     def _write_and_read(self, str_command, time_out, len_response):

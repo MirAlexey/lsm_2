@@ -26,125 +26,191 @@ params_modem:
         start: 1
         end: 15
         step: 1
-paran_lsm:
+param_lsm:
     - name: 'date'
       values:
         - name: 'year'
           params:
             - name: 'десятки'
               mask: 0b11110000
-              mult: 10
+              mul: 10
             - name: 'единицы'
               mask: 0b00001111
-              mult: 1
+              mul: 1
         - name: 'month'
           params:
             - name: 'десятки'
               mask: 0b00010000
-              mult: 10
+              mul: 10
             - name: 'единицы'
               mask: 0b00001111
-              mult: 1
+              mul: 1
         - name: 'number'
           params:
             - name: 'десятки'
               mask: 0b11110000
-              mult: 10
+              mul: 10
             - name: 'единицы'
               mask: 0b00001111
-              mult: 1
+              mul: 1
         - name: 'weeks_day'
           params:
             - name: 'единицы'
               mask: 0b00000111
-              mult: 1
+              mul: 1
     - name: 'time'
       values:
         - name: 'hour'
           params:
             - name: 'десятки'
               mask: 0b00110000
-              mult: 10
+              mul: 10
             - name: 'единицы'
               mask: 0b00001111
-              mult: 1
+              mul: 1
         - name: 'min'
           params:
             - name: 'десятки'
               mask: 0b01110000
-              mult: 10
+              mul: 10
             - name: 'единицы'
               mask: 0b00001111
-              mult: 1
+              mul: 1
         - name: 'sec'
           params:
             - name: 'десятки'
               mask: 0b01110000
-              mult: 10
+              mul: 10
             - name: 'единицы'
               mask: 0b00001111
-              mult: 1
+              mul: 1
     - name: 'mode'
       values:
         - name: 'lsm_module_0'
           params:
             - name: 'единицы'
               mask: 0b00000001
-              mult: 1
+              mul: 1
         - name: 'lsm_module_1'
           params:
             - name: 'вкл/выкл'
               mask: 0b00000010
-              mult: 1
+              mul: 1
         - name: 'lsm_module_2'
           params:
             - name: 'вкл/выкл'
               mask: 0b00000100
-              mult: 1           
+              mul: 1           
         - name: 'lsm_module_3'
           params:
             - name: 'вкл/выкл'
               mask: 0b00001000
-              mult: 1
+              mul: 1
         - name: 'fotoavtomat'
           params:
             - name: 'фотоавтомат'
               mask: 0b00010000
-              mult: 1
-        - name: 'dinamic_power'
+              mul: 1
+        - name: 'dynamic_power'
           params:
             - name: 'динамическое управление мощностью'
               mask: 0b00100000
-              mult: 1
+              mul: 1
         - name: 'max_nom_power'
           params:
             - name: 'максимальная мощность (1 - макс. / 0 - номин.)'
               mask: 0b01000000
-              mult: 1           
+              mul: 1           
         - name: 'current_illumination'
           params:
             - name: 'текущая освещенность (1 - день / 0 - ночь.)'
               mask: 0b10000000
-              mult: 1
-    - name: 'state_modul_1'
+              mul: 1
+    - name: 'state_module_0'
       values:
         - name: 'radiation'
           params:
           - name: 'излучение'
             mask: 0b00001000
-            mult: 1
-        - name: 'vertical scan'
+            mul: 1
+        - name: 'vertical_scan'
           params:
           - name: 'вертикальная развертка'
             mask: 0b00000100
-            mult: 1
-        - name: 'horizontal scan'
+            mul: 1
+        - name: 'horizontal_scan'
           params:
           - name: 'горизонтальная развертка'
             mask: 0b00000010
-            mult: 1
+            mul: 1
         - name: 'synchronization'
           params:
           - name: 'синхронизация'
             mask: 0b00000001
-            mult: 1
+            mul: 1
+    - name: 'state_module_1'
+      values:
+        - name: 'radiation'
+          params:
+          - name: 'излучение'
+            mask: 0b00001000
+            mul: 1
+        - name: 'vertical_scan'
+          params:
+          - name: 'вертикальная развертка'
+            mask: 0b00000100
+            mul: 1
+        - name: 'horizontal_scan'
+          params:
+          - name: 'горизонтальная развертка'
+            mask: 0b00000010
+            mul: 1
+        - name: 'synchronization'
+          params:
+          - name: 'синхронизация'
+            mask: 0b00000001
+            mul: 1
+    - name: 'state_module_2'
+      values:
+        - name: 'radiation'
+          params:
+          - name: 'излучение'
+            mask: 0b00001000
+            mul: 1
+        - name: 'vertical_scan'
+          params:
+          - name: 'вертикальная развертка'
+            mask: 0b00000100
+            mul: 1
+        - name: 'horizontal_scan'
+          params:
+          - name: 'горизонтальная развертка'
+            mask: 0b00000010
+            mul: 1
+        - name: 'synchronization'
+          params:
+          - name: 'синхронизация'
+            mask: 0b00000001
+            mul: 1
+    - name: 'state_module_3'
+      values:
+        - name: 'radiation'
+          params:
+          - name: 'излучение'
+            mask: 0b00001000
+            mul: 1
+        - name: 'vertical_scan'
+          params:
+          - name: 'вертикальная развертка'
+            mask: 0b00000100
+            mul: 1
+        - name: 'horizontal_scan'
+          params:
+          - name: 'горизонтальная развертка'
+            mask: 0b00000010
+            mul: 1
+        - name: 'synchronization'
+          params:
+          - name: 'синхронизация'
+            mask: 0b00000001
+            mul: 1
