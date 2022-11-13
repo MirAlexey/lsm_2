@@ -113,7 +113,7 @@ commands:
               - '3'
       crc: True
     timeout: 1  
-- name: 'general_status'
+  - name: 'general_status'
     desc: 'Запрос текущего общего состояния ЛСМ'
     request:
       command: '02'
@@ -212,7 +212,7 @@ commands:
             values:
               - '3'
       crc: True
-- name: 'full_status'
+  - name: 'full_status'
     desc: 'Запрос текущего полного состояния ЛСМ '
     request:
       command: '03'
@@ -335,7 +335,7 @@ commands:
             values:
               - '2'
       crc: True
-- name: 'set_setting'
+  - name: 'set_setting'
     desc: 'Команда установки режима работы ЛСМ'
     request:
       command: '04'
@@ -353,7 +353,7 @@ commands:
           - type: 'mode'
             value: 'mode'
       crc: True
-- name: 'reset_setting'
+  - name: 'reset_setting'
     desc: 'Команда перезагрузки ЛСМ'
     request:
       command: '05'
@@ -367,10 +367,10 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'set_modem_setting'
+  - name: 'set_modem_setting'
     desc: 'Команда настройки модема'
     request:
-    command: '20'
+      command: '20'
       address: True
       data: 
         values:
@@ -397,10 +397,10 @@ commands:
           - type: 'modem_setting'
             value: 'CH'
       crc: True    
-- name: 'save_modem_setting'
+  - name: 'save_modem_setting'
     desc: 'Команда сохранение настроек модема'
     request:
-    command: '21'
+      command: '21'
       address: True
       data: 
         values: []
@@ -419,10 +419,10 @@ commands:
           - type: 'modem_setting'
             value: 'CH'
       crc: True     
-- name: 'set_factory_setting'
+  - name: 'set_factory_setting'
     desc: 'Команда сброса ЛСМ в заводские настройки'
     request:
-    command: '06'
+      command: '06'
       address: True
       data: 
         values: []
@@ -433,7 +433,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'stop'
+  - name: 'stop'
     desc: 'Команда остановки ЛСМ («СТОП ЛСМ»)'
     request:
       command: '07'
@@ -447,7 +447,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'start'
+  - name: 'start'
     desc: 'Команда пуска ЛСМ («ПУСК ЛСМ»)'
     request:
       command: '08'
@@ -461,7 +461,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'save_setting'
+  - name: 'save_setting'
     desc: 'Сохранение текущих настроек ЛСМ'
     request:
       command: '09'
@@ -475,7 +475,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'current_time'
+  - name: 'current_time'
     desc: 'Запрос текущего времени'
     request:
       command: '0A'
@@ -489,7 +489,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'set_time'
+  - name: 'set_time'
     desc: 'Команда установки времени'
     request:
       command: '0B'
@@ -503,7 +503,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'last_event'
+  - name: 'last_event'
     desc: 'Запрос номера последнего события'
     request:
       command: '0C'
@@ -517,7 +517,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'number_event'
+  - name: 'number_event'
     desc: 'Запрос данных из памяти событий'
     request:
       command: '0D'
@@ -531,7 +531,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'delete_event_memory'
+  - name: 'delete_event_memory'
     desc: 'Стирание данных из памяти событий'
     request:
       command: '0E'
@@ -545,7 +545,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'address_book'
+  - name: 'address_book'
     desc: 'Запрос адресной книги'
     request:
       command: '0F'
@@ -559,7 +559,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'write_to_address_book'
+  - name: 'write_to_address_book'
     desc: 'Команда записи в адресную книгу'
     request:
       command: '10'
@@ -573,7 +573,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'get_max_power'
+  - name: 'get_max_power'
     desc: 'Запрос текущей максимальной мощности'
     request:
       command: '11'
@@ -587,7 +587,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'set_max_power'
+  - name: 'set_max_power'
     desc: 'Команда установки максимальной мощности'
     request:
       command: '12'
@@ -601,7 +601,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'vertical_correction_request'
+  - name: 'vertical_correction_request'
     desc: 'Запрос коррекции вертикальной развертки'
     request:
       command: '13'
@@ -615,7 +615,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'set_vertical_correction'
+  - name: 'set_vertical_correction'
     desc: 'Команда коррекции вертикальной развертки'
     request:
       command: '14'
@@ -629,7 +629,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'horizontal_correction_request'
+  - name: 'horizontal_correction_request'
     desc: 'Запрос коррекции горизонтальной развертки'
     request:
       command: '15'
@@ -643,7 +643,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'set_horizontal_correction'
+  - name: 'set_horizontal_correction'
     desc: 'Команда коррекции горизонтальной развертки'
     request:
       command: '16'
@@ -657,7 +657,7 @@ commands:
       data: 
         values: []
       crc: True
-- name: 'test'
+  - name: 'test'
     desc: 'Команда включения тестового режима («ТЕСТ»)'
     request:
       command: '17'
@@ -671,7 +671,7 @@ commands:
       data: 
         values: []
       crc: True
-- name:  'event_of_change'
+  - name:  'event_of_change'
     desc: 'Сообщение об изменении состояния и режима'
     request:
       command: '18'
