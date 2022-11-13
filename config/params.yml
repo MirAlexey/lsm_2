@@ -28,6 +28,7 @@ params_modem:
         step: 1
 param_lsm:
     - name: 'date'
+      type: 'value'
       values:
         - name: 'year'
           params:
@@ -59,6 +60,7 @@ param_lsm:
               mask: 0b00000111
               mul: 1
     - name: 'time'
+      type: 'value'
       values:
         - name: 'hour'
           params:
@@ -85,6 +87,7 @@ param_lsm:
               mask: 0b00001111
               mul: 1
     - name: 'mode'
+      type: 'value'
       values:
         - name: 'lsm_module_0'
           params:
@@ -127,6 +130,7 @@ param_lsm:
               mask: 0b10000000
               mul: 1
     - name: 'state_module_0'
+      type: 'value'
       values:
         - name: 'radiation'
           params:
@@ -149,6 +153,7 @@ param_lsm:
             mask: 0b00000001
             mul: 1
     - name: 'state_module_1'
+      type: 'value'
       values:
         - name: 'radiation'
           params:
@@ -171,6 +176,7 @@ param_lsm:
             mask: 0b00000001
             mul: 1
     - name: 'state_module_2'
+      type: 'value'
       values:
         - name: 'radiation'
           params:
@@ -193,6 +199,7 @@ param_lsm:
             mask: 0b00000001
             mul: 1
     - name: 'state_module_3'
+      type: 'value'
       values:
         - name: 'radiation'
           params:
@@ -214,3 +221,4 @@ param_lsm:
           - name: 'синхронизация'
             mask: 0b00000001
             mul: 1
+    - name: ''

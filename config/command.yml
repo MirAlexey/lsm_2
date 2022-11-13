@@ -259,27 +259,45 @@ commands:
               - 'lsm_mdule_2'
               - 'lsm_mdule_3'
               - 'fotoavtomat'
-              - 'dinamic_power'
+              - 'dynamic_power'
               - 'max_nom_power'
               - 'current_illumination'
-          - type: 'state_modul'
+          - type: 'state_module_0'
             values:
-              - '0'
-          - type: 'state_modul'
+              - radiation
+              - vertical_scan
+              - horizontal_scan
+              - synchronization
+          - type: 'state_module_1'
             values:
-              - '1'
-          - type: 'state_modul'
+              - radiation
+              - vertical_scan
+              - horizontal_scan
+              - synchronization
+          - type: 'state_module_2'
             values:
-              - '2'
-          - type: 'state_modul'
+              - radiation
+              - vertical_scan
+              - horizontal_scan
+              - synchronization
+          - type: 'state_module_3'
             values:
-              - '3'
+              - radiation
+              - vertical_scan
+              - horizontal_scan
+              - synchronization
           - type: 'temperature_modul'
             values:
-              - '0'
+              - radiation
+              - vertical_scan
+              - horizontal_scan
+              - synchronization
           - type: 'temperature_modul'
             values:
-              - '1' 
+              - radiation
+              - vertical_scan
+              - horizontal_scan
+              - synchronization
           - type: 'temperature_modul'
             values:
               - '2'
