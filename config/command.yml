@@ -91,33 +91,33 @@ commands:
               - 'sec'
           - type: 'mode'
             values: 
-              - 'lsm_module_0'
-              - 'lsm_module_1'
-              - 'lsm_module_2'
-              - 'lsm_module_3'
+              - 'lsm_module__m0'
+              - 'lsm_module__m1'
+              - 'lsm_module__m2'
+              - 'lsm_module__m2'
               - 'fotoavtomat'
               - 'dynamic_power'
               - 'max_nom_power'
               - 'current_illumination'
-          - type: 'state_module_0'
+          - type: 'state_module__m0'
             values:
               - 'radiation'
               - 'vertical_scan'
               - 'horizontal_scan'
               - 'synchronization'
-          - type: 'state_module_1'
+          - type: 'state_module__m1'
             values:
               - 'radiation'
               - 'vertical_scan'
               - 'horizontal_scan'
               - 'synchronization'
-          - type: 'state_module_2'
+          - type: 'state_module__m2'
             values:
               - 'radiation'
               - 'vertical_scan'
               - 'horizontal_scan'
               - 'synchronization'
-          - type: 'state_module_3'
+          - type: 'state_module__m3'
             values:
               - 'radiation'
               - 'vertical_scan'
@@ -167,27 +167,27 @@ commands:
               - 'sec'
           - type: 'mode'
             values: 
-              - 'lsm_module_0'
-              - 'lsm_module_1'
-              - 'lsm_module_2'
-              - 'lsm_module_3'
+              - 'lsm_module__m0'
+              - 'lsm_module__m1'
+              - 'lsm_module__m2'
+              - 'lsm_module__m3'
               - 'fotoavtomat'
               - 'dynamic_power'
               - 'max_nom_power'
               - 'current_illumination'
-          - type: 'state_module_0'
+          - type: 'state_module__m0'
             values:
               - 'radiation'
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'state_module_1'
+          - type: 'state_module__m1'
             values:
               - 'radiation'
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'state_module_2'
+          - type: 'state_module__m2'
             values:
               - 'radiation'
               - 'vertical scan'
@@ -199,28 +199,28 @@ commands:
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'temperature_module_0'
+          - type: 'temperature_module__m0'
             values:
               - 'temperature'
-          - type: 'temperature_module_1'
+          - type: 'temperature_module__m1'
             values:
               - 'temperature' 
-          - type: 'temperature_module_2'
+          - type: 'temperature_module__m2'
             values:
               - 'temperature'
-          - type: 'temperature_module_3'
+          - type: 'temperature_module__m3'
             values:
               - 'temperature'
-          - type: 'power_module_0'
+          - type: 'power_module__m0'
             values:
               - 'cur_power'
-          - type: 'power_module_1'
+          - type: 'power_module__m1'
             values:
               - 'cur_power'
-          - type: 'power_module_2'
+          - type: 'power_module__m2'
             values:
               - 'cur_power'
-          - type: 'power_module_3'
+          - type: 'power_module__m3'
             values:
               - 'cur_power'
       crc: True
@@ -266,60 +266,60 @@ commands:
               - 'sec'
           - type: 'mode'
             values: 
-              - 'lsm_module_0'
-              - 'lsm_module_1'
-              - 'lsm_module_2'
-              - 'lsm_module_3'
+              - 'lsm_module__m0'
+              - 'lsm_module__m1'
+              - 'lsm_module__m2'
+              - 'lsm_module__m3'
               - 'fotoavtomat'
               - 'dynamic_power'
               - 'max_nom_power'
               - 'current_illumination'
-          - type: 'state_module_0'
+          - type: 'state_module__m0'
             values:
               - 'radiation'
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'state_module_1'
+          - type: 'state_module__m1'
             values:
               - 'radiation'
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'state_module_2'
+          - type: 'state_module__m2'
             values:
               - 'radiation'
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'state_module_3'
+          - type: 'state_module__m3'
             values:
               - 'radiation'
               - 'vertical scan'
               - 'horizontal scan'
               - 'synchronization'
-          - type: 'temperature_module_0'
+          - type: 'temperature_module__m0'
             values:
               - 'temperature'
-          - type: 'temperature_module_1'
+          - type: 'temperature_module__m1'
             values:
               - 'temperature' 
-          - type: 'temperature_module_2'
+          - type: 'temperature_module__m2'
             values:
               - 'temperature'
-          - type: 'temperature_module_3'
+          - type: 'temperature_module__m3'
             values:
               - 'temperature'
-          - type: 'power_module_0'
+          - type: 'power_module__m0'
             values:
               - 'cur_power'
-          - type: 'power_module_1'
+          - type: 'power_module__m1'
             values:
               - 'cur_power'
-          - type: 'power_module_2'
+          - type: 'power_module__m2'
             values:
               - 'cur_power'
-          - type: 'power_module_3'
+          - type: 'power_module__m3'
             values:
               - 'cur_power'
           - type: 'U_1'
@@ -334,19 +334,19 @@ commands:
           - type: 'I_2'
             values:
               - 'I'
-          - type: 'T_hull_1'
+          - type: 'T_hull__k1'
             values:
               - '1'
-          - type: 'T_hull_2'
+          - type: 'T_hull__k2'
             values:
               - '2'
-          - type: 'T_ODT'
+          - type: 'T_ODT__k1'
             values:
               - '1'
-          - type: 'T_ODT'
+          - type: 'T_ODT__k2'
             values:
               - '2'
-          - type: 'Heating_1'
+          - type: 'Heating__k1'
             values:
               - heating_windows_bottom
               - heating_windows_top
@@ -356,7 +356,7 @@ commands:
               - peltier_plus_1
               - peltier_minus_2
               - peltier_plus_2
-          - type: 'Heating_2'
+          - type: 'Heating__k2'
             values:
               - heating_windows_bottom
               - heating_windows_top
@@ -366,10 +366,10 @@ commands:
               - peltier_plus_1
               - peltier_minus_2
               - peltier_plus_2
-          - type: 'Cooling_1'
+          - type: 'cooling__k1'
             values:
               - 'cooler'
-          - type: 'Cooling_2'
+          - type: 'cooling__c2'
             values:
               - 'cooler'
       crc: True
@@ -381,7 +381,15 @@ commands:
       data: 
         values: 
           - type: 'mode'
-            value: 'mode'
+            values: 
+              - 'lsm_module__m0'
+              - 'lsm_module__m1'
+              - 'lsm_module__m2'
+              - 'lsm_module__m3'
+              - 'fotoavtomat'
+              - 'dynamic_power'
+              - 'max_nom_power'
+              - 'current_illumination'
       crc: True
     response:
       command: '84'
@@ -389,7 +397,15 @@ commands:
       data: 
         values:
           - type: 'mode'
-            value: 'mode'
+            values: 
+              - 'lsm_module__m0'
+              - 'lsm_module__m1'
+              - 'lsm_module__m2'
+              - 'lsm_module__m3'
+              - 'fotoavtomat'
+              - 'dynamic_power'
+              - 'max_nom_power'
+              - 'current_illumination'
       crc: True
   - name: 'reset_setting'
     desc: 'Команда перезагрузки ЛСМ'
@@ -525,7 +541,28 @@ commands:
       command: '8A'
       address: True
       data: 
-        values: []
+        values: 
+          - type: 'date'
+            values:
+              - 'year'
+          - type: 'date'
+            values:
+              - 'month'
+          - type: 'date'
+            values:
+              - 'number'
+          - type: 'date'
+            values:
+              - 'weeks_day'
+          - type: 'time'
+            values:
+              - 'hour'
+          - type: 'time'
+            values:
+              - 'min'
+          - type: 'time'
+            values: 
+              - 'sec'
       crc: True
   - name: 'set_time'
     desc: 'Команда установки времени'
@@ -533,13 +570,55 @@ commands:
       command: '0B'
       address: True
       data: 
-        values: []
+        values:
+          - type: 'date'
+            values:
+              - 'year'
+          - type: 'date'
+            values:
+              - 'month'
+          - type: 'date'
+            values:
+              - 'number'
+          - type: 'date'
+            values:
+              - 'weeks_day'
+          - type: 'time'
+            values:
+              - 'hour'
+          - type: 'time'
+            values:
+              - 'min'
+          - type: 'time'
+            values: 
+              - 'sec'
       crc: True
     response:
       command: '8B'
       address: True
       data: 
-        values: []
+        values:
+          - type: 'date'
+            values:
+              - 'year'
+          - type: 'date'
+            values:
+              - 'month'
+          - type: 'date'
+            values:
+              - 'number'
+          - type: 'date'
+            values:
+              - 'weeks_day'
+          - type: 'time'
+            values:
+              - 'hour'
+          - type: 'time'
+            values:
+              - 'min'
+          - type: 'time'
+            values: 
+              - 'sec'
       crc: True
   - name: 'last_event'
     desc: 'Запрос номера последнего события'

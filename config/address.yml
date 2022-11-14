@@ -1,7 +1,10 @@
 addresses:
-  first:
+  k1:
     input: '46'
     output: '64' 
-  second:
+  k2:
     input: '56'
-    output: '65' 
+    output: '65'
+  disp:
+    input: '00'
+    output: '00'

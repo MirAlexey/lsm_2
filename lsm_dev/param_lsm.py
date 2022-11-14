@@ -2,46 +2,32 @@ class ParamLSM:
     def __init__(self):
         pass
 
-    def encode(self, type_value, name_value, all_params, value):
+    def encode(self, params, data):
         pass
 
-    def decode(self, type_value, name_value, all_params, value):
+    def decode(self, params, data):
         pass
 
-class Param_date(ParamLSM):
-    def decode(self, type_value, name_value, all_params):
-        value = all_params[type_value][name_value]
-        if type_value == 'year':
-           result = ((value & 0b11110000) >> 4)*10 + (value & 0b00001111)
-        elif type_value == 'month':
-           result = ((value & 0b00010000) >> 4)*10 + (value & 0b00001111)
-        elif type_value == 'number':
-           result = (value & 0b00000111)
-        elif type_value == 'weeks_day':
-           result = ((value & 0b11110000) >> 4)*10 + (value & 0b00001111)
-        else:
-            raise ValueError(f'type_value "{type_value}" not valid for date')
-        return result
+class Param_bit(ParamLSM):
+    def decode(self, params, data):
+        return sum([((data & res.mask) >> res.shift) * res.mul for res in params])
 
-    def encode(self, type_value, name_value, all_params, value):
-        return ((value//10 ) << 4) + (value%10)
+    def encode(self, params, data):
+        res = 0b00000000
+        for p in params:
+            res |= (int(data/res.mul) << p.shift) & p.mask
+        return res
 
-class Param_time(ParamLSM):
-    def decode(self, type_value, name_value, all_params):
-        value = all_params[type_value][name_value]
-        if type_value == 'hour':
-           result = ((value & 0b00110000) >> 4)*10 + (value & 0b00001111)
-        elif type_value == 'min':
-           result = ((value & 0b01110000) >> 4)*10 + (value & 0b00001111)
-        elif type_value == 'sec':
-           result = ((value & 0b01110000) >> 4)*10 + (value & 0b00001111)
-        else:
-           raise ValueError(f'type_value "{type_value}" not valid for time')
-        return result
+class Param_bool(ParamLSM):
+    def decode(self, params, data):
+        return bool((data & params[0].mask) >> params[0].shift)
 
-    def encode(self, type_value, name_value, all_params, value):
-        return ((value//10 ) << 4) + (value%10)
+    def encode(self, params, data):
+        return (int(data) << params[0].shift)
 
-class Param_mode(ParamLSM):
-    def decode(self, type_value, name_value, all_params):
-        value = all_params[type_value][name_value]
+class Param_sig(ParamLSM):
+    def decode(self, params, data):
+        return data-256 if data>127 else data
+
+    def encode(self, params, data):
+        return data+256 if data<0 else data
