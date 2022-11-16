@@ -1,5 +1,7 @@
 import serial
+
 from param_lsm import get_param_obj
+from logger import Logger
 
 CONST_SRC = [
     '00', '31', '62', '53', 'C4', 'F5', 'A6', '97',
@@ -36,7 +38,7 @@ CONST_SRC = [
     '3B', '0A', '59', '68', 'FF', 'CE', '9D', 'AC'
 ]
 
-
+logger = Logger() 
 
 class Port:
     def __init__(self, commands, addresses, params):
@@ -57,11 +59,13 @@ class Port:
     def send_command(self, address, command, params_value):
         str_command, time_out, len_response = self._build_command(address, command, params_value)
         res = self._write_and_read(str_command, time_out, len_response)
-        if ~self._check_crc(res):
-            loger.warn(f'Response {res} with error crc')
-            return None
         if len(res) != len_response:
+            logger.warn(f'Response {res} with invalid length')
             return None
+        if ~self._check_crc(res):
+            logger.warn(f'Response {res} with error crc')
+            return None
+        
         return self._parse_response(res, address, command)
         
 
@@ -129,7 +133,27 @@ class Port:
 
     def _parse_response(self, res, address, command):
         resp = command['response']
-        if (f'{res[0]:0>2x}' != self._get_address(address, 'input')) or (f'{res[1]:0>2x}' != resp['command']):
-            raise ValueError(f"Response invalid! address: {res[0]:0>2x} != self._get_address(address, 'input') or command {res[1]:0>2x} != resp['command']")
+        resp_address = f'{res[0]:0>2x}' if resp.address else ''
+        true_address = self._get_address(address, 'input') if resp.address else ''
+        resp_command = f'{res[1]:0>2x}' if resp.command != '' else ''
+        true_command = resp.command
+        if (resp_address != true_address) or (resp_command != true_command):
+            raise ValueError(f"Response invalid! address: '{resp_address}' != '{true_address}' or command {resp_command} != '{true_command}'")
+        start_data = int(resp.address) + (resp.command != '')
+        resp_data = resp[start_data:-1]
+        
+
+
+
+
+
+
+
+    def _check_crc(self,res):
+        crc = 0x00;
+        for r in res[:-1]:
+            crc = int(CONST_SRC[crc ^ r], 16)
+        return crc == res[-1]
+
 
 
