@@ -114,9 +114,11 @@ class Port:
     def _get_param_setting(self, val):
         res = []
         for v in val['values']:
+            p_a = v['type'].split('__')
             for p in v['values']:
                 l_a = p['values'].split('__')
-                res.append(self.params[v['type'][l_a[0]]])
+
+                res.append(self.params[p_a[0]][l_a[0]])
         return res
 
     def _get_param_value(self, val, address, params_value):
@@ -141,10 +143,28 @@ class Port:
             raise ValueError(f"Response invalid! address: '{resp_address}' != '{true_address}' or command {resp_command} != '{true_command}'")
         start_data = int(resp.address) + (resp.command != '')
         resp_data = resp[start_data:-1]
-        
 
+        res = {}
+        for i,v in enumerate(resp['data']['values']):
+            group_param = v['type']
+            group_values = v['values']
+            params_v = self._get_param_setting(v)
+            values_v = resp_data[i]
+            for pv, gv in zip(params_v, group_values):
+                cur_dev = self._get_curren_device(group_param, gv)
+                decode_value = get_param_obj(pv).encode(values_v)
+                
+            
 
-
+    def _get_curren_device(self, group_param, group_value):
+        group_dev = group_param.split('__')
+        value_dev = group_value.split('__')
+        res = []
+        if len(group_dev) > 1:
+            res.append(group_dev[1])
+        if len(value_dev) > 1:
+            res.append(value_dev[1])
+        return res
 
 
 
