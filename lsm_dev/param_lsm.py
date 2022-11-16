@@ -31,3 +31,13 @@ class Param_sig(ParamLSM):
 
     def encode(self, params, data):
         return data+256 if data<0 else data
+
+def get_param_obj(name):
+    if name == 'bit_value':
+        return Param_bit()
+    elif name == 'bool_value':
+        return Param_bool()
+    elif name == 'sig_value':
+        return Param_sig()
+    else:
+        raise ValueError(f'Name param: "{name}" is not valid')

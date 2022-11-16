@@ -640,7 +640,13 @@ commands:
       command: '0D'
       address: True
       data: 
-        values: []
+        values:
+          - type: 'event_number'
+            values:
+              - 'high'
+          - type: 'event_number'
+            values:
+              - 'low'
       crc: True
     response:
       command: '8D'

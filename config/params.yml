@@ -58,6 +58,21 @@ params:
             mask: 0b11111111
             shift: 0
             mul: 1       
+  - name: 'event_number'
+    type: 'value'
+    values:
+      - name: 'high'
+        type: 'bit_value'
+        params:
+          - name: 'старший байт номера события'
+            mask: 0b11111111
+            shift: 0
+      - name: 'high'
+        type: 'bit_value'
+        params:
+          - name: 'старший байт номера события'
+            mask: 0b11111111
+            shift: 0
   - name: 'date'
     type: 'value'
     values:
