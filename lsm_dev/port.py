@@ -56,8 +56,8 @@ class Port:
         self.usb.close()
         return res
 
-    def send_command(self, address, command, params_value):
-        str_command, time_out, len_response = self._build_command(address, command, params_value)
+    def send_command(self, address, command, params_value, postfix_param_name = ''):
+        str_command, time_out, len_response = self._build_command(address, command, params_value, postfix_param_name)
         res = self._write_and_read(str_command, time_out, len_response)
         if len(res) != len_response:
             logger.warn(f'Response {res} with invalid length')
@@ -77,7 +77,7 @@ class Port:
         self.usb.close()
         return res
 
-    def _build_command(self, address, command, params_value):
+    def _build_command(self, address, command, params_value, postfix_param_name):
         req = command['request']
         resp = command['response']
         time_out = command['timeout']
@@ -91,7 +91,7 @@ class Port:
         if req['address']:
             str_command+=self._get_address(address, 'output')
         str_command+=req['command'] 
-        str_command+=self._get_data(req['data'], params_value, address)
+        str_command+=self._get_data(req['data'], params_value, address, postfix_param_name)
         if req['crc']:
             str_command+=self._get_crc(str_command)
         return str_command, time_out, resp_len
@@ -100,11 +100,11 @@ class Port:
         if address in self._addresses:
             return self._addresses[address][dest]
 
-    def _get_data(self, data, params_value, address):
+    def _get_data(self, data, params_value, address, postfix_param_name):
         res = ''
         for v in data['values']:
             params_v = self._get_param_setting(v)
-            values_v = self._get_param_value(v, address, params_value)
+            values_v = self._get_param_value(v, address, params_value, postfix_param_name)
             rv= 0b00000000
             for pv, vv in zip(params_v, values_v):
                 rv |= get_param_obj(pv).encode(vv)
@@ -117,20 +117,18 @@ class Port:
             p_a = v['type'].split('__')
             for p in v['values']:
                 l_a = p['values'].split('__')
-
-                res.append(self.params[p_a[0]][l_a[0]])
+                param_values = self.params[self._param_name.index(p_a[0])]
+                pv_name = [pv.name for pv in param_values]
+                res.append({'type':'str','params':[]} if p_a == 'str' else param_values[pv_name.index(l_a[0])])
         return res
+
 
     def _get_param_value(self, val, address, params_value):
         res = []
-
         for v in val['values']:
             for p in v['values']:
-                l_a = p['values'].split('__')
-                tmp = params_value  if address == '' else params_value[address]                
-                for a in l_a[::-1]:
-                    tmp=tmp[a] 
-                res.append(tmp)
+                source = self._get_current_dest(v['type'], p)
+                res.append(p if source == 'str' else params_value[source])
         return res
 
     def _parse_response(self, res, address, command):
@@ -146,25 +144,22 @@ class Port:
 
         res = {}
         for i,v in enumerate(resp['data']['values']):
-            group_param = v['type']
             group_values = v['values']
             params_v = self._get_param_setting(v)
             values_v = resp_data[i]
             for pv, gv in zip(params_v, group_values):
-                cur_dev = self._get_curren_device(group_param, gv)
+                cur_dest = self._get_current_dest(v['type'], gv)
+                if cur_dest in res:
+                    res[cur_dest] = []
                 decode_value = get_param_obj(pv).encode(values_v)
-                
-            
+                res[cur_dest].append(decode_value)
 
-    def _get_curren_device(self, group_param, group_value):
+    def _get_current_dest(self, group_param, group_value):
         group_dev = group_param.split('__')
         value_dev = group_value.split('__')
-        res = []
-        if len(group_dev) > 1:
-            res.append(group_dev[1])
         if len(value_dev) > 1:
-            res.append(value_dev[1])
-        return res
+            return group_value
+        return group_dev
 
 
 

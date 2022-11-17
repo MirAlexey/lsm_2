@@ -7,13 +7,17 @@ commands:
       data: 
         values: 
           - type: 'str'
-            value: '41'
+            value: 
+              - '41'
           - type: 'str'
-            value: '54'
+            value: 
+              - '54'
           - type: 'str'
-            value: '44'
+            value: 
+              - '44'
           - type: 'str'
-            value: '0D'
+            value:
+              - '0D'
       crc: False
     response:
       command: ''
@@ -21,17 +25,23 @@ commands:
       data:
         values:
           - type: 'str'
-            value: '0D'
+            value:
+              - '0D'
           - type: 'str'
-            value: '0A'
+            value: 
+              - '0A'
           - type: 'str'
-            value: '4F'
+            value:  
+              - '4F'
           - type: 'str'
-            value: '4B'
+            value:  
+              - '4B'
           - type: 'str'
-            value: '0D' 
+            value:  
+              - '0D' 
           - type: 'str'
-            value: '0A'
+            value:  
+              - '0A'
       crc: False      
     timeout: 1
   - name: 'link_request'
@@ -99,30 +109,30 @@ commands:
               - 'dynamic_power'
               - 'max_nom_power'
               - 'current_illumination'
-          - type: 'state_module__m0'
+          - type: 'state_module'
             values:
-              - 'radiation'
-              - 'vertical_scan'
-              - 'horizontal_scan'
-              - 'synchronization'
-          - type: 'state_module__m1'
+              - 'radiation__m0'
+              - 'vertical_scan__m0'
+              - 'horizontal_scan__m0'
+              - 'synchronization__m0'
+          - type: 'state_module'
             values:
-              - 'radiation'
-              - 'vertical_scan'
-              - 'horizontal_scan'
-              - 'synchronization'
+              - 'radiation__m1'
+              - 'vertical_scan__m1'
+              - 'horizontal_scan__m1'
+              - 'synchronization__m1'
           - type: 'state_module__m2'
             values:
-              - 'radiation'
-              - 'vertical_scan'
-              - 'horizontal_scan'
-              - 'synchronization'
-          - type: 'state_module__m3'
+              - 'radiation__m2'
+              - 'vertical_scan__m2'
+              - 'horizontal_scan__m2'
+              - 'synchronization__m2'
+          - type: 'state_module'
             values:
-              - 'radiation'
-              - 'vertical_scan'
-              - 'horizontal_scan'
-              - 'synchronization'
+              - 'radiation__m3'
+              - 'vertical_scan__m3'
+              - 'horizontal_scan__m3'
+              - 'synchronization__m3'
       crc: True
     timeout: 1  
   - name: 'general_status'
@@ -175,54 +185,54 @@ commands:
               - 'dynamic_power'
               - 'max_nom_power'
               - 'current_illumination'
-          - type: 'state_module__m0'
+          - type: 'state_module'
             values:
-              - 'radiation'
-              - 'vertical scan'
-              - 'horizontal scan'
-              - 'synchronization'
-          - type: 'state_module__m1'
+              - 'radiation__m0'
+              - 'vertical_scan__m0'
+              - 'horizontal_scan__m0'
+              - 'synchronization__m0'
+          - type: 'state_module'
             values:
-              - 'radiation'
-              - 'vertical scan'
-              - 'horizontal scan'
-              - 'synchronization'
+              - 'radiation__m1'
+              - 'vertical_scan__m1'
+              - 'horizontal_scan__m1'
+              - 'synchronization__m1'
           - type: 'state_module__m2'
             values:
-              - 'radiation'
-              - 'vertical scan'
-              - 'horizontal scan'
-              - 'synchronization'
-          - type: 'state_module_3'
+              - 'radiation__m2'
+              - 'vertical_scan__m2'
+              - 'horizontal_scan__m2'
+              - 'synchronization__m2'
+          - type: 'state_module'
             values:
-              - 'radiation'
-              - 'vertical scan'
-              - 'horizontal scan'
-              - 'synchronization'
-          - type: 'temperature_module__m0'
+              - 'radiation__m3'
+              - 'vertical_scan__m3'
+              - 'horizontal_scan__m3'
+              - 'synchronization__m3'
+          - type: 'temperature_module'
             values:
-              - 'temperature'
-          - type: 'temperature_module__m1'
+              - 'temperature__m0'
+          - type: 'temperature_module'
             values:
-              - 'temperature' 
-          - type: 'temperature_module__m2'
+              - 'temperature__m1' 
+          - type: 'temperature_module'
             values:
-              - 'temperature'
-          - type: 'temperature_module__m3'
+              - 'temperature__m2'
+          - type: 'temperature_module'
             values:
-              - 'temperature'
-          - type: 'power_module__m0'
+              - 'temperature__m3'
+          - type: 'power_module'
             values:
-              - 'cur_power'
-          - type: 'power_module__m1'
+              - 'cur_power__m0'
+          - type: 'power_module'
             values:
-              - 'cur_power'
-          - type: 'power_module__m2'
+              - 'cur_power__m1'
+          - type: 'power_module'
             values:
-              - 'cur_power'
-          - type: 'power_module__m3'
+              - 'cur_power__m2'
+          - type: 'power_module'
             values:
-              - 'cur_power'
+              - 'cur_power__m3'
       crc: True
   - name: 'full_status'
     desc: 'Запрос текущего полного состояния ЛСМ '
@@ -274,78 +284,78 @@ commands:
               - 'dynamic_power'
               - 'max_nom_power'
               - 'current_illumination'
-          - type: 'state_module__m0'
+          - type: 'state_module'
             values:
-              - 'radiation'
-              - 'vertical scan'
-              - 'horizontal scan'
-              - 'synchronization'
-          - type: 'state_module__m1'
+              - 'radiation__m0'
+              - 'vertical_scan__m0'
+              - 'horizontal_scan__m0'
+              - 'synchronization__m0'
+          - type: 'state_module'
             values:
-              - 'radiation'
-              - 'vertical scan'
-              - 'horizontal scan'
-              - 'synchronization'
-          - type: 'state_module__m2'
+              - 'radiation__m1'
+              - 'vertical_scan__m1'
+              - 'horizontal_scan__m1'
+              - 'synchronization__m1'
+          - type: 'state_module'
             values:
-              - 'radiation'
-              - 'vertical scan'
-              - 'horizontal scan'
-              - 'synchronization'
-          - type: 'state_module__m3'
+              - 'radiation__m2'
+              - 'vertical_scan__m2'
+              - 'horizontal_scan__m2'
+              - 'synchronization__m2'
+          - type: 'state_module'
             values:
-              - 'radiation'
-              - 'vertical scan'
-              - 'horizontal scan'
-              - 'synchronization'
-          - type: 'temperature_module__m0'
+              - 'radiation__m3'
+              - 'vertical_scan__m3'
+              - 'horizontal_scan__m3'
+              - 'synchronization__m3'
+          - type: 'temperature_module'
             values:
-              - 'temperature'
-          - type: 'temperature_module__m1'
+              - 'temperature__m0'
+          - type: 'temperature_module'
             values:
-              - 'temperature' 
-          - type: 'temperature_module__m2'
+              - 'temperature__m1' 
+          - type: 'temperature_module'
             values:
-              - 'temperature'
-          - type: 'temperature_module__m3'
+              - 'temperature__m2'
+          - type: 'temperature_module'
             values:
-              - 'temperature'
-          - type: 'power_module__m0'
+              - 'temperature__m3'
+          - type: 'power_module'
             values:
-              - 'cur_power'
-          - type: 'power_module__m1'
+              - 'cur_power__m0'
+          - type: 'power_module'
             values:
-              - 'cur_power'
-          - type: 'power_module__m2'
+              - 'cur_power__m1'
+          - type: 'power_module'
             values:
-              - 'cur_power'
-          - type: 'power_module__m3'
+              - 'cur_power__m2'
+          - type: 'power_module'
             values:
-              - 'cur_power'
-          - type: 'U_1'
+              - 'cur_power__m3'
+          - type: 'U'
             values:
-              - 'U'
-          - type: 'U_2'
+              - 'U_1'
+          - type: 'U'
             values:
-              - 'U'
-          - type: 'I_1'
+              - 'U_2'
+          - type: 'I'
             values:
-              - 'I'
-          - type: 'I_2'
+              - 'I_1'
+          - type: 'I'
             values:
-              - 'I'
-          - type: 'T_hull__k1'
+              - 'I_2'
+          - type: 'T_hull'
             values:
-              - '1'
-          - type: 'T_hull__k2'
+              - 'temperature_hull__k1'
+          - type: 'T_hull'
             values:
-              - '2'
-          - type: 'T_ODT__k1'
+              - 'temperature_hull__k2'
+          - type: 'T_ODT'
             values:
-              - '1'
+              - 'temperature_odt__k1'
           - type: 'T_ODT__k2'
             values:
-              - '2'
+              - 'temperature_odt__k2'
           - type: 'Heating__k1'
             values:
               - heating_windows_bottom

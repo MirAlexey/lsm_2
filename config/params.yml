@@ -263,7 +263,17 @@ params:
   - name: 'T_hull'
     type: 'value'
     values:
-      - name: 'temperature'
+      - name: 'temperature_hull'
+        type: 'sig_value'
+        params:
+        - name: 'темпиратура'
+          mask: 0b11111111
+          shift: 0
+          mul: 1 
+  - name: 'T_ODT'
+    type: 'value'
+    values:
+      - name: 'temperature_odt'
         type: 'sig_value'
         params:
         - name: 'темпиратура'
