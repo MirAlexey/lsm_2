@@ -18,10 +18,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__()
         self.setupUi(self)
 
-class SetingUSB(QWidget, Ui_Form):
+class SettingUSB(QWidget, Ui_Form):
     def __init__(self):
-        super(SetingUSB, self).__init__()
+        super(SettingUSB, self).__init__()
         self.setupUi(self)
+
+def getParams():
+    for i in 
+
 
 app = QApplication(sys.argv)
 
@@ -30,6 +34,7 @@ setting_usb = SettingUSB()
 window.show()
 print([(i.name, i.interface, i.description) for i in list_ports.comports(True)])
 lsm = LSM()
+
 window.menu.actions()[0].triggered.connect(setting_usb.show)
 
 

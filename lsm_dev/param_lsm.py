@@ -15,7 +15,7 @@ class Param_bit(ParamLSM):
     def encode(self, params, data):
         res = 0b00000000
         for p in params:
-            res |= (int(data/res.mul) << p.shift) & p.mask
+            res |= (int(data//p.mul) << p.shift) & p.mask
         return res
 
 class Param_bool(ParamLSM):
@@ -39,6 +39,7 @@ class Param_str(ParamLSM):
     def encode(self, params, data):
         return int(data, 16)
 
+
 def get_param_obj(name):
     if name == 'bit_value':
         return Param_bit()
@@ -50,3 +51,33 @@ def get_param_obj(name):
         return Param_str()
     else:
         raise ValueError(f'Name param: "{name}" is not valid')
+
+
+class BaseReduce():
+    def eval(self, list_value):
+        return list_value
+
+class SumReduce(BaseReduce):
+    def eval(self, list_value):
+        return [sum(list_value)]
+
+class ConReduce(BaseReduce):
+    def __init__(self, delim=''):
+        self.delim = delim
+    def eval(self, list_value):
+        return [self.delim.join(list_value)]
+
+
+def get_param_reduce(name):
+    if name == 'value':
+        return BaseReduce()
+    elif name == 'value_sum':
+        return SumReduce()
+    elif name == 'value_date':
+        return ConReduce('-')
+    elif name == 'value_time':
+        return ConReduce(':')
+    elif name - 'value_con':
+        return ConReduce()
+    else:
+        raise ValueError(f'Name reduce: "{name}" is not valid')

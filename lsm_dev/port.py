@@ -1,6 +1,6 @@
 import serial
 
-from param_lsm import get_param_obj
+from param_lsm import get_param_obj, get_param_reduce
 from logger import Logger
 
 CONST_SRC = [
@@ -47,14 +47,19 @@ class Port:
         self.params = params
         self._param_name= [p.name for p in params]
 
-    def set_param(self, baudrate, port):
+    def init_param(self, baudrate, port):
         self.usb = serial.Serial()
         self.usb.baudrate = baudrate
         self.usb.port = port
         self.usb.open()
-        res = self.usb.is_open
-        self.usb.close()
+        res = self.usb.is_open()
         return res
+
+    def is_open(self):
+        return self.usb.is_open()
+
+    def checkEventMsg(self):
+        pass
 
     def send_command(self, address, command, params_value, postfix_param_name = ''):
         str_command, time_out, len_response = self._build_command(address, command, params_value, postfix_param_name)
@@ -67,7 +72,6 @@ class Port:
             return None
         
         return self._parse_response(res, address, command)
-        
 
     def _write_and_read(self, str_command, time_out, len_response):
         
@@ -102,26 +106,30 @@ class Port:
 
     def _get_data(self, data, params_value, address, postfix_param_name):
         res = ''
-        for v in data['values']:
-            params_v = self._get_param_setting(v)
-            values_v = self._get_param_value(v, address, params_value, postfix_param_name)
+        for com_v in data['values']:
+            params_v = self._get_param_setting(com_v)
+            values_v = self._get_param_value(com_v, address, params_value, postfix_param_name)
             rv= 0b00000000
             for pv, vv in zip(params_v, values_v):
                 rv |= get_param_obj(pv).encode(vv)
             res+=f'{rv:0>2x}'
         return res
 
-    def _get_param_setting(self, val):
+    def _get_param_setting(self, com_val):
         res = []
-        for v in val['values']:
+        for v in com_val['values']:
             p_a = v['type'].split('__')
             for p in v['values']:
                 l_a = p['values'].split('__')
-                param_values = self.params[self._param_name.index(p_a[0])]
-                pv_name = [pv.name for pv in param_values]
-                res.append({'type':'str','params':[]} if p_a == 'str' else param_values[pv_name.index(l_a[0])])
+                param_lsm_values = self.params[self._param_name.index(p_a[0])]
+                pv_name = [pv.name for pv in param_lsm_values['values']]
+                if p_a == 'str':
+                    cur_res = {'type':'str','params':[], 'type_reduce':'value_con'}
+                else:
+                    cur_res = param_lsm_values['values'][pv_name.index(l_a[0])]
+                    cur_res['type_reduce'] = param_lsm_values['type']
+                res.append(cur_res)
         return res
-
 
     def _get_param_value(self, val, address, params_value):
         res = []
@@ -139,7 +147,7 @@ class Port:
         true_command = resp.command
         if (resp_address != true_address) or (resp_command != true_command):
             raise ValueError(f"Response invalid! address: '{resp_address}' != '{true_address}' or command {resp_command} != '{true_command}'")
-        start_data = int(resp.address) + (resp.command != '')
+        start_data = int(resp.address) + int(resp.command != '')
         resp_data = resp[start_data:-1]
 
         res = {}
@@ -148,11 +156,15 @@ class Port:
             params_v = self._get_param_setting(v)
             values_v = resp_data[i]
             for pv, gv in zip(params_v, group_values):
-                cur_dest = self._get_current_dest(v['type'], gv)
+                cur_dest = self._get_current_dest(v['name'], gv)
                 if cur_dest in res:
-                    res[cur_dest] = []
-                decode_value = get_param_obj(pv).encode(values_v)
-                res[cur_dest].append(decode_value)
+                    res[cur_dest] = {'type_reduce': pv['type_reduce'], 'vl':[]}
+                decode_value = get_param_obj(pv).decode(values_v)
+                res[cur_dest]['vl'].append(decode_value)
+        for k,v in res.items():
+            res[k]= get_param_reduce(v['type_reduce']).eval(v['vl'])
+        return res 
+
 
     def _get_current_dest(self, group_param, group_value):
         group_dev = group_param.split('__')
@@ -165,7 +177,7 @@ class Port:
 
 
     def _check_crc(self,res):
-        crc = 0x00;
+        crc = 0x00
         for r in res[:-1]:
             crc = int(CONST_SRC[crc ^ r], 16)
         return crc == res[-1]

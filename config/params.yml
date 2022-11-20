@@ -59,7 +59,7 @@ params:
             shift: 0
             mul: 1       
   - name: 'event_number'
-    type: 'value'
+    type: 'value_sum'
     values:
       - name: 'high'
         type: 'bit_value'
@@ -67,88 +67,67 @@ params:
           - name: 'старший байт номера события'
             mask: 0b11111111
             shift: 0
-      - name: 'high'
+            mul: 256
+      - name: 'low'
         type: 'bit_value'
         params:
-          - name: 'старший байт номера события'
+          - name: 'младший байт номера события'
             mask: 0b11111111
             shift: 0
+            mul: 1
   - name: 'date'
-    type: 'value'
+    type: 'value_date'
     values:
       - name: 'year'
         type: 'bit_value'
         params:
-          - name: 'десятки'
-            mask: 0b11110000
-            shift: 4
-            mul: 10
-          - name: 'единицы'
-            mask: 0b00001111
+          - name: 'год'
+            mask: 0b11111111
             shift: 0
             mul: 1
       - name: 'month'
         type: 'bit_value'
         params:
-          - name: 'десятки'
-            mask: 0b00010000
-            shift: 4
-            mul: 10
-          - name: 'единицы'
-            mask: 0b00001111
+          - name: 'месяц'
+            mask: 0b11111111
             shift: 0
             mul: 1
       - name: 'number'
         type: 'bit_value'
         params:
-          - name: 'десятки'
-            mask: 0b11110000
-            shift: 4
-            mul: 10
-          - name: 'единицы'
-            mask: 0b00001111
+          - name: 'число'
+            mask: 0b11111111
             shift: 0
             mul: 1
       - name: 'weeks_day'
         type: 'bit_value'
         params:
-          - name: 'единицы'
+          - name: 'день недели'
             mask: 0b00000111
             shift: 0
             mul: 1
   - name: 'time'
+    type: 'value_time'
     values:
       - name: 'hour'
         type: 'bit_value'
         params:
-          - name: 'десятки'
-            mask: 0b00110000
-            shift: 4
-            mul: 10
-          - name: 'единицы'
-            mask: 0b00001111
+          - name: 'час'
+            mask: 0b11111111
             shift: 0
             mul: 1
       - name: 'min'
         type: 'bit_value'
         params:
-          - name: 'десятки'
-            mask: 0b01110000
-            shift: 4
-            mul: 10
-          - name: 'единицы'
-            mask: 0b00001111
+          - name: 'минута'
+            mask: 0b11111111
             shift: 0
             mul: 1
       - name: 'sec'
         type: 'bit_value'
         params:
-          - name: 'десятки'
-            mask: 0b01110000
-            shift: 4
-            mul: 10
-          - name: 'единицы'
-            mask: 0b00001111
+          - name: 'секунда'
+            mask: 0b11111111
             shift: 0
             mul: 1
   - name: 'mode'
