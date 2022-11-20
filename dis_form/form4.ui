@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>widget</class>
+ <widget class="QWidget" name="widget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>221</width>
-    <height>368</height>
+    <width>217</width>
+    <height>252</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Настройки модема</string>
   </property>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="title">
-    <string>МС - 1</string>
+    <string>Настройки модема</string>
    </property>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -64,7 +64,7 @@
      <string>Power</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="lsm__SW">
     <property name="geometry">
      <rect>
       <x>95</x>
@@ -74,7 +74,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_2">
+   <widget class="QComboBox" name="lsm__BW">
     <property name="geometry">
      <rect>
       <x>95</x>
@@ -84,7 +84,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_3">
+   <widget class="QComboBox" name="lsm__P">
     <property name="geometry">
      <rect>
       <x>95</x>
@@ -94,7 +94,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_4">
+   <widget class="QComboBox" name="lsm__CH">
     <property name="geometry">
      <rect>
       <x>95</x>
@@ -122,13 +122,13 @@
    <property name="geometry">
     <rect>
      <x>5</x>
-     <y>130</y>
+     <y>135</y>
      <width>211</width>
      <height>116</height>
     </rect>
    </property>
    <property name="title">
-    <string>МС - 2</string>
+    <string>Статус</string>
    </property>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
@@ -140,7 +140,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>SpreadingFactor</string>
+     <string>МС-1</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
@@ -153,7 +153,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Bandwidth</string>
+     <string>MС-2</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -166,165 +166,46 @@
      </rect>
     </property>
     <property name="text">
-     <string>Power</string>
+     <string>MC-3</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_5">
+   <widget class="QLabel" name="Status_MC1">
     <property name="geometry">
      <rect>
       <x>95</x>
-      <y>15</y>
-      <width>111</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_6">
-    <property name="geometry">
-     <rect>
-      <x>95</x>
-      <y>40</y>
-      <width>111</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_7">
-    <property name="geometry">
-     <rect>
-      <x>95</x>
-      <y>65</y>
-      <width>111</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_8">
-    <property name="geometry">
-     <rect>
-      <x>95</x>
-      <y>90</y>
-      <width>111</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>95</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Channel</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QGroupBox" name="groupBox_3">
-   <property name="geometry">
-    <rect>
-     <x>5</x>
-     <y>250</y>
-     <width>211</width>
-     <height>116</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>МС - 3</string>
-   </property>
-   <widget class="QLabel" name="label_9">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
       <y>20</y>
       <width>86</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>SpreadingFactor</string>
+     <string>неопределено</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_10">
+   <widget class="QLabel" name="Status_MC2">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>95</x>
       <y>45</y>
-      <width>76</width>
+      <width>81</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Bandwidth</string>
+     <string>неопределено</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_11">
+   <widget class="QLabel" name="Status_MC3">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>95</x>
       <y>70</y>
-      <width>47</width>
-      <height>13</height>
+      <width>86</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Power</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_9">
-    <property name="geometry">
-     <rect>
-      <x>95</x>
-      <y>15</y>
-      <width>111</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_10">
-    <property name="geometry">
-     <rect>
-      <x>95</x>
-      <y>40</y>
-      <width>111</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_11">
-    <property name="geometry">
-     <rect>
-      <x>95</x>
-      <y>65</y>
-      <width>111</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_12">
-    <property name="geometry">
-     <rect>
-      <x>95</x>
-      <y>90</y>
-      <width>111</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_12">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>95</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Channel</string>
+     <string>неопределено</string>
     </property>
    </widget>
   </widget>

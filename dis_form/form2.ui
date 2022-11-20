@@ -68,7 +68,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="lsm__usb_stop_bit">
    <property name="geometry">
     <rect>
      <x>95</x>
@@ -78,7 +78,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox">
+  <widget class="QCheckBox" name="lsm__usb_check_odd">
    <property name="geometry">
     <rect>
      <x>95</x>
@@ -91,7 +91,7 @@
     <string>Выключено</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="lsm__usb_port">
    <property name="geometry">
     <rect>
      <x>95</x>
@@ -101,7 +101,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="lsm__usb_size_data">
    <property name="geometry">
     <rect>
      <x>95</x>

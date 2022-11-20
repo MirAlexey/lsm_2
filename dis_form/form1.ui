@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>679</width>
-    <height>498</height>
+    <width>677</width>
+    <height>499</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -171,7 +171,7 @@
     <property name="lineWidth">
      <number>1</number>
     </property>
-    <widget class="QTextEdit" name="textEdit_2">
+    <widget class="QTextEdit" name="lsm__lsm_module__m2">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -200,7 +200,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; vertical-align:middle;&quot;&gt;Резерв&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_3">
+    <widget class="QTextEdit" name="lsm__lsm_module__m0">
      <property name="geometry">
       <rect>
        <x>115</x>
@@ -226,7 +226,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Основной&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_4">
+    <widget class="QTextEdit" name="lsm__lsm_module__m1">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -275,7 +275,7 @@ p, li { white-space: pre-wrap; }
       </rect>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_21">
+    <widget class="QTextEdit" name="lsm__lsm_module__m3">
      <property name="geometry">
       <rect>
        <x>434</x>
@@ -343,7 +343,7 @@ p, li { white-space: pre-wrap; }
     <property name="lineWidth">
      <number>1</number>
     </property>
-    <widget class="QTextEdit" name="textEdit_5">
+    <widget class="QTextEdit" name="lsm__sinchronization__m2">
      <property name="geometry">
       <rect>
        <x>331</x>
@@ -362,7 +362,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_6">
+    <widget class="QTextEdit" name="lsm__sinchronization__m0">
      <property name="geometry">
       <rect>
        <x>116</x>
@@ -381,7 +381,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_7">
+    <widget class="QTextEdit" name="lsm__sinchronization__m1">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -416,7 +416,7 @@ p, li { white-space: pre-wrap; }
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_19">
+    <widget class="QTextEdit" name="lsm__sinchronization__m3">
      <property name="geometry">
       <rect>
        <x>435</x>
@@ -454,7 +454,7 @@ p, li { white-space: pre-wrap; }
     <property name="lineWidth">
      <number>1</number>
     </property>
-    <widget class="QTextEdit" name="textEdit_8">
+    <widget class="QTextEdit" name="lsm__horizontal_scan__m2">
      <property name="geometry">
       <rect>
        <x>331</x>
@@ -473,7 +473,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_9">
+    <widget class="QTextEdit" name="lsm__horizontal_scan__m0">
      <property name="geometry">
       <rect>
        <x>116</x>
@@ -492,7 +492,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_10">
+    <widget class="QTextEdit" name="lsm__horizontal_scan__m1">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -511,7 +511,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_18">
+    <widget class="QTextEdit" name="lsm__horizontal_scan__m3">
      <property name="geometry">
       <rect>
        <x>435</x>
@@ -568,7 +568,7 @@ p, li { white-space: pre-wrap; }
     <property name="lineWidth">
      <number>1</number>
     </property>
-    <widget class="QTextEdit" name="textEdit_11">
+    <widget class="QTextEdit" name="lsm__radiation__m2">
      <property name="geometry">
       <rect>
        <x>331</x>
@@ -587,7 +587,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_12">
+    <widget class="QTextEdit" name="lsm__radiation__m0">
      <property name="geometry">
       <rect>
        <x>116</x>
@@ -606,7 +606,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_13">
+    <widget class="QTextEdit" name="lsm__radiation__m1">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -641,7 +641,7 @@ p, li { white-space: pre-wrap; }
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_20">
+    <widget class="QTextEdit" name="lsm__radiation__m3">
      <property name="geometry">
       <rect>
        <x>435</x>
@@ -679,7 +679,7 @@ p, li { white-space: pre-wrap; }
     <property name="lineWidth">
      <number>1</number>
     </property>
-    <widget class="QTextEdit" name="textEdit_14">
+    <widget class="QTextEdit" name="lsm__vertical_scan__m2">
      <property name="geometry">
       <rect>
        <x>331</x>
@@ -698,7 +698,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_15">
+    <widget class="QTextEdit" name="lsm__vertical_scan__m0">
      <property name="geometry">
       <rect>
        <x>116</x>
@@ -717,7 +717,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_16">
+    <widget class="QTextEdit" name="lsm__vertical_scan__m1">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -755,7 +755,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_17">
+    <widget class="QTextEdit" name="lsm__vertical_scan__m3">
      <property name="geometry">
       <rect>
        <x>435</x>
@@ -1030,7 +1030,7 @@ p, li { white-space: pre-wrap; }
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="lsm__data">
      <property name="geometry">
       <rect>
        <x>5</x>
@@ -1040,7 +1040,7 @@ p, li { white-space: pre-wrap; }
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="lsm__time">
      <property name="geometry">
       <rect>
        <x>65</x>
@@ -1150,7 +1150,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>679</width>
+     <width>677</width>
      <height>21</height>
     </rect>
    </property>

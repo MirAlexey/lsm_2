@@ -24,8 +24,8 @@ class SettingUSB(QWidget, Ui_Form):
         self.setupUi(self)
 
 def getParams():
-    for i in 
-
+    #for i in 
+    pass
 
 app = QApplication(sys.argv)
 

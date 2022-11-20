@@ -41,7 +41,7 @@
    <property name="lineWidth">
     <number>1</number>
    </property>
-   <widget class="QTextEdit" name="textEdit_8">
+   <widget class="QTextEdit" name="lsm__horizontal_scan__m2__h">
     <property name="geometry">
      <rect>
       <x>331</x>
@@ -60,7 +60,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_9">
+   <widget class="QTextEdit" name="lsm__horizontal_scan__m0__h">
     <property name="geometry">
      <rect>
       <x>116</x>
@@ -79,7 +79,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_10">
+   <widget class="QTextEdit" name="lsm__horizontal_scan__m1__h">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -98,7 +98,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_18">
+   <widget class="QTextEdit" name="lsm__horizontal_scan__m3__h">
     <property name="geometry">
      <rect>
       <x>435</x>
@@ -155,7 +155,7 @@
    <property name="lineWidth">
     <number>1</number>
    </property>
-   <widget class="QTextEdit" name="textEdit_11">
+   <widget class="QTextEdit" name="lsm__radiation__m2__h">
     <property name="geometry">
      <rect>
       <x>331</x>
@@ -174,7 +174,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_12">
+   <widget class="QTextEdit" name="lsm__radiation__m0__h">
     <property name="geometry">
      <rect>
       <x>116</x>
@@ -193,7 +193,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_13">
+   <widget class="QTextEdit" name="lsm__radiation__m1__h">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -228,7 +228,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_20">
+   <widget class="QTextEdit" name="lsm__radiation__m3__h">
     <property name="geometry">
      <rect>
       <x>435</x>
@@ -266,7 +266,7 @@
    <property name="lineWidth">
     <number>1</number>
    </property>
-   <widget class="QTextEdit" name="textEdit_5">
+   <widget class="QTextEdit" name="lsm__sinchronization__m2__h">
     <property name="geometry">
      <rect>
       <x>331</x>
@@ -285,7 +285,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_6">
+   <widget class="QTextEdit" name="lsm__sinchronization__m0__h">
     <property name="geometry">
      <rect>
       <x>116</x>
@@ -304,7 +304,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_7">
+   <widget class="QTextEdit" name="lsm__sinchronization__m1__h">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -339,7 +339,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_19">
+   <widget class="QTextEdit" name="lsm__sinchronization__m3__h">
     <property name="geometry">
      <rect>
       <x>435</x>
@@ -377,7 +377,7 @@
    <property name="lineWidth">
     <number>1</number>
    </property>
-   <widget class="QTextEdit" name="textEdit_14">
+   <widget class="QTextEdit" name="lsm__vertical_scan__m2__h">
     <property name="geometry">
      <rect>
       <x>331</x>
@@ -396,7 +396,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_15">
+   <widget class="QTextEdit" name="lsm__vertical_scan__m0__h">
     <property name="geometry">
      <rect>
       <x>116</x>
@@ -415,7 +415,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_16">
+   <widget class="QTextEdit" name="lsm__vertical_scan__m1__h">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -453,7 +453,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_17">
+   <widget class="QTextEdit" name="lsm__vertical_scan__m3__h">
     <property name="geometry">
      <rect>
       <x>435</x>
@@ -473,7 +473,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="lsm__event_number">
    <property name="geometry">
     <rect>
      <x>550</x>
