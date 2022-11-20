@@ -122,9 +122,9 @@
    <property name="geometry">
     <rect>
      <x>5</x>
-     <y>135</y>
-     <width>211</width>
-     <height>116</height>
+     <y>130</y>
+     <width>206</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="title">
@@ -208,6 +208,32 @@
      <string>неопределено</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>225</y>
+     <width>106</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Применить</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>114</x>
+     <y>225</y>
+     <width>96</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Сохранить</string>
+   </property>
   </widget>
  </widget>
  <resources/>

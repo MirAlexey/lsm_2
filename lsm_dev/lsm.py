@@ -3,29 +3,31 @@ from typing import Union
 import yaml
 
 import serial
-
-from port import Port
+from lsm_dev.datatype import Commands, LSMParams, Addresses
+from lsm_dev.port import Port
 
 #from asyncio.timeouts import timeout
 
-from datatype import Commands, LSMParams, Address
+
 
 class LSM:
     def __init__(self):
-        self.port = Port()
-        with open(".\config\command.yml", 'r',  encoding='utf8') as file_yml:
+        print('-----------------------------------')
+        with open(".\\config\\command.yml", 'r',  encoding='utf8') as file_yml:
             command_ = yaml.safe_load(file_yml)
         self.commands = Commands(**command_)
-
-        with open(".\config\params.yml", 'r',  encoding='utf8') as file_yml:
+        #print(self.commands)
+        with open(".\\config\\params.yml", 'r',  encoding='utf8') as file_yml:
             params_ = yaml.safe_load(file_yml)
-            print(params_)
-        self.params = LSMParams(**params_)
-
-        with open(".\config\address.yml", 'r',  encoding='utf8') as file_yml:
+        params = LSMParams(**params_)
+        self.params =params.params
+        self.setting_modem =params.setting_modem
+        #print(self.params)
+        with open(".\\config\\address.yml", 'r',  encoding='utf8') as file_yml:
             address_ = yaml.safe_load(file_yml)
-            print(address_)
-        self.address = Address(**address_)
+        self.address = Addresses(**address_)
+        print(self.params)
+        self.port = Port(self.commands, self.address,  self.params)
 
     def initUsbPort(self, params):
         return self.port.init_param(params["usb_baudrate"], params["usb_port"])
@@ -43,6 +45,7 @@ class LSM:
                 res = self.port.send_command('link_request', {})
                 if res is not None:
                     return True, {}
+        return False  
 
     def getShortStatus(self, params):
         if self.checkModem(self):

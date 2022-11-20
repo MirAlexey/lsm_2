@@ -47,7 +47,7 @@ class Ui_widget(object):
         self.label_4.setGeometry(QRect(10, 95, 47, 13))
         self.groupBox_2 = QGroupBox(widget)
         self.groupBox_2.setObjectName(u"groupBox_2")
-        self.groupBox_2.setGeometry(QRect(5, 135, 211, 116))
+        self.groupBox_2.setGeometry(QRect(5, 130, 206, 91))
         self.label_5 = QLabel(self.groupBox_2)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(10, 20, 86, 16))
@@ -66,6 +66,12 @@ class Ui_widget(object):
         self.Status_MC3 = QLabel(self.groupBox_2)
         self.Status_MC3.setObjectName(u"Status_MC3")
         self.Status_MC3.setGeometry(QRect(95, 70, 86, 16))
+        self.pushButton = QPushButton(widget)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setGeometry(QRect(5, 225, 106, 23))
+        self.pushButton_2 = QPushButton(widget)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setGeometry(QRect(114, 225, 96, 23))
 
         self.retranslateUi(widget)
 
@@ -86,5 +92,7 @@ class Ui_widget(object):
         self.Status_MC1.setText(QCoreApplication.translate("widget", u"\u043d\u0435\u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043e", None))
         self.Status_MC2.setText(QCoreApplication.translate("widget", u"\u043d\u0435\u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043e", None))
         self.Status_MC3.setText(QCoreApplication.translate("widget", u"\u043d\u0435\u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043e", None))
+        self.pushButton.setText(QCoreApplication.translate("widget", u"\u041f\u0440\u0438\u043c\u0435\u043d\u0438\u0442\u044c", None))
+        self.pushButton_2.setText(QCoreApplication.translate("widget", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
     # retranslateUi
 

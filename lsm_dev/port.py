@@ -1,7 +1,7 @@
 import serial
 
-from param_lsm import get_param_obj, get_param_reduce
-from logger import Logger
+from lsm_dev.param_lsm import get_param_obj, get_param_reduce
+from lsm_dev.logger import Logger
 
 CONST_SRC = [
     '00', '31', '62', '53', 'C4', 'F5', 'A6', '97',
@@ -45,6 +45,7 @@ class Port:
         self._commands = commands
         self._addresses = addresses
         self.params = params
+        print('f', [p for p in params])
         self._param_name= [p.name for p in params]
 
     def init_param(self, baudrate, port):
