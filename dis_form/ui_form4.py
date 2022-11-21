@@ -67,12 +67,12 @@ class Ui_widget(object):
         self.Status_MC3 = QLabel(self.groupBox_2)
         self.Status_MC3.setObjectName(u"Status_MC3")
         self.Status_MC3.setGeometry(QRect(95, 70, 86, 16))
-        self.pushButton = QPushButton(widget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(5, 225, 106, 23))
-        self.pushButton_2 = QPushButton(widget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(114, 225, 96, 23))
+        self.lsm__modem_apply = QPushButton(widget)
+        self.lsm__modem_apply.setObjectName(u"lsm__modem_apply")
+        self.lsm__modem_apply.setGeometry(QRect(5, 225, 106, 23))
+        self.lsm__modem_save = QPushButton(widget)
+        self.lsm__modem_save.setObjectName(u"lsm__modem_save")
+        self.lsm__modem_save.setGeometry(QRect(114, 225, 96, 23))
 
         self.retranslateUi(widget)
 
@@ -93,7 +93,7 @@ class Ui_widget(object):
         self.Status_MC1.setText(QCoreApplication.translate("widget", u"\u043d\u0435\u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043e", None))
         self.Status_MC2.setText(QCoreApplication.translate("widget", u"\u043d\u0435\u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043e", None))
         self.Status_MC3.setText(QCoreApplication.translate("widget", u"\u043d\u0435\u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043e", None))
-        self.pushButton.setText(QCoreApplication.translate("widget", u"\u041f\u0440\u0438\u043c\u0435\u043d\u0438\u0442\u044c", None))
-        self.pushButton_2.setText(QCoreApplication.translate("widget", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.lsm__modem_apply.setText(QCoreApplication.translate("widget", u"\u041f\u0440\u0438\u043c\u0435\u043d\u0438\u0442\u044c", None))
+        self.lsm__modem_save.setText(QCoreApplication.translate("widget", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
     # retranslateUi
 

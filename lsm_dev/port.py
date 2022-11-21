@@ -44,18 +44,20 @@ logger = Logger()
 
 class Port:
     def __init__(self, commands, addresses, params):
-        self._commands = commands
-        self._addresses = addresses
+        self._commands = commands.commands
+        self._addresses = addresses.addresses
         self.params = params
         #print('f', [p for p in params])
         self._param_name= [p.name for p in params]
+        print('f',self.params)
+        self._command_name = [com.name for com in self._commands]
 
     def init_param(self, baudrate, port):
         self.usb = serial.Serial()
         self.usb.baudrate = baudrate
         self.usb.port = port
         self.usb.open()
-        res = self.usb.is_open()
+        res = self.usb.is_open
         return res
 
     def is_open(self):
@@ -64,14 +66,20 @@ class Port:
     def checkEventMsg(self):
         pass
 
-    def send_command(self, address, command, params_value, postfix_param_name = ''):
+    def _get_command(self, name):
+        return self._commands[self._command_name.index(name)]
+
+    def send_command(self, address, command_name, params_value, postfix_param_name = ''):
+        command = self._get_command(command_name)
         str_command, time_out, len_response = self._build_command(address, command, params_value, postfix_param_name)
         res = self._write_and_read_test(str_command, time_out, len_response)
+        res_str = [f'{r:0>2x}' for r in res ]
+        print(len_response)
         if len(res) != len_response:
-            logger.warn(f'Response {res} with invalid length')
+            logger.warn(f'Response {res_str} with invalid length')
             return None
-        if ~self._check_crc(res):
-            logger.warn(f'Response {res} with error crc')
+        if command.response.crc and ~self._check_crc(res):
+            logger.warn(f'Response {res_str} with error crc')
             return None
         
         return self._parse_response(res, address, command)
@@ -80,8 +88,10 @@ class Port:
         print('write',str_command)
         time.sleep(time_out)
         res = ''
-        if str_command == '4154440D':
-            res = bytearray.fromhex('0D0A4F0D0A')
+        print(type(str_command), str_command == '4154440d')
+        if str_command == '4154440d':
+
+            res = bytearray.fromhex('0d0a4f4b0d0a')
         elif str_command == '':
             res = bytearray.fromhex('') 
         elif str_command == '':
@@ -93,8 +103,10 @@ class Port:
         elif str_command == '':
             res = bytearray.fromhex('')
         else:
-            res = bytearray.fromhex('A346F6D3')
-        print('read', res)
+            res = bytearray.fromhex('a346f6d3')
+
+        print('read', [f'{r:0>2x}' for r in res ])
+
         return res
 
     def _write_and_read(self, str_command, time_out, len_response):
@@ -103,21 +115,22 @@ class Port:
         return res
 
     def _build_command(self, address, command, params_value, postfix_param_name):
-        req = command['request']
-        resp = command['response']
-        time_out = command['timeout']
+        print(command)
+        req = command.request
+        resp = command.response
+        time_out = command.timeout
 
-        resp_len = len(resp['data']['values'])
-        resp_len += 1 if resp['address'] else 0
-        resp_len += 1 if resp['address']!='' else 0
-        resp_len += 1 if resp['crc'] else 0
+        resp_len = len(resp.data.values)
+        resp_len += 1 if resp.address else 0
+        resp_len += 1 if resp.command !='' else 0
+        resp_len += 1 if resp.crc else 0
 
         str_command=''
-        if req['address']:
+        if req.address:
             str_command+=self._get_address(address, 'output')
-        str_command+=req['command'] 
-        str_command+=self._get_data(req['data'], params_value, address, postfix_param_name)
-        if req['crc']:
+        str_command+=req.command 
+        str_command+=self._get_data(req.data, params_value, address, postfix_param_name)
+        if req.crc:
             str_command+=self._get_crc(str_command)
         return str_command, time_out, resp_len
 
@@ -127,41 +140,50 @@ class Port:
 
     def _get_data(self, data, params_value, address, postfix_param_name):
         res = ''
-        for com_v in data['values']:
+        for com_v in data.values:
             params_v = self._get_param_setting(com_v)
             values_v = self._get_param_value(com_v, address, params_value, postfix_param_name)
             rv= 0b00000000
+            print(params_v)
+            print(values_v)
             for pv, vv in zip(params_v, values_v):
-                rv |= get_param_obj(pv).encode(vv)
+                rv |= get_param_obj(pv['type']).encode(pv['params'],vv)
             res+=f'{rv:0>2x}'
         return res
 
     def _get_param_setting(self, com_val):
         res = []
-        for v in com_val['values']:
-            p_a = v['type'].split('__')
-            for p in v['values']:
-                l_a = p['values'].split('__')
+        print(com_val)
+        #for v in com_val.values:
+        v = com_val
+        print(v)
+        p_a = v.type.split('__')
+        for p in v.values:
+            l_a = p.split('__')
+            print(p_a,l_a,p_a[0])
+            print(self._param_name)
+            #print(self.params[self._param_name.index(p_a[0])])
+            if p_a[0] == 'str':
+                cur_res = {'type':'str','params':[], 'type_reduce':'value_con'}
+            else:
                 param_lsm_values = self.params[self._param_name.index(p_a[0])]
-                pv_name = [pv.name for pv in param_lsm_values['values']]
-                if p_a == 'str':
-                    cur_res = {'type':'str','params':[], 'type_reduce':'value_con'}
-                else:
-                    cur_res = param_lsm_values['values'][pv_name.index(l_a[0])]
-                    cur_res['type_reduce'] = param_lsm_values['type']
-                res.append(cur_res)
+                pv_name = [pv.name for pv in param_lsm_values.values]
+                cur_res = param_lsm_values.values[pv_name.index(l_a[0])]
+                cur_res.type_reduce = param_lsm_values.type
+            res.append(cur_res)
         return res
 
-    def _get_param_value(self, val, address, params_value):
+    def _get_param_value(self, val, address, params_value, postfix_param_name):
         res = []
-        for v in val['values']:
-            for p in v['values']:
-                source = self._get_current_dest(v['type'], p)
-                res.append(p if source == 'str' else params_value[source])
+        #for v in val.values:
+        v = val
+        for p in v.values:
+            source = self._get_current_dest(v.type, p)
+            res.append(p if source == 'str' else params_value[source])
         return res
 
     def _parse_response(self, res, address, command):
-        resp = command['response']
+        resp = command.response
         resp_address = f'{res[0]:0>2x}' if resp.address else ''
         true_address = self._get_address(address, 'input') if resp.address else ''
         resp_command = f'{res[1]:0>2x}' if resp.command != '' else ''
@@ -169,18 +191,20 @@ class Port:
         if (resp_address != true_address) or (resp_command != true_command):
             raise ValueError(f"Response invalid! address: '{resp_address}' != '{true_address}' or command {resp_command} != '{true_command}'")
         start_data = int(resp.address) + int(resp.command != '')
-        resp_data = resp[start_data:-1]
-
+        print('r', resp)
+        resp_data = res[start_data:-1] if resp.crc else res[start_data:]
+        print('len', len(resp.data.values), len(resp_data))
         res = {}
-        for i,v in enumerate(resp['data']['values']):
-            group_values = v['values']
+        for i,v in enumerate(resp.data.values):
+            print('vvv', v)
+            group_values = v.values
             params_v = self._get_param_setting(v)
             values_v = resp_data[i]
             for pv, gv in zip(params_v, group_values):
-                cur_dest = self._get_current_dest(v['name'], gv)
-                if cur_dest in res:
+                cur_dest = self._get_current_dest(v.type, gv)
+                if cur_dest not in res:
                     res[cur_dest] = {'type_reduce': pv['type_reduce'], 'vl':[]}
-                decode_value = get_param_obj(pv).decode(values_v)
+                decode_value = get_param_obj(pv['type']).decode(pv['params'], values_v)
                 res[cur_dest]['vl'].append(decode_value)
         for k,v in res.items():
             res[k]= get_param_reduce(v['type_reduce']).eval(v['vl'])
@@ -191,8 +215,8 @@ class Port:
         group_dev = group_param.split('__')
         value_dev = group_value.split('__')
         if len(value_dev) > 1:
-            return group_value
-        return group_dev
+            return group_value[0]
+        return group_dev[0]
 
 
 

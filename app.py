@@ -1,5 +1,5 @@
 import sys
-from PySide2.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QTextEdit, QVBoxLayout, QWidget, QComboBox, QCheckBox, QSpinBox 
+from PySide2.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QTextEdit, QVBoxLayout, QWidget, QComboBox, QCheckBox, QSpinBox, QPushButton
 from PySide2.QtCore import Qt, QAbstractListModel, QModelIndex
 from random import choice
 from serial.tools import list_ports
@@ -54,7 +54,7 @@ window.menu.actions()[0].triggered.connect(setting_usb.show)
 window.menu.actions()[1].triggered.connect(setting_modem.show)
 dict_param = {}
 for i in [window, setting_usb, history, setting_modem]:
-    for j in [QTextEdit, QComboBox, QSpinBox, QLineEdit]:
+    for j in [QTextEdit, QComboBox, QSpinBox, QLineEdit, QPushButton]:
         dict_param.update({'__'.join(t.objectName().split('__')[1:]):t for t in  i.findChildren(j) if t.objectName().find('lsm__') >= 0})
 
 print(list(dict_param.keys()))
@@ -104,10 +104,21 @@ def FlagToTextM3():
         dict_param['lsm_module__m3'].setPlainText('Резерв')
 dict_param['lsm_module__m3'].textChanged.connect(FlagToTextM3)
 
-def foo(i):
-    dict_param['date'].setPlainText(dict_param['power'].itemData(i))
 
-dict_param['power'].currentIndexChanged.connect(foo)
+def ConnectModem():
+    print('click')
+    if ~lsm.initUsbPort():
+        print('USB ops')
+    rrr = lsm.checkModem()   
+    print(rrr) 
+    if not rrr:#~lsm.checkModem():
+        print('Modem ops')
+    pass
+dict_param['modem_apply'].released.connect(ConnectModem)
+
+print(id(dict_param))
+print(id(dict_param['lsm_module__m3']))
+
 
 dict_param['usb_port'].setModel(MyListModel([[i.name, i.description] for i in list_ports.comports(True)]))
 print('iii')
@@ -116,6 +127,13 @@ dict_param['lsm_module__m0'].setPlainText('1')
 
 print([[i.name, i.description] for i in list_ports.comports(True)])
 
+
+
+
+def foo(i):
+    dict_param['date'].setPlainText(dict_param['power'].itemData(i))
+
+dict_param['power'].currentIndexChanged.connect(foo)
 
 
 app.exec_()

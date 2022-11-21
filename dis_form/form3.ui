@@ -453,7 +453,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="lsm__vertical_scan__m3__h">
+   <widget class="QTextEdit" name="lsm__vertical_scan__m3">
     <property name="geometry">
      <rect>
       <x>435</x>

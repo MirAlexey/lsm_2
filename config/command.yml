@@ -17,7 +17,7 @@ commands:
               - '44'
           - type: 'str'
             values:
-              - '0D'
+              - '0d'
       crc: False
     response:
       command: ''
@@ -26,22 +26,22 @@ commands:
         values:
           - type: 'str'
             values:
-              - '0D'
+              - '0d'
           - type: 'str'
             values: 
-              - '0A'
+              - '0a'
           - type: 'str'
             values:  
-              - '4F'
+              - '4f'
           - type: 'str'
             values:  
-              - '4B'
+              - '4b'
           - type: 'str'
             values:  
-              - '0D' 
+              - '0d' 
           - type: 'str'
             values:  
-              - '0A'
+              - '0a'
       crc: False      
     timeout: 1
   - name: 'link_request'
@@ -483,7 +483,7 @@ commands:
         values: []
       crc: True
     response:
-      command: 'A1'
+      command: 'a1'
       address: True
       data: 
         values:
@@ -564,13 +564,13 @@ commands:
   - name: 'current_time'
     desc: 'Запрос текущего времени'
     request:
-      command: '0A'
+      command: '0a'
       address: True
       data: 
         values: []
       crc: True
     response:
-      command: '8A'
+      command: '8a'
       address: True
       data: 
         values: 
@@ -600,7 +600,7 @@ commands:
   - name: 'set_time'
     desc: 'Команда установки времени'
     request:
-      command: '0B'
+      command: '0b'
       address: True
       data: 
         values:
@@ -627,7 +627,7 @@ commands:
               - 'sec'
       crc: True
     response:
-      command: '8B'
+      command: '8b'
       address: True
       data: 
         values:
@@ -657,13 +657,13 @@ commands:
   - name: 'last_event'
     desc: 'Запрос номера последнего события'
     request:
-      command: '0C'
+      command: '0c'
       address: True
       data: 
         values: []
       crc: True
     response:
-      command: '8C'
+      command: '8c'
       address: True
       data: 
         values: []
@@ -672,7 +672,7 @@ commands:
   - name: 'number_event'
     desc: 'Запрос данных из памяти событий'
     request:
-      command: '0D'
+      command: '0d'
       address: True
       data: 
         values:
@@ -684,7 +684,7 @@ commands:
               - 'low'
       crc: True
     response:
-      command: '8D'
+      command: '8d'
       address: True
       data: 
         values: []
@@ -693,13 +693,13 @@ commands:
   - name: 'delete_event_memory'
     desc: 'Стирание данных из памяти событий'
     request:
-      command: '0E'
+      command: '0e'
       address: True
       data: 
         values: []
       crc: True
     response:
-      command: '8E'
+      command: '8e'
       address: True
       data: 
         values: []
@@ -708,13 +708,13 @@ commands:
   - name: 'address_book'
     desc: 'Запрос адресной книги'
     request:
-      command: '0F'
+      command: '0f'
       address: True
       data: 
         values: []
       crc: True
     response:
-      command: '8F'
+      command: '8f'
       address: True
       data: 
         values: []

@@ -77,7 +77,7 @@ def get_param_reduce(name):
         return ConReduce('-')
     elif name == 'value_time':
         return ConReduce(':')
-    elif name - 'value_con':
+    elif name == 'value_con':
         return ConReduce()
     else:
         raise ValueError(f'Name reduce: "{name}" is not valid')
