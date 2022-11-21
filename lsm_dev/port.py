@@ -3,6 +3,8 @@ import serial
 from lsm_dev.param_lsm import get_param_obj, get_param_reduce
 from lsm_dev.logger import Logger
 
+import time
+
 CONST_SRC = [
     '00', '31', '62', '53', 'C4', 'F5', 'A6', '97',
     'B9', '88', 'DB', 'EA', '7D', '4C', '1F', '2E',
@@ -64,7 +66,7 @@ class Port:
 
     def send_command(self, address, command, params_value, postfix_param_name = ''):
         str_command, time_out, len_response = self._build_command(address, command, params_value, postfix_param_name)
-        res = self._write_and_read(str_command, time_out, len_response)
+        res = self._write_and_read_test(str_command, time_out, len_response)
         if len(res) != len_response:
             logger.warn(f'Response {res} with invalid length')
             return None
@@ -74,12 +76,30 @@ class Port:
         
         return self._parse_response(res, address, command)
 
+    def _write_and_read_test(self, str_command, time_out, len_response):
+        print('write',str_command)
+        time.sleep(time_out)
+        res = ''
+        if str_command == '4154440D':
+            res = bytearray.fromhex('0D0A4F0D0A')
+        elif str_command == '':
+            res = bytearray.fromhex('') 
+        elif str_command == '':
+            res = bytearray.fromhex('') 
+        elif str_command == '':
+            res = bytearray.fromhex('')
+        elif str_command == '':
+            res = bytearray.fromhex('')
+        elif str_command == '':
+            res = bytearray.fromhex('')
+        else:
+            res = bytearray.fromhex('A346F6D3')
+        print('read', res)
+        return res
+
     def _write_and_read(self, str_command, time_out, len_response):
-        
-        self.usb.open()
         self.usb.write(bytearray.fromhex(str_command))
         res = self.usb.read(size=len_response, timeout=time_out)
-        self.usb.close()
         return res
 
     def _build_command(self, address, command, params_value, postfix_param_name):
