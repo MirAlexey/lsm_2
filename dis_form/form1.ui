@@ -234,7 +234,7 @@ p, li { white-space: pre-wrap; }
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
      <property name="readOnly">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="html">
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -283,7 +283,7 @@ p, li { white-space: pre-wrap; }
       <string>Выбор комплекта</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox">
+    <widget class="QSpinBox" name="spinBox_trigger_complect">
      <property name="geometry">
       <rect>
        <x>520</x>
@@ -827,7 +827,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QComboBox" name="lsm_power">
+    <widget class="QComboBox" name="lsm__power">
      <property name="geometry">
       <rect>
        <x>114</x>
@@ -835,6 +835,9 @@ p, li { white-space: pre-wrap; }
        <width>421</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="modelColumn">
+      <number>0</number>
      </property>
      <item>
       <property name="text">

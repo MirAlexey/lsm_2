@@ -47,7 +47,7 @@ class Port:
         self._commands = commands
         self._addresses = addresses
         self.params = params
-        print('f', [p for p in params])
+        #print('f', [p for p in params])
         self._param_name= [p.name for p in params]
 
     def init_param(self, baudrate, port):

@@ -64,7 +64,7 @@
      <string>Power</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="lsm__SW">
+   <widget class="QComboBox" name="lsm__SF">
     <property name="geometry">
      <rect>
       <x>95</x>
@@ -72,6 +72,9 @@
       <width>111</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="frame">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QComboBox" name="lsm__BW">

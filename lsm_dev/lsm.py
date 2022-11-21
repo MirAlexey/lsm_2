@@ -11,7 +11,8 @@ from lsm_dev.port import Port
 
 
 class LSM:
-    def __init__(self):
+    def __init__(self, data_carrier):
+        self.data_carrier = data_carrier
         print('-----------------------------------')
         with open(".\\config\\command.yml", 'r',  encoding='utf8') as file_yml:
             command_ = yaml.safe_load(file_yml)
@@ -26,7 +27,7 @@ class LSM:
         with open(".\\config\\address.yml", 'r',  encoding='utf8') as file_yml:
             address_ = yaml.safe_load(file_yml)
         self.address = Addresses(**address_)
-        print(self.params)
+        #print(self.params)
         self.port = Port(self.commands, self.address,  self.params)
 
     def initUsbPort(self, params):
