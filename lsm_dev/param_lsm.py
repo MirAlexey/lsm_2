@@ -10,20 +10,20 @@ class ParamLSM:
 
 class Param_bit(ParamLSM):
     def decode(self, params, data):
-        return sum([((data & res.mask) >> res.shift) * res.mul for res in params])
+        return sum([((data & res['mask']) >> res['shift']) * res['mul'] for res in params])
 
     def encode(self, params, data):
         res = 0b00000000
         for p in params:
-            res |= (int(data//p.mul) << p.shift) & p.mask
+            res |= (int(data//p['mul']) << p['shift']) & p['mask']
         return res
 
 class Param_bool(ParamLSM):
     def decode(self, params, data):
-        return bool((data & params[0].mask) >> params[0].shift)
+        return bool((data & params[0]['mask']) >> params[0]['shift'])
 
     def encode(self, params, data):
-        return (int(data) << params[0].shift)
+        return (int(data) << params[0]['shift'])
 
 class Param_sig(ParamLSM):
     def decode(self, params, data):
@@ -54,6 +54,8 @@ def get_param_obj(name):
 
 
 class BaseReduce():
+    def __init__(self, delim=''):
+        self.delim=delim
     def eval(self, list_value):
         return list_value
 
@@ -61,12 +63,17 @@ class SumReduce(BaseReduce):
     def eval(self, list_value):
         return [sum(list_value)]
 
-class ConReduce(BaseReduce):
-    def __init__(self, delim=''):
-        self.delim = delim
+class ConStrReduce(BaseReduce):
     def eval(self, list_value):
         return [self.delim.join(list_value)]
 
+class ConHexReduce(BaseReduce):
+    def eval(self, list_value):
+        return [self.delim.join([f'{v:0>2x}' for v in list_value])]
+
+class ConDecReduce(BaseReduce):
+    def eval(self, list_value):
+        return [self.delim.join([f'{v:0>2}' for v in list_value])]
 
 def get_param_reduce(name):
     if name == 'value':
@@ -74,10 +81,10 @@ def get_param_reduce(name):
     elif name == 'value_sum':
         return SumReduce()
     elif name == 'value_date':
-        return ConReduce('-')
+        return ConDecReduce('-')
     elif name == 'value_time':
-        return ConReduce(':')
+        return ConDecReduce(':')
     elif name == 'value_con':
-        return ConReduce()
+        return ConStrReduce()
     else:
         raise ValueError(f'Name reduce: "{name}" is not valid')

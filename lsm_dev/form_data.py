@@ -26,8 +26,8 @@ class DataСarrier:
     
     def getParam(self):
         res={}
-        print(id(self.dict_params))
-        print(id(self.dict_params['lsm_module__m3']))
+        #print(id(self.dict_params))
+        #print(id(self.dict_params['lsm_module__m3']))
         for k, v in self.dict_params.items():
             if isinstance(v, QTextEdit):
                 #print(k, v.toPlainText())
@@ -40,20 +40,20 @@ class DataСarrier:
                     res[k]=v.isChecked()
             elif isinstance(v, QSpinBox):
                     res[k]=v.value()
-        print(res)
+        #print(res)
         return res
     
     def setParam(self, set_param):
-        for k, v in self.set_param.items():
+        for k, v in set_param.items():
             if k in self.dict_params:
                 if isinstance(self.dict_params[k], QTextEdit):
-                    self.dict_params[k].setPlainText(v)
+                    self.dict_params[k].setPlainText(str(v))
                 elif isinstance(v, QLineEdit):
                     self.dict_params[k].text(v)
                 elif isinstance(v, QComboBox):
                     c_i = self.dict_params[k].findData(f'{v:0>2x}')
                     self.dict_params[k].setCurrentIndex(c_i)
                 elif isinstance(v, QCheckBox):
-                    self.dict_params[k].setChecked(v)
+                    self.dict_params[k].setChecked(bool(v))
                 elif isinstance(v, QSpinBox):
-                    self.dict_params[k].setValue(v)
+                    self.dict_params[k].setValue(int(v))

@@ -25,12 +25,6 @@ commands:
       data:
         values:
           - type: 'str'
-            values:
-              - '0d'
-          - type: 'str'
-            values: 
-              - '0a'
-          - type: 'str'
             values:  
               - '4f'
           - type: 'str'
@@ -45,7 +39,7 @@ commands:
       crc: False      
     timeout: 1
   - name: 'link_request'
-    desc: 'Запрос канала связи'
+    desc: 'Запрос канала связи диспетчера'
     request:
       command: '00'
       address: True
@@ -101,10 +95,10 @@ commands:
               - 'sec'
           - type: 'mode'
             values: 
-              - 'lsm_module__m0'
-              - 'lsm_module__m1'
-              - 'lsm_module__m2'
-              - 'lsm_module__m2'
+              - 'lsm_module_0__m0'
+              - 'lsm_module_1__m1'
+              - 'lsm_module_2__m2'
+              - 'lsm_module_3__m2'
               - 'fotoavtomat'
               - 'dynamic_power'
               - 'max_nom_power'
@@ -121,7 +115,7 @@ commands:
               - 'vertical_scan__m1'
               - 'horizontal_scan__m1'
               - 'synchronization__m1'
-          - type: 'state_module__m2'
+          - type: 'state_module'
             values:
               - 'radiation__m2'
               - 'vertical_scan__m2'
@@ -177,10 +171,10 @@ commands:
               - 'sec'
           - type: 'mode'
             values: 
-              - 'lsm_module__m0'
-              - 'lsm_module__m1'
-              - 'lsm_module__m2'
-              - 'lsm_module__m3'
+              - 'lsm_module_0__m0'
+              - 'lsm_module_1__m1'
+              - 'lsm_module_2__m2'
+              - 'lsm_module_3__m3'
               - 'fotoavtomat'
               - 'dynamic_power'
               - 'max_nom_power'
@@ -197,7 +191,7 @@ commands:
               - 'vertical_scan__m1'
               - 'horizontal_scan__m1'
               - 'synchronization__m1'
-          - type: 'state_module__m2'
+          - type: 'state_module'
             values:
               - 'radiation__m2'
               - 'vertical_scan__m2'
@@ -277,10 +271,10 @@ commands:
               - 'sec'
           - type: 'mode'
             values: 
-              - 'lsm_module__m0'
-              - 'lsm_module__m1'
-              - 'lsm_module__m2'
-              - 'lsm_module__m3'
+              - 'lsm_module_0__m0'
+              - 'lsm_module_1__m1'
+              - 'lsm_module_2__m2'
+              - 'lsm_module_3__m3'
               - 'fotoavtomat'
               - 'dynamic_power'
               - 'max_nom_power'
@@ -394,10 +388,10 @@ commands:
         values: 
           - type: 'mode'
             values: 
-              - 'lsm_module__m0'
-              - 'lsm_module__m1'
-              - 'lsm_module__m2'
-              - 'lsm_module__m3'
+              - 'lsm_module_0__m0'
+              - 'lsm_module_1__m1'
+              - 'lsm_module_2__m2'
+              - 'lsm_module_3__m3'
               - 'fotoavtomat'
               - 'dynamic_power'
               - 'max_nom_power'
@@ -410,10 +404,10 @@ commands:
         values:
           - type: 'mode'
             values: 
-              - 'lsm_module__m0'
-              - 'lsm_module__m1'
-              - 'lsm_module__m2'
-              - 'lsm_module__m3'
+              - 'lsm_module_0__m0'
+              - 'lsm_module_1__m1'
+              - 'lsm_module_2__m2'
+              - 'lsm_module_3__m3'
               - 'fotoavtomat'
               - 'dynamic_power'
               - 'max_nom_power'

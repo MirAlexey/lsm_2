@@ -57,11 +57,11 @@ for i in [window, setting_usb, history, setting_modem]:
     for j in [QTextEdit, QComboBox, QSpinBox, QLineEdit, QPushButton]:
         dict_param.update({'__'.join(t.objectName().split('__')[1:]):t for t in  i.findChildren(j) if t.objectName().find('lsm__') >= 0})
 
-print(list(dict_param.keys()))
+#print(list(dict_param.keys()))
 
 data_carrier = DataСarrier(dict_param)
 lsm = LSM(data_carrier)
-print(lsm.setting_modem)
+#print(lsm.setting_modem)
 for sm in lsm.setting_modem:
     if sm.type == 'list':
         data_sm = [[v,k] for v,k in zip(sm.param.values, sm.param.keys)]
@@ -76,56 +76,91 @@ for sm in lsm.setting_modem:
 
 dict_param['power'].setModel(MyListModel([['11','11data'], ['12','12data'],['13','13data']]))
 def FlagToTextM0():
-    print('ops')
-    if dict_param['lsm_module__m0'].toPlainText() == '1':
-        dict_param['lsm_module__m0'].setPlainText('Основной')
-    if dict_param['lsm_module__m0'].toPlainText() == '0':
-        dict_param['lsm_module__m0'].setPlainText('Резерв')
-dict_param['lsm_module__m0'].textChanged.connect(FlagToTextM0)
+    if dict_param['lsm_module_0__m0'].toPlainText() == '1':
+        dict_param['lsm_module_0__m0'].setPlainText('Основной')
+    if dict_param['lsm_module_0__m0'].toPlainText() == '0':
+        dict_param['lsm_module_0__m0'].setPlainText('Резерв')
+dict_param['lsm_module_0__m0'].textChanged.connect(FlagToTextM0)
 
 def FlagToTextM1():
-    if dict_param['lsm_module__m1'].toPlainText() == '1':
-        dict_param['lsm_module__m1'].setPlainText('Основной')
-    if dict_param['lsm_module__m1'].toPlainText() == '0':
-        dict_param['lsm_module__m1'].setPlainText('Резерв')
-dict_param['lsm_module__m1'].textChanged.connect(FlagToTextM1)
+    if dict_param['lsm_module_1__m1'].toPlainText() == '1':
+        dict_param['lsm_module_1__m1'].setPlainText('Основной')
+    if dict_param['lsm_module_1__m1'].toPlainText() == '0':
+        dict_param['lsm_module_1__m1'].setPlainText('Резерв')
+dict_param['lsm_module_1__m1'].textChanged.connect(FlagToTextM1)
 
 def FlagToTextM2():
-    if dict_param['lsm_module__m2'].toPlainText() == '1':
-        dict_param['lsm_module__m2'].setPlainText('Основной')
-    if dict_param['lsm_module__m2'].toPlainText() == '0':
-        dict_param['lsm_module__m2'].setPlainText('Резерв')
-dict_param['lsm_module__m0'].textChanged.connect(FlagToTextM2)
+    if dict_param['lsm_module_2__m2'].toPlainText() == '1':
+        dict_param['lsm_module_2__m2'].setPlainText('Основной')
+    if dict_param['lsm_module_2__m2'].toPlainText() == '0':
+        dict_param['lsm_module_2__m2'].setPlainText('Резерв')
+dict_param['lsm_module_2__m2'].textChanged.connect(FlagToTextM2)
 
 def FlagToTextM3():
-    if dict_param['lsm_module__m3'].toPlainText() == '1':
-        dict_param['lsm_module__m3'].setPlainText('Основной')
-    if dict_param['lsm_module__m3'].toPlainText() == '0':
-        dict_param['lsm_module__m3'].setPlainText('Резерв')
-dict_param['lsm_module__m3'].textChanged.connect(FlagToTextM3)
+    if dict_param['lsm_module_3__m3'].toPlainText() == '1':
+        dict_param['lsm_module_3__m3'].setPlainText('Основной')
+    if dict_param['lsm_module_3__m3'].toPlainText() == '0':
+        dict_param['lsm_module_3__m3'].setPlainText('Резерв')
+dict_param['lsm_module_3__m3'].textChanged.connect(FlagToTextM3)
 
 
 def ConnectModem():
-    print('click')
-    if ~lsm.initUsbPort():
-        print('USB ops')
-    rrr = lsm.checkModem()   
-    print(rrr) 
-    if not rrr:#~lsm.checkModem():
-        print('Modem ops')
-    pass
+    res0, prm0 = lsm.initUsbPort()
+    res1, prm1 = lsm.checkModem() 
 dict_param['modem_apply'].released.connect(ConnectModem)
 
-print(id(dict_param))
-print(id(dict_param['lsm_module__m3']))
+def LinkRequestK1():
+    LinkRequest('k1')
+
+def LinkRequestK2():
+    LinkRequest('k2')
+
+def LinkRequest(dest):
+    res0, prm0 = lsm.initUsbPort()
+    if not res0:
+        return 0
+    res1, prm1 = lsm.ComLinkRequest(dest)
+    if not res1:
+        return 0
+    if prm1 is not None:
+        data_carrier.setParam(prm1)
+
+    res2, prm2 = lsm.ComShortStatus()
+    #print(prm2)
+    if res2 and (prm2 is not None):
+        data_carrier.setParam(prm2)
+
+dict_param['link_request_k1'].released.connect(LinkRequestK1)
+dict_param['link_request_k2'].released.connect(LinkRequestK2)
+
+def StartLsm():
+    res, prm = lsm.ComStartLsm()
+
+dict_param['start'].released.connect(StartLsm)
+
+def StoptLsm():
+    res, prm = lsm.ComStopLsm()
+
+dict_param['stop'].released.connect(StoptLsm)
+
+def ResetLsm():
+    res, prm = lsm.ComResetLsm()
+
+dict_param['reset'].released.connect(ResetLsm)
+
+def HardResetLsm():
+    res, prm = lsm.ComHardResetLsm()
+
+dict_param['hard_reset'].released.connect(HardResetLsm)
+
 
 
 dict_param['usb_port'].setModel(MyListModel([[i.name, i.description] for i in list_ports.comports(True)]))
-print('iii')
-dict_param['lsm_module__m0'].setPlainText('1')
+
+dict_param['lsm_module_0__m0'].setPlainText('1')
 
 
-print([[i.name, i.description] for i in list_ports.comports(True)])
+#print([[i.name, i.description] for i in list_ports.comports(True)])
 
 
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'form2.ui'
+## Form generated from reading UI file 'form2RNMYmn.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -31,9 +31,6 @@ class Ui_Form(object):
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(15, 100, 81, 31))
         self.label_4.setWordWrap(True)
-        self.lsm__usb_stop_bit = QLineEdit(Form)
-        self.lsm__usb_stop_bit.setObjectName(u"lsm__usb_stop_bit")
-        self.lsm__usb_stop_bit.setGeometry(QRect(95, 70, 113, 20))
         self.lsm__usb_check_odd = QCheckBox(Form)
         self.lsm__usb_check_odd.setObjectName(u"lsm__usb_check_odd")
         self.lsm__usb_check_odd.setGeometry(QRect(95, 105, 111, 17))
@@ -46,6 +43,10 @@ class Ui_Form(object):
         self.lsm__usb_size_data.setMinimum(8)
         self.lsm__usb_size_data.setMaximum(1024)
         self.lsm__usb_size_data.setSingleStep(8)
+        self.lsm__usb_speed = QComboBox(Form)
+        self.lsm__usb_speed.addItem("")
+        self.lsm__usb_speed.setObjectName(u"lsm__usb_speed")
+        self.lsm__usb_speed.setGeometry(QRect(90, 70, 111, 22))
 
         self.retranslateUi(Form)
 
@@ -54,10 +55,12 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 USB", None))
-        self.label.setText(QCoreApplication.translate("Form", u"\u0421\u043a\u043e\u0440\u043e\u0441\u0442\u044c ", None))
+        self.label.setText(QCoreApplication.translate("Form", u"\u041f\u043e\u0440\u0442", None))
         self.label_2.setText(QCoreApplication.translate("Form", u"\u0414\u0430\u043d\u043d\u044b\u0435 ", None))
-        self.label_3.setText(QCoreApplication.translate("Form", u"\u0421\u0442\u043e\u043f\u043e\u0432\u044b\u0439 \u0431\u0438\u0442", None))
+        self.label_3.setText(QCoreApplication.translate("Form", u"\u0421\u043a\u043e\u0440\u043e\u0441\u0442\u044c", None))
         self.label_4.setText(QCoreApplication.translate("Form", u"\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043d\u0430 \u0447\u0435\u0442\u043d\u043e\u0441\u0442\u044c", None))
         self.lsm__usb_check_odd.setText(QCoreApplication.translate("Form", u"\u0412\u044b\u043a\u043b\u044e\u0447\u0435\u043d\u043e", None))
+        self.lsm__usb_speed.setItemText(0, QCoreApplication.translate("Form", u"115200", None))
+
     # retranslateUi
 

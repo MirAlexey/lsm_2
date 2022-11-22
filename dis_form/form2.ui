@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Скорость </string>
+    <string>Порт</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -49,7 +49,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Стоповый бит</string>
+    <string>Скорость</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -66,16 +66,6 @@
    </property>
    <property name="wordWrap">
     <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lsm__usb_stop_bit">
-   <property name="geometry">
-    <rect>
-     <x>95</x>
-     <y>70</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
    </property>
   </widget>
   <widget class="QCheckBox" name="lsm__usb_check_odd">
@@ -119,6 +109,21 @@
    <property name="singleStep">
     <number>8</number>
    </property>
+  </widget>
+  <widget class="QComboBox" name="lsm__usb_speed">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>70</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>115200</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

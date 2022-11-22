@@ -26,6 +26,11 @@ setting_modem:
         start: 1
         end: 15
         step: 1
+  - name: 'usb_speed'
+    type: 'list'
+    param:
+      keys: [115200]
+      values: [115200]
 params:
   - name: modem_setting
     type: 'value'
@@ -133,12 +138,33 @@ params:
   - name: 'mode'
     type: 'value'
     values:
-      - name: 'lsm_module'
+      - name: 'lsm_module_0'
         type: 'bool_value'
         params:
           - name: 'единицы'
             mask: 0b00000001
             shift: 0
+            mul: 1
+      - name: 'lsm_module_1'
+        type: 'bool_value'
+        params:
+          - name: 'единицы'
+            mask: 0b00000010
+            shift: 1
+            mul: 1
+      - name: 'lsm_module_2'
+        type: 'bool_value'
+        params:
+          - name: 'единицы'
+            mask: 0b00000100
+            shift: 2
+            mul: 1
+      - name: 'lsm_module_3'
+        type: 'bool_value'
+        params:
+          - name: 'единицы'
+            mask: 0b00001000
+            shift: 3
             mul: 1
       - name: 'fotoavtomat'
         type: 'bool_value'

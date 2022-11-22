@@ -49,13 +49,14 @@ class Port:
         self.params = params
         #print('f', [p for p in params])
         self._param_name= [p.name for p in params]
-        print('f',self.params)
+        #print('f',self.params)
         self._command_name = [com.name for com in self._commands]
 
-    def init_param(self, baudrate, port):
+    def init_param(self, baudrate, port, timeout):
         self.usb = serial.Serial()
         self.usb.baudrate = baudrate
         self.usb.port = port
+        self.usb.timeout=timeout
         self.usb.open()
         res = self.usb.is_open
         return res
@@ -73,49 +74,54 @@ class Port:
         command = self._get_command(command_name)
         str_command, time_out, len_response = self._build_command(address, command, params_value, postfix_param_name)
         res = self._write_and_read_test(str_command, time_out, len_response)
+        #res = self._write_and_read(str_command, time_out, len_response)
         res_str = [f'{r:0>2x}' for r in res ]
-        print(len_response)
+        #print(len_response)
         if len(res) != len_response:
             logger.warn(f'Response {res_str} with invalid length')
             return None
-        if command.response.crc and ~self._check_crc(res):
-            logger.warn(f'Response {res_str} with error crc')
+        if command.response.crc and (not self._check_crc(res)):
+            logger.warn(f"Response {res_str} with error crc, get '{self._get_crc(''.join(res_str[:-1]))}'")
             return None
         
         return self._parse_response(res, address, command)
 
     def _write_and_read_test(self, str_command, time_out, len_response):
-        print('write',str_command)
-        time.sleep(time_out)
+        logger.log(f'Write: {str_command}')
         res = ''
-        print(type(str_command), str_command == '4154440d')
         if str_command == '4154440d':
-
-            res = bytearray.fromhex('0d0a4f4b0d0a')
-        elif str_command == '':
-            res = bytearray.fromhex('') 
-        elif str_command == '':
-            res = bytearray.fromhex('') 
-        elif str_command == '':
-            res = bytearray.fromhex('')
-        elif str_command == '':
-            res = bytearray.fromhex('')
-        elif str_command == '':
-            res = bytearray.fromhex('')
+            res = bytearray.fromhex('4f4b0d0a')
+        elif str_command == '5600bd':
+            res = bytearray.fromhex('658058') 
+        elif str_command == '4600d3':
+            res = bytearray.fromhex('6480ac') 
+        elif str_command == '4601e2':
+            res = bytearray.fromhex('64810001180b15020d0505390f0f0f0f53')
+        elif str_command == '460744':
+            res = bytearray.fromhex('64873b')
+        elif str_command == '46086a':
+            res = bytearray.fromhex('648815')
+        elif str_command == '460675':
+            res = bytearray.fromhex('64860a')
+        elif str_command == '460526':
+            res = bytearray.fromhex('648559')
         else:
             res = bytearray.fromhex('a346f6d3')
 
-        print('read', [f'{r:0>2x}' for r in res ])
+        logger.log('Read: ' + ''.join([f'{r:0>2x}' for r in res ]))
 
         return res
 
     def _write_and_read(self, str_command, time_out, len_response):
+        #print(self, str_command, time_out, len_response)
+        logger.log(f'Write: {str_command}')
         self.usb.write(bytearray.fromhex(str_command))
-        res = self.usb.read(size=len_response, timeout=time_out)
+        res = self.usb.read(size=len_response)
+        logger.log('Read: ' + ''.join([f'{r:0>2x}' for r in res ]))
         return res
 
     def _build_command(self, address, command, params_value, postfix_param_name):
-        print(command)
+        #print(command)
         req = command.request
         resp = command.response
         time_out = command.timeout
@@ -127,7 +133,7 @@ class Port:
 
         str_command=''
         if req.address:
-            str_command+=self._get_address(address, 'output')
+            str_command+=self._get_address(address, 'input')
         str_command+=req.command 
         str_command+=self._get_data(req.data, params_value, address, postfix_param_name)
         if req.crc:
@@ -136,7 +142,7 @@ class Port:
 
     def _get_address(self, address, dest):
         if address in self._addresses:
-            return self._addresses[address][dest]
+            return self._addresses[address].dict()[dest]
 
     def _get_data(self, data, params_value, address, postfix_param_name):
         res = ''
@@ -144,8 +150,8 @@ class Port:
             params_v = self._get_param_setting(com_v)
             values_v = self._get_param_value(com_v, address, params_value, postfix_param_name)
             rv= 0b00000000
-            print(params_v)
-            print(values_v)
+            #print(params_v)
+            #print(values_v)
             for pv, vv in zip(params_v, values_v):
                 rv |= get_param_obj(pv['type']).encode(pv['params'],vv)
             res+=f'{rv:0>2x}'
@@ -153,23 +159,26 @@ class Port:
 
     def _get_param_setting(self, com_val):
         res = []
-        print(com_val)
+        #print(com_val)
         #for v in com_val.values:
         v = com_val
-        print(v)
+        #print(v)
         p_a = v.type.split('__')
         for p in v.values:
             l_a = p.split('__')
-            print(p_a,l_a,p_a[0])
-            print(self._param_name)
+            #print(p_a,l_a,p_a[0])
+            #print(self._param_name)
             #print(self.params[self._param_name.index(p_a[0])])
             if p_a[0] == 'str':
                 cur_res = {'type':'str','params':[], 'type_reduce':'value_con'}
             else:
                 param_lsm_values = self.params[self._param_name.index(p_a[0])]
                 pv_name = [pv.name for pv in param_lsm_values.values]
+                #print(param_lsm_values)
                 cur_res = param_lsm_values.values[pv_name.index(l_a[0])]
-                cur_res.type_reduce = param_lsm_values.type
+                #print(cur_res, cur_res.dict())
+                cur_res = cur_res.dict()
+                cur_res['type_reduce'] = param_lsm_values.type
             res.append(cur_res)
         return res
 
@@ -185,41 +194,46 @@ class Port:
     def _parse_response(self, res, address, command):
         resp = command.response
         resp_address = f'{res[0]:0>2x}' if resp.address else ''
-        true_address = self._get_address(address, 'input') if resp.address else ''
+        true_address = self._get_address(address, 'output') if resp.address else ''
         resp_command = f'{res[1]:0>2x}' if resp.command != '' else ''
         true_command = resp.command
         if (resp_address != true_address) or (resp_command != true_command):
             raise ValueError(f"Response invalid! address: '{resp_address}' != '{true_address}' or command {resp_command} != '{true_command}'")
         start_data = int(resp.address) + int(resp.command != '')
-        print('r', resp)
+        #print('r', resp)
         resp_data = res[start_data:-1] if resp.crc else res[start_data:]
-        print('len', len(resp.data.values), len(resp_data))
+        #print('len', len(resp.data.values), len(resp_data))
         res = {}
         for i,v in enumerate(resp.data.values):
-            print('vvv', v)
+            #print('vvv', v)
             group_values = v.values
             params_v = self._get_param_setting(v)
             values_v = resp_data[i]
             for pv, gv in zip(params_v, group_values):
-                cur_dest = self._get_current_dest(v.type, gv)
+                cur_dest = self._get_current_dest(v.type, gv, True)
                 if cur_dest not in res:
                     res[cur_dest] = {'type_reduce': pv['type_reduce'], 'vl':[]}
                 decode_value = get_param_obj(pv['type']).decode(pv['params'], values_v)
                 res[cur_dest]['vl'].append(decode_value)
         for k,v in res.items():
-            res[k]= get_param_reduce(v['type_reduce']).eval(v['vl'])
+            res[k]= get_param_reduce(v['type_reduce']).eval(v['vl'])[0]
         return res 
 
 
-    def _get_current_dest(self, group_param, group_value):
+    def _get_current_dest(self, group_param, group_value, is_full = False):
         group_dev = group_param.split('__')
         value_dev = group_value.split('__')
         if len(value_dev) > 1:
-            return group_value[0]
-        return group_dev[0]
+            return group_value if is_full else value_dev[0]
+        return group_param if is_full else group_dev[0]
 
 
-
+    def _get_crc(self, src_str):
+        crc = 0x00
+        res=bytearray.fromhex(src_str)
+        for r in res:
+            crc = int(CONST_SRC[crc ^ r], 16)
+        return f'{crc:0>2x}'
 
     def _check_crc(self,res):
         crc = 0x00
