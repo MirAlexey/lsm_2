@@ -43,7 +43,7 @@
    <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="lsm__short_status">
     <property name="geometry">
      <rect>
       <x>554</x>
@@ -56,7 +56,7 @@
      <string>Обновить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="lsm__set_setting">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -199,87 +199,6 @@
     <property name="lineWidth">
      <number>1</number>
     </property>
-    <widget class="QTextEdit" name="lsm__lsm_module_2__m2">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>5</y>
-       <width>100</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="html">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt; vertical-align:middle;&quot;&gt;Резерв&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="lsm__lsm_module_0__m0">
-     <property name="geometry">
-      <rect>
-       <x>115</x>
-       <y>5</y>
-       <width>100</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="readOnly">
-      <bool>false</bool>
-     </property>
-     <property name="html">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Основной&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="lsm__lsm_module_1__m1">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>5</y>
-       <width>100</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="html">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Резерв&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_5">
      <property name="geometry">
       <rect>
@@ -299,34 +218,48 @@ p, li { white-space: pre-wrap; }
        <x>520</x>
        <y>5</y>
        <width>16</width>
-       <height>22</height>
+       <height>20</height>
       </rect>
      </property>
     </widget>
-    <widget class="QTextEdit" name="lsm__lsm_module_3__m3">
+    <widget class="QComboBox" name="lsm__lsm_module_0__m0">
      <property name="geometry">
       <rect>
-       <x>434</x>
+       <x>116</x>
        <y>5</y>
-       <width>86</width>
-       <height>22</height>
+       <width>100</width>
+       <height>20</height>
       </rect>
      </property>
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
+    </widget>
+    <widget class="QComboBox" name="lsm__lsm_module_1__m1">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>5</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
      </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
+    </widget>
+    <widget class="QComboBox" name="lsm__lsm_module_2__m2">
+     <property name="geometry">
+      <rect>
+       <x>331</x>
+       <y>5</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
      </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="html">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Основной&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </widget>
+    <widget class="QComboBox" name="lsm__lsm_module_3__m3">
+     <property name="geometry">
+      <rect>
+       <x>435</x>
+       <y>5</y>
+       <width>86</width>
+       <height>20</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -371,7 +304,7 @@ p, li { white-space: pre-wrap; }
     <property name="lineWidth">
      <number>1</number>
     </property>
-    <widget class="QTextEdit" name="lsm__sinchronization__m2">
+    <widget class="QTextEdit" name="lsm__synchronization__m2">
      <property name="geometry">
       <rect>
        <x>331</x>
@@ -390,7 +323,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="lsm__sinchronization__m0">
+    <widget class="QTextEdit" name="lsm__synchronization__m0">
      <property name="geometry">
       <rect>
        <x>116</x>
@@ -409,7 +342,7 @@ p, li { white-space: pre-wrap; }
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="lsm__sinchronization__m1">
+    <widget class="QTextEdit" name="lsm__synchronization__m1">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -444,7 +377,7 @@ p, li { white-space: pre-wrap; }
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QTextEdit" name="lsm__sinchronization__m3">
+    <widget class="QTextEdit" name="lsm__synchronization__m3">
      <property name="geometry">
       <rect>
        <x>435</x>
@@ -695,6 +628,9 @@ p, li { white-space: pre-wrap; }
       <height>30</height>
      </rect>
     </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
     </property>
@@ -783,8 +719,8 @@ p, li { white-space: pre-wrap; }
     <widget class="QTextEdit" name="lsm__vertical_scan__m3">
      <property name="geometry">
       <rect>
-       <x>435</x>
-       <y>5</y>
+       <x>434</x>
+       <y>6</y>
        <width>100</width>
        <height>20</height>
       </rect>

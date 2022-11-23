@@ -44,6 +44,7 @@ class DataСarrier:
         return res
     
     def setParam(self, set_param):
+        
         for k, v in set_param.items():
             if k in self.dict_params:
                 if isinstance(self.dict_params[k], QTextEdit):

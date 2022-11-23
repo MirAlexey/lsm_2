@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Дополнительные и вспомогательные параметры</string>
+  </property>
+  <widget class="QCheckBox" name="lsm__fotoavtomat__m">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>101</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Фотоавтомат</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="lsm__dynamic_power__m">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>291</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Режим динамического управления мощьностью</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="lsm__max_nom_power__m">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>50</y>
+     <width>261</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Максимальная или номинальная мощьность</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="lsm__current_illumination__m">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>70</y>
+     <width>231</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Текущая освещенность</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

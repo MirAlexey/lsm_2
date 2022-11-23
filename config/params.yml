@@ -31,6 +31,33 @@ setting_modem:
     param:
       keys: [115200]
       values: [115200]
+  - name: 'lsm_module_0__m0'
+    type: 'list'
+    param:
+      keys: ['Основной', 'Резервный']
+      values: [1,0]
+  - name: 'lsm_module_1__m1'
+    type: 'list'
+    param:
+      keys: ['Основной', 'Резервный']
+      values: [1,0]
+  - name: 'lsm_module_2__m2'
+    type: 'list'
+    param:
+      keys: ['Основной', 'Резервный']
+      values: [1,0]
+  - name: 'lsm_module_3__m3'
+    type: 'list'
+    param:
+      keys: ['Основной', 'Резервный']
+      values: [1,0]
+  - name: 'power'
+    type: 'list'
+    param:
+      keys: ['Номинальная мощность с датчиком освещенности', 'Максимальная мощность', 'Динамическое управление мощностью', 'Фотоавтомат']
+      values: [0b00001000, 0b00000010, 0b00000100, 0b00000001]
+
+
 params:
   - name: modem_setting
     type: 'value'
@@ -139,28 +166,28 @@ params:
     type: 'value'
     values:
       - name: 'lsm_module_0'
-        type: 'bool_value'
+        type: 'bit_value'
         params:
           - name: 'единицы'
             mask: 0b00000001
             shift: 0
             mul: 1
       - name: 'lsm_module_1'
-        type: 'bool_value'
+        type: 'bit_value'
         params:
           - name: 'единицы'
             mask: 0b00000010
             shift: 1
             mul: 1
       - name: 'lsm_module_2'
-        type: 'bool_value'
+        type: 'bit_value'
         params:
           - name: 'единицы'
             mask: 0b00000100
             shift: 2
             mul: 1
       - name: 'lsm_module_3'
-        type: 'bool_value'
+        type: 'bit_value'
         params:
           - name: 'единицы'
             mask: 0b00001000

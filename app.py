@@ -10,6 +10,7 @@ from dis_form.ui_form1 import Ui_MainWindow
 from dis_form.ui_form2 import Ui_Form as FormSettingUSB
 from dis_form.ui_form3 import Ui_Form as FormHistory
 from dis_form.ui_form4 import Ui_widget as FormSettingModem
+from dis_form.ui_form5 import Ui_Form as FormAdditionalParams
 
 
 from lsm_dev.lsm import LSM 
@@ -37,7 +38,10 @@ class History(QWidget, FormHistory):
         super(History, self).__init__()
         self.setupUi(self)
 
-
+class AdditionalParams(QWidget, FormAdditionalParams):
+    def __init__(self):
+        super(AdditionalParams, self).__init__()
+        self.setupUi(self)
 
 app = QApplication(sys.argv)
 
@@ -45,6 +49,7 @@ window = MainWindow()
 setting_usb = SettingUSB()
 setting_modem = SettingModem()
 history = History()
+spec_params = AdditionalParams()
 
 window.show()
 print([(i.name, i.interface, i.description) for i in list_ports.comports(True)])
@@ -53,11 +58,11 @@ print([(i.name, i.interface, i.description) for i in list_ports.comports(True)])
 window.menu.actions()[0].triggered.connect(setting_usb.show)
 window.menu.actions()[1].triggered.connect(setting_modem.show)
 dict_param = {}
-for i in [window, setting_usb, history, setting_modem]:
-    for j in [QTextEdit, QComboBox, QSpinBox, QLineEdit, QPushButton]:
+for i in [window, setting_usb, history, setting_modem, spec_params]:
+    for j in [QTextEdit, QComboBox, QSpinBox, QLineEdit, QPushButton, QCheckBox]:
         dict_param.update({'__'.join(t.objectName().split('__')[1:]):t for t in  i.findChildren(j) if t.objectName().find('lsm__') >= 0})
 
-#print(list(dict_param.keys()))
+print(list(dict_param.keys()))
 
 data_carrier = DataСarrier(dict_param)
 lsm = LSM(data_carrier)
@@ -72,36 +77,6 @@ for sm in lsm.setting_modem:
     else:
         data_sm = [['-', '-']]
     dict_param[sm.name].setModel(MyListModel(data_sm))
-
-
-dict_param['power'].setModel(MyListModel([['11','11data'], ['12','12data'],['13','13data']]))
-def FlagToTextM0():
-    if dict_param['lsm_module_0__m0'].toPlainText() == '1':
-        dict_param['lsm_module_0__m0'].setPlainText('Основной')
-    if dict_param['lsm_module_0__m0'].toPlainText() == '0':
-        dict_param['lsm_module_0__m0'].setPlainText('Резерв')
-dict_param['lsm_module_0__m0'].textChanged.connect(FlagToTextM0)
-
-def FlagToTextM1():
-    if dict_param['lsm_module_1__m1'].toPlainText() == '1':
-        dict_param['lsm_module_1__m1'].setPlainText('Основной')
-    if dict_param['lsm_module_1__m1'].toPlainText() == '0':
-        dict_param['lsm_module_1__m1'].setPlainText('Резерв')
-dict_param['lsm_module_1__m1'].textChanged.connect(FlagToTextM1)
-
-def FlagToTextM2():
-    if dict_param['lsm_module_2__m2'].toPlainText() == '1':
-        dict_param['lsm_module_2__m2'].setPlainText('Основной')
-    if dict_param['lsm_module_2__m2'].toPlainText() == '0':
-        dict_param['lsm_module_2__m2'].setPlainText('Резерв')
-dict_param['lsm_module_2__m2'].textChanged.connect(FlagToTextM2)
-
-def FlagToTextM3():
-    if dict_param['lsm_module_3__m3'].toPlainText() == '1':
-        dict_param['lsm_module_3__m3'].setPlainText('Основной')
-    if dict_param['lsm_module_3__m3'].toPlainText() == '0':
-        dict_param['lsm_module_3__m3'].setPlainText('Резерв')
-dict_param['lsm_module_3__m3'].textChanged.connect(FlagToTextM3)
 
 
 def ConnectModem():
@@ -125,10 +100,12 @@ def LinkRequest(dest):
     if prm1 is not None:
         data_carrier.setParam(prm1)
 
-    res2, prm2 = lsm.ComShortStatus()
-    #print(prm2)
-    if res2 and (prm2 is not None):
-        data_carrier.setParam(prm2)
+    # res2, prm2 = lsm.ComShortStatus()
+
+    # if res2 and (prm2 is not None):
+    #     data_carrier.setParam(prm2)
+    
+
 
 dict_param['link_request_k1'].released.connect(LinkRequestK1)
 dict_param['link_request_k2'].released.connect(LinkRequestK2)
@@ -153,22 +130,30 @@ def HardResetLsm():
 
 dict_param['hard_reset'].released.connect(HardResetLsm)
 
+def GetShortStatusLsm():
+    res, prm = lsm.ComShortStatus()
+    if res and (prm is not None):
+        data_carrier.setParam(prm)
+
+dict_param['short_status'].released.connect(GetShortStatusLsm)
+
+spec_params.show()
+
+
+
 
 
 dict_param['usb_port'].setModel(MyListModel([[i.name, i.description] for i in list_ports.comports(True)]))
 
-dict_param['lsm_module_0__m0'].setPlainText('1')
 
+def ChangePowerSetting():
+    i = dict_param['power'].itemData(dict_param['power'].currentIndex())
+    dict_param['fotoavtomat__m'].setChecked(bool(i&1))
+    dict_param['dynamic_power__m'].setChecked(bool(i>>1&1))
+    dict_param['max_nom_power__m'].setChecked(bool(i>>2&1))
+    dict_param['current_illumination__m'].setChecked(bool(i>>3&1))
 
-#print([[i.name, i.description] for i in list_ports.comports(True)])
-
-
-
-
-def foo(i):
-    dict_param['date'].setPlainText(dict_param['power'].itemData(i))
-
-dict_param['power'].currentIndexChanged.connect(foo)
+dict_param['power'].currentIndexChanged.connect(ChangePowerSetting)
 
 
 app.exec_()

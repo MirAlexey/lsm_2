@@ -75,7 +75,7 @@ class LSM:
                 logger.info(f"Запрос каннала связи с модемом {'МС-1' if dest == 'k1' else 'МС-2'} успешен")
                 self.current_address = dest
                 return True, {'link_mc1' if dest == 'k1' else 'link_mc2':'Связь установлена' if res is None else 'Связь отсутствует'}
-            logger.atn(f'Запрос {i} bp {count_run}  канала связи с модемом неуспешен')
+            logger.atn(f'Запрос {i} из {count_run}  канала связи с модемом неуспешен')
         logger.warn('Запрос канала связи неуспешен, нет связи с модемом диспетчером')
         return False, {'link_mc1' if dest == 'k1' else 'link_mc2': 'Связь отсутствует'}
 
@@ -86,10 +86,10 @@ class LSM:
             for i in range(count_run):
                 res = self.port.send_command(self.current_address, com_name , {})
                 if res is not None:
-                    logger.info('Команда {com_name} прошла ')
+                    logger.info(f'Команда {com_name} прошла ')
                     return True, res
-                logger.atn('Команда {com_name} не прошла (попытка {i} из {count_run})')
-            logger.warn('Команда {com_name} не прошла')
+                logger.atn(f'Команда {com_name} не прошла (попытка {i} из {count_run})')
+            logger.warn(f'Команда {com_name} не прошла')
         else:
             logger.warn('Нет канала связи')
         return False, None
@@ -115,16 +115,16 @@ class LSM:
             for i in range(count_run):
                 res = self.port.send_command(self.current_address, com_name , {})
                 if res is not None:
-                    logger.info('Команда {com_name} прошла ')
+                    logger.info(f'Команда {com_name} прошла ')
                     return True, res
-                logger.atn('Команда {com_name} не прошла (попытка {i} из {count_run})')
-            logger.warn('Команда {com_name} не прошла')
+                logger.atn(f'Команда {com_name} не прошла (попытка {i} из {count_run})')
+            logger.warn(f'Команда {com_name} не прошла')
         else:
             logger.warn('Нет канала связи')
         return False, None
 
     def ComStartLsm(self):
-        return self._ShortComLsm('short_status', 3)
+        return self._ShortComLsm('start', 3)
 
     def ComStopLsm(self):
         return self._ShortComLsm('stop', 3)

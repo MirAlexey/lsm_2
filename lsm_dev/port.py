@@ -78,10 +78,10 @@ class Port:
         res_str = [f'{r:0>2x}' for r in res ]
         #print(len_response)
         if len(res) != len_response:
-            logger.warn(f'Response {res_str} with invalid length')
+            logger.warn(f'Ответ {res_str} неверной длины')
             return None
         if command.response.crc and (not self._check_crc(res)):
-            logger.warn(f"Response {res_str} with error crc, get '{self._get_crc(''.join(res_str[:-1]))}'")
+            logger.warn(f"Ответ {res_str} с неверным crc, получено '{self._get_crc(''.join(res_str[:-1]))}'")
             return None
         
         return self._parse_response(res, address, command)
@@ -114,10 +114,10 @@ class Port:
 
     def _write_and_read(self, str_command, time_out, len_response):
         #print(self, str_command, time_out, len_response)
-        logger.log(f'Write: {str_command}')
+        logger.log(f'Отправка: {str_command}')
         self.usb.write(bytearray.fromhex(str_command))
         res = self.usb.read(size=len_response)
-        logger.log('Read: ' + ''.join([f'{r:0>2x}' for r in res ]))
+        logger.log('Прием: ' + ''.join([f'{r:0>2x}' for r in res ]))
         return res
 
     def _build_command(self, address, command, params_value, postfix_param_name):
@@ -197,8 +197,12 @@ class Port:
         true_address = self._get_address(address, 'output') if resp.address else ''
         resp_command = f'{res[1]:0>2x}' if resp.command != '' else ''
         true_command = resp.command
-        if (resp_address != true_address) or (resp_command != true_command):
-            raise ValueError(f"Response invalid! address: '{resp_address}' != '{true_address}' or command {resp_command} != '{true_command}'")
+        if (resp_address != true_address):
+            logger.error(f"Ответ неверный! адрес в ответе неверный '{resp_address}' != '{true_address}'")
+            return None
+        if (resp_address != true_address) or (resp_command != true_command):     
+            logger.error(f"Ответ неверный!  команда в ответе неверная'{resp_command} != '{true_command}'")
+            return None
         start_data = int(resp.address) + int(resp.command != '')
         #print('r', resp)
         resp_data = res[start_data:-1] if resp.crc else res[start_data:]
