@@ -31,7 +31,10 @@ class DataСarrier:
         for k, v in self.dict_params.items():
             if isinstance(v, QTextEdit):
                 #print(k, v.toPlainText())
-                res[k]=v.toPlainText()
+                cur_v = v.toPlainText()
+                if (cur_v == 'Вкл') or (cur_v =='Выкл'):
+                    cur_v = cur_v == 'Вкл'
+                res[k]=cur_v
             elif isinstance(v, QLineEdit):
                 res[k]=v.text()
             elif isinstance(v, QComboBox):
@@ -48,7 +51,7 @@ class DataСarrier:
         for k, v in set_param.items():
             if k in self.dict_params:
                 if isinstance(self.dict_params[k], QTextEdit):
-                    self.dict_params[k].setPlainText(str(v))
+                    self.dict_params[k].setPlainText(str(v) if type(v) != bool else 'Вкл' if v else 'Выкл')
                 elif isinstance(v, QLineEdit):
                     self.dict_params[k].text(v)
                 elif isinstance(v, QComboBox):

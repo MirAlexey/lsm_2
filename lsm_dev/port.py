@@ -73,8 +73,8 @@ class Port:
     def send_command(self, address, command_name, params_value, postfix_param_name = ''):
         command = self._get_command(command_name)
         str_command, time_out, len_response = self._build_command(address, command, params_value, postfix_param_name)
-        res = self._write_and_read_test(str_command, time_out, len_response)
-        #res = self._write_and_read(str_command, time_out, len_response)
+        #res = self._write_and_read_test(str_command, time_out, len_response)
+        res = self._write_and_read(str_command, time_out, len_response)
         res_str = [f'{r:0>2x}' for r in res ]
         #print(len_response)
         if len(res) != len_response:
