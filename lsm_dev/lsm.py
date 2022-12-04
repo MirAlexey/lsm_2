@@ -84,7 +84,7 @@ class LSM:
         params = self.data_carrier.getParam()
         if self.current_address is not None:
             for i in range(count_run):
-                res = self.port.send_command(self.current_address, com_name , {})
+                res = self.port.send_command(self.current_address, com_name , params)
                 if res is not None:
                     logger.info(f'Команда {com_name} прошла ')
                     return True, res

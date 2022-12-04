@@ -137,6 +137,11 @@ def GetShortStatusLsm():
 
 dict_param['short_status'].released.connect(GetShortStatusLsm)
 
+def SetLsmParams():
+    res, prm = lsm.ComSetModeLSM()
+
+dict_param['set_setting'].released.connect(SetLsmParams)
+
 spec_params.show()
 
 

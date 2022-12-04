@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'form5jqEYdI.ui'
+## Form generated from reading UI file 'form5.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,7 +17,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(400, 300)
+        Form.resize(312, 103)
         self.lsm__fotoavtomat__m = QCheckBox(Form)
         self.lsm__fotoavtomat__m.setObjectName(u"lsm__fotoavtomat__m")
         self.lsm__fotoavtomat__m.setGeometry(QRect(20, 10, 101, 17))

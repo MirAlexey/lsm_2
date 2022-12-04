@@ -188,7 +188,10 @@ class Port:
         v = val
         for p in v.values:
             source = self._get_current_dest(v.type, p)
-            res.append(p if source == 'str' else params_value[source])
+            try:
+                res.append(p if source == 'str' else params_value[source])
+            except Exception:
+                print(params_value, source)    
         return res
 
     def _parse_response(self, res, address, command):
@@ -228,8 +231,8 @@ class Port:
         group_dev = group_param.split('__')
         value_dev = group_value.split('__')
         if len(value_dev) > 1:
-            return group_value if is_full else value_dev[0]
-        return group_param if is_full else group_dev[0]
+            return group_value if is_full else group_value # value_dev[0]
+        return group_param if is_full else group_param #group_dev[0]
 
 
     def _get_crc(self, src_str):
