@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'form2RNMYmn.ui'
+## Form generated from reading UI file 'form2xBDaSL.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##

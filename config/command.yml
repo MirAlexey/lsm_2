@@ -68,10 +68,10 @@ commands:
         values: 
           - type: 'event_number'
             values:
-              - 'high'
+              - 'low'
           - type: 'event_number'
             values:
-              - 'low'
+              - 'high'
           - type: 'date'
             values:
               - 'year'
@@ -127,6 +127,10 @@ commands:
               - 'vertical_scan__m3'
               - 'horizontal_scan__m3'
               - 'synchronization__m3'
+          - type: 'state_event'
+            values:
+              - 'synchronization_modules__h'
+              - 'source_history__h'
       crc: True
     timeout: 1  
   - name: 'general_status'

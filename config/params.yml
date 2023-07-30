@@ -311,7 +311,7 @@ params:
         - name: 'темпиратура'
           mask: 0b11111111
           shift: 0
-          mul: 1 
+          mul: 1
   - name: 'heating'
     type: 'value'
     values:
@@ -381,3 +381,20 @@ params:
           mask: 0b00000001
           shift: 0
           mul: 1 
+  - name: 'state_event'
+    type: 'value'
+    values: 
+      - name: 'synchronization_modules'
+        type: 'bit_value'
+        params:
+          - name: 'синхронизация между модулями'
+            mask: 0b11110000
+            shift: 4
+            mul: 1
+      - name: 'source_history'
+        type: 'bit_value'
+        params:
+          - name: 'источник события'
+            mask: 0b00001111
+            shift: 0
+            mul: 1

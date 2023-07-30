@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'form3tTVFhF.ui'
+## Form generated from reading UI file 'form3.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##

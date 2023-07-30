@@ -1152,8 +1152,21 @@
     <property name="title">
      <string>Система</string>
     </property>
+    <widget class="QMenu" name="menu_3">
+     <property name="title">
+      <string>Команды</string>
+     </property>
+     <addaction name="action_5"/>
+     <addaction name="action_7"/>
+     <addaction name="action_6"/>
+     <addaction name="action_8"/>
+     <addaction name="action_10"/>
+     <addaction name="action_9"/>
+    </widget>
     <addaction name="action_USB"/>
     <addaction name="action_2"/>
+    <addaction name="separator"/>
+    <addaction name="menu_3"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -1178,6 +1191,36 @@
   <action name="action_2">
    <property name="text">
     <string>Настройки Модема</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="text">
+    <string>Время</string>
+   </property>
+  </action>
+  <action name="action_6">
+   <property name="text">
+    <string>Развертка вертикальная</string>
+   </property>
+  </action>
+  <action name="action_7">
+   <property name="text">
+    <string>Мощность</string>
+   </property>
+  </action>
+  <action name="action_8">
+   <property name="text">
+    <string>Развертка горизонтальная</string>
+   </property>
+  </action>
+  <action name="action_9">
+   <property name="text">
+    <string>Тестовый режим</string>
+   </property>
+  </action>
+  <action name="action_10">
+   <property name="text">
+    <string>История событий</string>
    </property>
   </action>
  </widget>

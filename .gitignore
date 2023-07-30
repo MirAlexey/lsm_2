@@ -1,1 +1,14 @@
 dis_form/__pycache__/*.pyc
+dis_form/__pycache__/ui_form1.cpython-310.pyc
+dis_form/__pycache__/ui_form1.cpython-310.pyc
+dis_form/__pycache__/ui_form2.cpython-310.pyc
+lsm_dev/__pycache__/datatype.cpython-310.pyc
+lsm_dev/__pycache__/form_data.cpython-310.pyc
+lsm_dev/__pycache__/logger.cpython-310.pyc
+lsm_dev/__pycache__/lsm.cpython-310.pyc
+lsm_dev/__pycache__/param_lsm.cpython-310.pyc
+lsm_dev/__pycache__/port.cpython-310.pyc
+
+img/lsm_logo.png
+.gitignore
+log.txt

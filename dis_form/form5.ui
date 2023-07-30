@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>312</width>
-    <height>103</height>
+    <width>273</width>
+    <height>87</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QCheckBox" name="lsm__fotoavtomat__m">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>10</y>
+     <x>5</x>
+     <y>5</y>
      <width>101</width>
      <height>17</height>
     </rect>
@@ -29,9 +29,9 @@
   <widget class="QCheckBox" name="lsm__dynamic_power__m">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>30</y>
-     <width>291</width>
+     <x>5</x>
+     <y>25</y>
+     <width>271</width>
      <height>17</height>
     </rect>
    </property>
@@ -42,9 +42,9 @@
   <widget class="QCheckBox" name="lsm__max_nom_power__m">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>50</y>
-     <width>261</width>
+     <x>5</x>
+     <y>45</y>
+     <width>251</width>
      <height>17</height>
     </rect>
    </property>
@@ -55,8 +55,8 @@
   <widget class="QCheckBox" name="lsm__current_illumination__m">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>70</y>
+     <x>5</x>
+     <y>65</y>
      <width>231</width>
      <height>17</height>
     </rect>

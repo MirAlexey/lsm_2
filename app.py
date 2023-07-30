@@ -11,6 +11,10 @@ from dis_form.ui_form2 import Ui_Form as FormSettingUSB
 from dis_form.ui_form3 import Ui_Form as FormHistory
 from dis_form.ui_form4 import Ui_widget as FormSettingModem
 from dis_form.ui_form5 import Ui_Form as FormAdditionalParams
+from dis_form.ui_form6_time import Ui_Form as FormTimeParams
+from dis_form.ui_form7_power import Ui_Form as FormPowerParams
+from dis_form.ui_form8_vscan import Ui_Form as FormVscanParams
+from dis_form.ui_form9_hscan import Ui_Form as FormHscanParams
 
 
 from lsm_dev.lsm import LSM 
@@ -43,6 +47,26 @@ class AdditionalParams(QWidget, FormAdditionalParams):
         super(AdditionalParams, self).__init__()
         self.setupUi(self)
 
+class TimeParams(QWidget, FormTimeParams):
+    def __init__(self):
+        super(TimeParams, self).__init__()
+        self.setupUi(self)
+
+class PowerParams(QWidget, FormPowerParams):
+    def __init__(self):
+        super(PowerParams, self).__init__()
+        self.setupUi(self)
+
+class VscanParams(QWidget, FormVscanParams):
+    def __init__(self):
+        super(VscanParams, self).__init__()
+        self.setupUi(self)
+
+class HscanParams(QWidget, FormHscanParams):
+    def __init__(self):
+        super(HscanParams, self).__init__()
+        self.setupUi(self)
+
 app = QApplication(sys.argv)
 
 window = MainWindow()
@@ -50,15 +74,30 @@ setting_usb = SettingUSB()
 setting_modem = SettingModem()
 history = History()
 spec_params = AdditionalParams()
+main_time = TimeParams()
+power = PowerParams()
+vscan = VscanParams()
+hscan = HscanParams()
 
 window.show()
 print([(i.name, i.interface, i.description) for i in list_ports.comports(True)])
 
 
+print(type(window.menu.actions()),  dir(window.menu.actions()), window.menu.actions())
+for ac in window.menu.actions():
+    print(ac.text(), type(ac), ac.actionGroup(), dir(ac))
+for ac in window.menu_3.actions():
+    print(ac.text(), type(ac), ac.actionGroup(), dir(ac))
 window.menu.actions()[0].triggered.connect(setting_usb.show)
 window.menu.actions()[1].triggered.connect(setting_modem.show)
+window.menu_3.actions()[0].triggered.connect(main_time.show)
+window.menu_3.actions()[1].triggered.connect(power.show)
+window.menu_3.actions()[2].triggered.connect(vscan.show)
+window.menu_3.actions()[3].triggered.connect(hscan.show)
+window.menu_3.actions()[4].triggered.connect(history.show)
+
 dict_param = {}
-for i in [window, setting_usb, history, setting_modem, spec_params]:
+for i in [window, setting_usb, history, setting_modem, spec_params, main_time, power, vscan, hscan, history]:
     for j in [QTextEdit, QComboBox, QSpinBox, QLineEdit, QPushButton, QCheckBox]:
         dict_param.update({'__'.join(t.objectName().split('__')[1:]):t for t in  i.findChildren(j) if t.objectName().find('lsm__') >= 0})
 

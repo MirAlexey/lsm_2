@@ -80,19 +80,8 @@ class LSM:
         return False, {'link_mc1' if dest == 'k1' else 'link_mc2': 'Связь отсутствует'}
 
     def _ParamComLsm(self, com_name, count_run):
-        logger.info(f'Отправка команды {com_name}')
         params = self.data_carrier.getParam()
-        if self.current_address is not None:
-            for i in range(count_run):
-                res = self.port.send_command(self.current_address, com_name , params)
-                if res is not None:
-                    logger.info(f'Команда {com_name} прошла ')
-                    return True, res
-                logger.atn(f'Команда {com_name} не прошла (попытка {i} из {count_run})')
-            logger.warn(f'Команда {com_name} не прошла')
-        else:
-            logger.warn('Нет канала связи')
-        return False, None
+        return self._ComLsm(com_name, count_run, params)
 
     def ComShortStatus(self):
         return self._ParamComLsm('short_status', 3)
@@ -109,11 +98,11 @@ class LSM:
     def ComSetModemSetting(self):
         return self._ParamComLsm('set_modem_setting', 3)
 
-    def _ShortComLsm(self, com_name, count_run):
+    def _ComLsm(self, com_name, count_run, params):
         logger.info(f'Отправка команды {com_name}')
         if self.current_address is not None:
             for i in range(count_run):
-                res = self.port.send_command(self.current_address, com_name , {})
+                res = self.port.send_command(self.current_address, com_name , params)
                 if res is not None:
                     logger.info(f'Команда {com_name} прошла ')
                     return True, res
@@ -124,13 +113,13 @@ class LSM:
         return False, None
 
     def ComStartLsm(self):
-        return self._ShortComLsm('start', 3)
+        return self._ComLsm('start', 3, {})
 
     def ComStopLsm(self):
-        return self._ShortComLsm('stop', 3)
+        return self._ComLsm('stop', 3, {})
 
     def ComResetLsm(self):
-        return self._ShortComLsm('reset_setting', 3)
+        return self._ComLsm('reset_setting', 3, {})
 
     def ComHardResetLsm(self):
-        return self._ShortComLsm('set_factory_setting', 3)
+        return self._ComLsm('set_factory_setting', 3, {})
