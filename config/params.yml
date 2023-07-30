@@ -57,6 +57,20 @@ setting_modem:
       keys: ['Номинальная мощность с датчиком освещенности', 'Максимальная мощность', 'Динамическое управление мощностью', 'Фотоавтомат']
       values: [0b00001000, 0b00000010, 0b00000100, 0b00000001]
 
+# Параметр:
+# name - имя параметра и имя параметра в интерфейсе
+# len  - длина параметра
+#   values - список описаний каждого байта параметра
+#     name - имя элемента
+#     type - тип элемента   
+#     number - номер байта
+#     params - список параметров доставаемый из этого байта
+#       name - имя подпараметра
+#       mask - маска для получения части
+#       shift - смещение для получения результата
+#       mul  - множитель для получения результата 
+#
+#
 
 params:
   - name: modem_setting
@@ -64,337 +78,337 @@ params:
     values:
       - name: 'SW'
         type: 'bit_value'
-        params:
-          - name: ''
-            mask: 0b11111111
-            shift: 0
-            mul: 1
+        number: 0
+        desc: ''
+        mask: 0b11111111
+        shift: 0
+        mul: 1
       - name: 'BW'
         type: 'bit_value'
-        params:
-          - name: ''
-            mask: 0b11111111
-            shift: 0
-            mul: 1 
+        number: 1
+        desc: ''
+        mask: 0b11111111
+        shift: 0
+        mul: 1 
       - name: 'P'
         type: 'bit_value'
-        params:
-          - name: ''
-            mask: 0b11111111
-            shift: 0
-            mul: 1
+        number: 2
+        desc: ''
+        mask: 0b11111111
+        shift: 0
+        mul: 1
       - name: 'CH'
         type: 'bit_value'
-        params:
-          - name: ''
-            mask: 0b11111111
-            shift: 0
-            mul: 1       
+        number: 3
+        desc: ''
+        mask: 0b11111111
+        shift: 0
+        mul: 1       
   - name: 'event_number'
     type: 'value_sum'
     values:
       - name: 'high'
         type: 'bit_value'
-        params:
-          - name: 'старший байт номера события'
-            mask: 0b11111111
-            shift: 0
-            mul: 256
+        number: 0
+        desc: 'старший байт номера события'
+        mask: 0b11111111
+        shift: 0
+        mul: 256
       - name: 'low'
         type: 'bit_value'
-        params:
-          - name: 'младший байт номера события'
-            mask: 0b11111111
-            shift: 0
-            mul: 1
+        number: 1
+        desc: 'младший байт номера события'
+        mask: 0b11111111
+        shift: 0
+        mul: 1
   - name: 'date'
     type: 'value_date'
     values:
       - name: 'year'
         type: 'bit_value'
-        params:
-          - name: 'год'
-            mask: 0b11111111
-            shift: 0
-            mul: 1
+        number: 0
+        desc: 'год'
+        mask: 0b11111111
+        shift: 0
+        mul: 1
       - name: 'month'
         type: 'bit_value'
-        params:
-          - name: 'месяц'
-            mask: 0b11111111
-            shift: 0
-            mul: 1
+        number: 1
+        desc: 'месяц'
+        mask: 0b11111111
+        shift: 0
+        mul: 1
       - name: 'number'
         type: 'bit_value'
-        params:
-          - name: 'число'
-            mask: 0b11111111
-            shift: 0
-            mul: 1
+        number: 2
+        desc: 'число'
+        mask: 0b11111111
+        shift: 0
+        mul: 1
       - name: 'weeks_day'
         type: 'bit_value'
-        params:
-          - name: 'день недели'
-            mask: 0b00000111
-            shift: 0
-            mul: 1
+        number: 3
+        desc: 'день недели'
+        mask: 0b00000111
+        shift: 0
+        mul: 1
   - name: 'time'
     type: 'value_time'
     values:
       - name: 'hour'
         type: 'bit_value'
-        params:
-          - name: 'час'
-            mask: 0b11111111
-            shift: 0
-            mul: 1
+        number: 0
+        desc: 'час'
+        mask: 0b11111111
+        shift: 0
+        mul: 1
       - name: 'min'
         type: 'bit_value'
-        params:
-          - name: 'минута'
-            mask: 0b11111111
-            shift: 0
-            mul: 1
+        number: 1
+        desc: 'минута'
+        mask: 0b11111111
+        shift: 0
+        mul: 1
       - name: 'sec'
         type: 'bit_value'
-        params:
-          - name: 'секунда'
-            mask: 0b11111111
-            shift: 0
-            mul: 1
+        number: 2
+        desc: 'секунда'
+        mask: 0b11111111
+        shift: 0
+        mul: 1
   - name: 'mode'
     type: 'value'
     values:
       - name: 'lsm_module_0'
         type: 'bit_value'
-        params:
-          - name: 'единицы'
-            mask: 0b00000001
-            shift: 0
-            mul: 1
+        number: 0
+        desc: 'единицы'
+        mask: 0b00000001
+        shift: 0
+        mul: 1
       - name: 'lsm_module_1'
         type: 'bit_value'
-        params:
-          - name: 'единицы'
-            mask: 0b00000010
-            shift: 1
-            mul: 1
+        number: 0
+        desc: 'единицы'
+        mask: 0b00000010
+        shift: 1
+        mul: 1
       - name: 'lsm_module_2'
         type: 'bit_value'
-        params:
-          - name: 'единицы'
-            mask: 0b00000100
-            shift: 2
-            mul: 1
+        number: 0
+        desc: 'единицы'
+        mask: 0b00000100
+        shift: 2
+        mul: 1
       - name: 'lsm_module_3'
         type: 'bit_value'
-        params:
-          - name: 'единицы'
-            mask: 0b00001000
-            shift: 3
-            mul: 1
+        number: 0
+        desc: 'единицы'
+        mask: 0b00001000
+        shift: 3
+        mul: 1
       - name: 'fotoavtomat'
         type: 'bool_value'
-        params:
-          - name: 'фотоавтомат'
-            mask: 0b00010000
-            shift: 4
-            mul: 1
+        number: 0
+        desc: 'фотоавтомат'
+        mask: 0b00010000
+        shift: 4
+        mul: 1
       - name: 'dynamic_power'
         type: 'bool_value'
-        params:
-          - name: 'динамическое управление мощностью'
-            mask: 0b00100000
-            shift: 5
-            mul: 1
+        number: 0
+        desc: 'динамическое управление мощностью'
+        mask: 0b00100000
+        shift: 5
+        mul: 1
       - name: 'max_nom_power'
         type: 'bit_value'
-        params:
-          - name: 'максимальная мощность (1 - макс. / 0 - номин.)'
-            mask: 0b01000000
-            shift: 6
-            mul: 1           
+        number: 0
+        desc: 'максимальная мощность (1 - макс. / 0 - номин.)'
+        mask: 0b01000000
+        shift: 6
+        mul: 1           
       - name: 'current_illumination'
         type: 'bit_value'
-        params:
-          - name: 'текущая освещенность (1 - день / 0 - ночь.)'
-            mask: 0b10000000
-            shift: 7
-            mul: 1
+        number: 0
+        desc: 'текущая освещенность (1 - день / 0 - ночь.)'
+        mask: 0b10000000
+        shift: 7
+        mul: 1
   - name: 'state_module'
     type: 'value'
     values:
       - name: 'radiation'
         type: 'bool_value'
-        params:
-        - name: 'излучение'
-          mask: 0b00001000
-          shift: 3
-          mul: 1
+        number: 0
+        desc: 'излучение'
+        mask: 0b00001000
+        shift: 3
+        mul: 1
       - name: 'vertical_scan'
         type: 'bool_value'
-        params:
-        - name: 'вертикальная развертка'
-          mask: 0b00000100
-          shift: 2
-          mul: 1
+        number: 0
+        desc: 'вертикальная развертка'
+        mask: 0b00000100
+        shift: 2
+        mul: 1
       - name: 'horizontal_scan'
         type: 'bool_value'
-        params:
-        - name: 'горизонтальная развертка'
-          mask: 0b00000010
-          shift: 1
-          mul: 1
+        number: 0
+        desc: 'горизонтальная развертка'
+        mask: 0b00000010
+        shift: 1
+        mul: 1
       - name: 'synchronization'
         type: 'bool_value'
-        params:
-        - name: 'синхронизация'
-          mask: 0b00000001
-          shift: 0
-          mul: 1
+        number: 0
+        desc: 'синхронизация'
+        mask: 0b00000001
+        shift: 0
+        mul: 1
   - name: 'temperature_module'
     type: 'value'
     values:
       - name: 'temperature'
         type: 'sig_value'
-        params:
-        - name: 'темпиратура'
-          mask: 0b11111111
-          shift: 0
-          mul: 1 
+        number: 0
+        desc: 'темпиратура'
+        mask: 0b11111111
+        shift: 0
+        mul: 1 
   - name: 'power_module'
     type: 'value'
     values: 
       - name: 'cur_power'
         type: 'bit_value'
-        params:
-          - name: 'текущая мощность в процентах'
-            mask: 0b11111111
-            shift: 0
-            mul: 0.1
+        number: 0
+        desc: 'текущая мощность в процентах'
+        mask: 0b11111111
+        shift: 0
+        mul: 0.1
   - name: 'U'
     type: 'value'
     values: 
       - name: 'U'
         type: 'bit_value'
-        params:
-          - name: 'напряжение'
-            mask: 0b11111111
-            shift: 0
-            mul: 0.1 
+        number: 0
+        desc: 'напряжение'
+        mask: 0b11111111
+        shift: 0
+        mul: 0.1 
   - name: 'I'
     type: 'value'
     values: 
       - name: 'I'
         type: 'bit_value'
-        params:
-          - name: 'ток'
-            mask: 0b11111111
-            shift: 0
-            mul: 0.1
+        number: 0
+        desc: 'ток'
+        mask: 0b11111111
+        shift: 0
+        mul: 0.1
   - name: 'T_hull'
     type: 'value'
     values:
       - name: 'temperature_hull'
         type: 'sig_value'
-        params:
-        - name: 'темпиратура'
-          mask: 0b11111111
-          shift: 0
-          mul: 1 
+        number: 0
+        desc: 'темпиратура'
+        mask: 0b11111111
+        shift: 0
+        mul: 1 
   - name: 'T_ODT'
     type: 'value'
     values:
       - name: 'temperature_odt'
         type: 'sig_value'
-        params:
-        - name: 'темпиратура'
-          mask: 0b11111111
-          shift: 0
-          mul: 1
+        number: 0
+        desc: 'темпиратура'
+        mask: 0b11111111
+        shift: 0
+        mul: 1
   - name: 'heating'
     type: 'value'
     values:
       - name: 'heating_windows_bottom'
         type: 'bool_value'
-        params:
-        - name: 'Подогрев иллюминаторов низ'
-          mask: 0b00000001
-          shift: 0
-          mul: 1 
+        number: 0
+        desc: 'Подогрев иллюминаторов низ'
+        mask: 0b00000001
+        shift: 0
+        mul: 1 
       - name: 'heating_windows_top'
         type: 'bool_value'
-        params:
-        - name: 'Подогрев иллюминаторов вверх'
-          mask: 0b00000010
-          shift: 1
-          mul: 1     
+        number: 0
+        desc: 'Подогрев иллюминаторов вверх'
+        mask: 0b00000010
+        shift: 1
+        mul: 1     
       - name: 'heating_lm'
         type: 'bool_value'
-        params:
-        - name: 'Подогрев ЛМ'
-          mask: 0b00000100
-          shift: 2
-          mul: 1  
+        number: 0
+        desc: 'Подогрев ЛМ'
+        mask: 0b00000100
+        shift: 2
+        mul: 1  
       - name: 'heating_air'
         type: 'bool_value'
-        params:
-        - name: 'Подогрев воздуха в корпусе'
-          mask: 0b00001000
-          shift: 3
-          mul: 1 
+        number: 0
+        desc: 'Подогрев воздуха в корпусе'
+        mask: 0b00001000
+        shift: 3
+        mul: 1 
       - name: 'peltier_minus_1'
         type: 'bool_value'
-        params:
-        - name: 'peltier_minus'
-          mask: 0b00010000
-          shift: 4
-          mul: 1 
+        number: 0
+        desc: 'peltier_minus'
+        mask: 0b00010000
+        shift: 4
+        mul: 1 
       - name: 'peltier_plus_1'
         type: 'bool_value'
-        params:
-        - name: 'peltier_plus'
-          mask: 0b00100000
-          shift: 5
-          mul: 1    
+        number: 0
+        desc: 'peltier_plus'
+        mask: 0b00100000
+        shift: 5
+        mul: 1    
       - name: 'peltier_minus_2'
         type: 'bool_value'
-        params:
-        - name: 'peltier_minus'
-          mask: 0b01000000
-          shift: 6
-          mul: 1 
+        number: 0
+        desc: 'peltier_minus'
+        mask: 0b01000000
+        shift: 6
+        mul: 1 
       - name: 'peltier_plus_2'
         type: 'bool_value'
-        params:
-        - name: 'peltier_plus'
-          mask: 0b10000000
-          shift: 7
-          mul: 1 
+        number: 0
+        desc: 'peltier_plus'
+        mask: 0b10000000
+        shift: 7
+        mul: 1 
   - name: 'cooling'
     type: 'value'
     values:
       - name: 'cooler'
         type: 'bool_value'
-        params:
-        - name: 'Вентиляторы'
-          mask: 0b00000001
-          shift: 0
-          mul: 1 
+        number: 0
+        desc: 'Вентиляторы'
+        mask: 0b00000001
+        shift: 0
+        mul: 1 
   - name: 'state_event'
     type: 'value'
     values: 
       - name: 'synchronization_modules'
         type: 'bit_value'
-        params:
-          - name: 'синхронизация между модулями'
-            mask: 0b11110000
-            shift: 4
-            mul: 1
+        number: 0
+        desc: 'синхронизация между модулями'
+        mask: 0b11110000
+        shift: 4
+        mul: 1
       - name: 'source_history'
         type: 'bit_value'
-        params:
-          - name: 'источник события'
-            mask: 0b00001111
-            shift: 0
-            mul: 1
+        number: 0
+        desc: 'источник события'
+        mask: 0b00001111
+        shift: 0
+        mul: 1

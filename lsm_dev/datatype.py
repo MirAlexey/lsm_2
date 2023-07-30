@@ -48,16 +48,15 @@ class SettingModem(BaseModel):
     type: str
     param: Union[ListSetting, StepListSetting]
 
-class ParamValue(BaseModel):
-    name: str
-    mask: int
-    shift: int
-    mul: int
 
 class ParamsValues(BaseModel):
     name: str
     type: str
-    params: list[ParamValue]
+    number: int
+    name: str
+    mask: int
+    shift: int
+    mul: int
 
 class Params(BaseModel):
     name: str
