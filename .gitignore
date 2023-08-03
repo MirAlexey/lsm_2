@@ -12,3 +12,4 @@ lsm_dev/__pycache__/port.cpython-310.pyc
 img/lsm_logo.png
 .gitignore
 log.txt
+lsm2_env/
