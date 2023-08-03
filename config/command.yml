@@ -5,6 +5,7 @@ commands:
       command: ''
       address: False
       data: 
+        len: 4
         values: 
           - type: 'str'
             values: 
@@ -23,6 +24,7 @@ commands:
       command: ''
       address: False
       data:
+        len: 4
         values:
           - type: 'str'
             values:  
@@ -44,12 +46,14 @@ commands:
       command: '00'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '80'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -59,78 +63,70 @@ commands:
       command: '01'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '81'
       address: True
       data: 
+        len: 15
         values: 
+          # type - тип параметра для парсинга
+          # values - список элементов интерфейса в которые надо отразить данные
+          # неазвание параметра должно состоять из типа параметра и из специфицирующего элемента 
+          # пример:  mode__lsm_module_0__m0 
+          # mode - тип параметра по которому будет искаться его описание
+          # lsm_module_0 - название конкретной части параметра, которую надо отобразить
+          # m0 - это идентификатор конкретного элемента, конкретного экземаляра (например у нас есть модули m0, m1, m2, m3,) 
+          # если есть только название типа, то это отображение всего параметра 
           - type: 'event_number'
             values:
-              - 'low'
-          - type: 'event_number'
-            values:
-              - 'high'
+              - 'event_number'
           - type: 'date'
             values:
-              - 'year'
-          - type: 'date'
-            values:
-              - 'month'
-          - type: 'date'
-            values:
-              - 'number'
-          - type: 'date'
-            values:
-              - 'weeks_day'
+              - 'date'
           - type: 'time'
             values:
-              - 'hour'
-          - type: 'time'
-            values:
-              - 'min'
-          - type: 'time'
-            values: 
-              - 'sec'
+              - 'time'
           - type: 'mode'
             values: 
-              - 'lsm_module_0__m0'
-              - 'lsm_module_1__m1'
-              - 'lsm_module_2__m2'
-              - 'lsm_module_3__m3'
-              - 'fotoavtomat__m'
-              - 'dynamic_power__m'
-              - 'max_nom_power__m'
-              - 'current_illumination__m'
+              - 'mode__lsm_module_0__m0'
+              - 'mode__lsm_module_1__m1'
+              - 'mode__lsm_module_2__m2'
+              - 'mode__lsm_module_3__m3'
+              - 'mode__fotoavtomat__m'
+              - 'mode__dynamic_power__m'
+              - 'mode__max_nom_power__m'
+              - 'mode__current_illumination__m'
           - type: 'state_module'
             values:
-              - 'radiation__m0'
-              - 'vertical_scan__m0'
-              - 'horizontal_scan__m0'
-              - 'synchronization__m0'
+              - 'state_module__radiation__m0'
+              - 'state_module__vertical_scan__m0'
+              - 'state_module__horizontal_scan__m0'
+              - 'state_module__synchronization__m0'
           - type: 'state_module'
             values:
-              - 'radiation__m1'
-              - 'vertical_scan__m1'
-              - 'horizontal_scan__m1'
-              - 'synchronization__m1'
+              - 'state_module__radiation__m1'
+              - 'state_module__vertical_scan__m1'
+              - 'state_module__horizontal_scan__m1'
+              - 'state_module__synchronization__m1'
           - type: 'state_module'
             values:
-              - 'radiation__m2'
-              - 'vertical_scan__m2'
-              - 'horizontal_scan__m2'
-              - 'synchronization__m2'
+              - 'state_module__radiation__m2'
+              - 'state_module__vertical_scan__m2'
+              - 'state_module__horizontal_scan__m2'
+              - 'state_module__synchronization__m2'
           - type: 'state_module'
             values:
-              - 'radiation__m3'
-              - 'vertical_scan__m3'
-              - 'horizontal_scan__m3'
-              - 'synchronization__m3'
+              - 'state_module__radiation__m3'
+              - 'state_module__vertical_scan__m3'
+              - 'state_module__horizontal_scan__m3'
+              - 'state_module__synchronization__m3'
           - type: 'state_event'
             values:
-              - 'synchronization_modules__h'
-              - 'source_history__h'
+              - 'state_event__synchronization_modules__h'
+              - 'state_event__source_history__h'
       crc: True
     timeout: 1  
   - name: 'general_status'
@@ -139,12 +135,14 @@ commands:
       command: '02'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '82'
       address: True
-      data: 
+      data:  
+        len: 27
         values: 
           - type: 'event_number'
             values:
@@ -238,40 +236,30 @@ commands:
     request:
       command: '03'
       address: True
-      data: 
+      data:  
+        len: 0
         values: []
       crc: True
     response:
       command: '83'
       address: True
-      data: 
+      data:  
+        len: 42
         values: 
           - type: 'event_number'
             values:
               - 'high'
-          - type: 'event_number'
-            values:
               - 'low'
           - type: 'date'
             values:
               - 'year'
-          - type: 'date'
-            values:
               - 'month'
-          - type: 'date'
-            values:
               - 'number'
-          - type: 'date'
-            values:
               - 'weeks_day'
           - type: 'time'
             values:
               - 'hour'
-          - type: 'time'
-            values:
-              - 'min'
-          - type: 'time'
-            values: 
+              - 'min' 
               - 'sec'
           - type: 'mode'
             values: 
@@ -388,7 +376,8 @@ commands:
     request:
       command: '04'
       address: True
-      data: 
+      data:  
+        len: 1
         values: 
           - type: 'mode'
             values: 
@@ -405,6 +394,7 @@ commands:
       command: '84'
       address: True
       data: 
+        len: 1
         values:
           - type: 'mode'
             values: 
@@ -423,13 +413,15 @@ commands:
     request:
       command: '05'
       address: True
-      data: 
+      data:  
+        len: 0
         values: []
       crc: True
     response:
       command: '85'
       address: True
-      data: 
+      data:  
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -438,7 +430,8 @@ commands:
     request:
       command: '20'
       address: True
-      data: 
+      data:  
+        len: 4
         values:
           - type: 'modem_setting'
             values:
@@ -456,7 +449,8 @@ commands:
     response:
       command: 'A0'
       address: True
-      data: 
+      data:  
+        len: 4
         values: 
           - type: 'modem_setting'
             values:
@@ -477,13 +471,15 @@ commands:
     request:
       command: '21'
       address: True
-      data: 
+      data:  
+        len: 0
         values: []
       crc: True
     response:
       command: 'a1'
       address: True
       data: 
+        len: 4
         values:
           - type: 'modem_setting'
             values: 
@@ -505,12 +501,14 @@ commands:
       command: '06'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '86'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -520,12 +518,14 @@ commands:
       command: '07'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '87'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -535,12 +535,14 @@ commands:
       command: '08'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '88'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -550,12 +552,14 @@ commands:
       command: '09'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '89'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -565,12 +569,14 @@ commands:
       command: '0a'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '8a'
       address: True
       data: 
+        len: 7
         values: 
           - type: 'date'
             values:
@@ -601,6 +607,7 @@ commands:
       command: '0b'
       address: True
       data: 
+        len: 7
         values:
           - type: 'date'
             values:
@@ -628,6 +635,7 @@ commands:
       command: '8b'
       address: True
       data: 
+        len: 7
         values:
           - type: 'date'
             values:
@@ -658,12 +666,14 @@ commands:
       command: '0c'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '8c'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -673,18 +683,17 @@ commands:
       command: '0d'
       address: True
       data: 
+        len: 2
         values:
           - type: 'event_number'
             values:
-              - 'high'
-          - type: 'event_number'
-            values:
-              - 'low'
+              - 'event_number'
       crc: True
     response:
       command: '8d'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -694,12 +703,14 @@ commands:
       command: '0e'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '8e'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -709,12 +720,14 @@ commands:
       command: '0f'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '8f'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -724,12 +737,14 @@ commands:
       command: '10'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '90'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -739,12 +754,14 @@ commands:
       command: '11'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '91'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -754,12 +771,14 @@ commands:
       command: '12'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '92'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -769,12 +788,14 @@ commands:
       command: '13'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '93'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -784,12 +805,14 @@ commands:
       command: '14'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '94'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -799,12 +822,14 @@ commands:
       command: '15'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '95'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -814,12 +839,14 @@ commands:
       command: '16'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '96'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -829,12 +856,14 @@ commands:
       command: '17'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '97'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1
@@ -844,12 +873,14 @@ commands:
       command: '18'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     response:
       command: '98'
       address: True
       data: 
+        len: 0
         values: []
       crc: True
     timeout: 1

@@ -2,39 +2,36 @@ class ParamLSM:
     def __init__(self):
         pass
 
-    def encode(self, params, data):
+    def encode(self, param, data):
         pass
 
-    def decode(self, params, data):
+    def decode(self, param, data):
         pass
 
 class Param_bit(ParamLSM):
-    def decode(self, params, data):
-        return sum([((data & res['mask']) >> res['shift']) * res['mul'] for res in params])
+    def decode(self, param, data):
+        return ((data & param['mask']) >> param['shift']) * param['mul'] 
 
-    def encode(self, params, data):
-        res = 0b00000000
-        for p in params:
-            res |= (int(data//p['mul']) << p['shift']) & p['mask']
-        return res
+    def encode(self, param, data):
+        return (int(data//param['mul']) << param['shift']) & param['mask']
 
 class Param_bool(ParamLSM):
-    def decode(self, params, data):
-        return bool((data & params[0]['mask']) >> params[0]['shift'])
+    def decode(self, param, data):
+        return bool((data & param['mask']) >> param['shift'])
 
-    def encode(self, params, data):
-        return (int(data) << params[0]['shift'])
+    def encode(self, param, data):
+        return (int(data) << param['shift'])
 
 class Param_sig(ParamLSM):
-    def decode(self, params, data):
+    def decode(self, param, data):
         return data-256 if data>127 else data
 
-    def encode(self, params, data):
+    def encode(self, param, data):
         return data+256 if data<0 else data
 
 class Param_str(ParamLSM):
-    def decode(self, params, data):
-        return f'{data:0>2x}'
+    def decode(self, param, data):
+        return f'{data:0>x}'[:param.len_param*2]
 
     def encode(self, params, data):
         return int(data, 16)

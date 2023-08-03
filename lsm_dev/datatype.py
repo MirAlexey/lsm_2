@@ -6,6 +6,7 @@ class ValData(BaseModel):
     values: list[str]
 
 class ValuesData(BaseModel):
+    len: int
     values: list[ValData]
 
 class Query(BaseModel):
@@ -53,6 +54,7 @@ class ParamsValues(BaseModel):
     name: str
     type: str
     number: int
+    len_param: int
     name: str
     mask: int
     shift: int
@@ -61,6 +63,7 @@ class ParamsValues(BaseModel):
 class Params(BaseModel):
     name: str
     type: str
+    len: int
     values: list[ParamsValues]
 class LSMParams(BaseModel):
     setting_modem: list[SettingModem]

@@ -2,6 +2,7 @@ import serial
 
 from lsm_dev.param_lsm import get_param_obj, get_param_reduce
 from lsm_dev.logger import Logger
+from itertools import accumulate
 
 import time
 
@@ -126,7 +127,7 @@ class Port:
         resp = command.response
         time_out = command.timeout
 
-        resp_len = len(resp.data.values)
+        resp_len = resp.data.len
         resp_len += 1 if resp.address else 0
         resp_len += 1 if resp.command !='' else 0
         resp_len += 1 if resp.crc else 0
@@ -135,6 +136,7 @@ class Port:
         if req.address:
             str_command+=self._get_address(address, 'input')
         str_command+=req.command 
+        import pdb; pdb.set_trace()
         str_command+=self._get_data(req.data, params_value, address, postfix_param_name)
         if req.crc:
             str_command+=self._get_crc(str_command)
@@ -146,6 +148,9 @@ class Port:
 
     def _get_data(self, data, params_value, address, postfix_param_name):
         res = ''
+        import pdb; pdb.set_trace()
+        params_v = [self._get_param_setting(v) for v in data.values]
+        
         for com_v in data.values:
             params_v = self._get_param_setting(com_v)
             values_v = self._get_param_value(com_v, address, params_value, postfix_param_name)
@@ -158,6 +163,7 @@ class Port:
         return res
 
     def _get_param_setting(self, com_val):
+        import pdb; pdb.set_trace()
         res = []
         #print(com_val)
         #for v in com_val.values:
@@ -170,16 +176,18 @@ class Port:
             #print(self._param_name)
             #print(self.params[self._param_name.index(p_a[0])])
             if p_a[0] == 'str':
-                cur_res = {'type':'str','params':[], 'type_reduce':'value_con'}
+                param_lsm_values = {'type':'str', 'len': len(v.values),'values':v.values, 'type_reduce':'value_con'}
             else:
                 param_lsm_values = self.params[self._param_name.index(p_a[0])]
-                pv_name = [pv.name for pv in param_lsm_values.values]
-                #print(param_lsm_values)
-                cur_res = param_lsm_values.values[pv_name.index(l_a[0])]
-                #print(cur_res, cur_res.dict())
-                cur_res = cur_res.dict()
-                cur_res['type_reduce'] = param_lsm_values.type
-            res.append(cur_res)
+            #     pv_name = [pv.name for pv in param_lsm_values.values]
+            #     #print(param_lsm_values)
+            #     cur_res = param_lsm_values.values[pv_name.index(l_a[0])]
+            #     #print(cur_res, cur_res.dict())
+            #     cur_res = cur_res.dict()
+            #     cur_res['type_reduce'] = param_lsm_values.type
+            #     cur_res
+            # res.append(cur_res)
+            res.append(param_lsm_values)
         return res
 
     def _get_param_value(self, val, address, params_value, postfix_param_name):
@@ -211,12 +219,16 @@ class Port:
         resp_data = res[start_data:-1] if resp.crc else res[start_data:]
         #print('len', len(resp.data.values), len(resp_data))
         res = {}
-        for i,v in enumerate(resp.data.values):
+        params_v = [self._get_param_setting(v) for v in resp.data.values]
+        pos_split_data = accumulate([v.len for v in params_v])
+        split_resp_data = [resp_data[i:j] for i,j in zip(pos_split_data[:-1], pos_split_data[1:])]
+        for c,p,d in zip(resp.data.values, params_v, split_resp_data):
             #print('vvv', v)
-            group_values = v.values
-            params_v = self._get_param_setting(v)
-            values_v = resp_data[i]
-            for pv, gv in zip(params_v, group_values):
+            import pdb; pdb.set_trace()
+            for pv in  p.values:
+                param_data = d[pv.number:pv.number+pv.len_param]
+                decode_value = get_param_obj(pv['type']).decode(pv, param_data)
+                
                 cur_dest = self._get_current_dest(v.type, gv, True)
                 if cur_dest not in res:
                     res[cur_dest] = {'type_reduce': pv['type_reduce'], 'vl':[]}
