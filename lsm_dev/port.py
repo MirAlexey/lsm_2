@@ -150,16 +150,17 @@ class Port:
         res = ''
         import pdb; pdb.set_trace()
         params_v = [self._get_param_setting(v) for v in data.values]
-        
+
         for com_v in data.values:
             params_v = self._get_param_setting(com_v)
             values_v = self._get_param_value(com_v, address, params_value, postfix_param_name)
             rv= 0b00000000
             #print(params_v)
             #print(values_v)
+            import pdb; pdb.set_trace()
             for pv, vv in zip(params_v, values_v):
                 rv |= get_param_obj(pv['type']).encode(pv['params'],vv)
-            res+=f'{rv:0>2x}'
+            res+=f'{rv:0>x}'
         return res
 
     def _get_param_setting(self, com_val):
