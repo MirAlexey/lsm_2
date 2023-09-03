@@ -15,18 +15,18 @@ class LSM:
     def __init__(self, data_carrier):
         self.data_carrier = data_carrier
         print('-----------------------------------')
-        with open(".\\config\\command.yml", 'r',  encoding='utf8') as file_yml:
+        with open("./config/command.yml", 'r',  encoding='utf8') as file_yml:
             command_ = yaml.safe_load(file_yml)
         self.commands = Commands(**command_)
         
         #print(self.commands)
-        with open(".\\config\\params.yml", 'r',  encoding='utf8') as file_yml:
+        with open("./config/params.yml", 'r',  encoding='utf8') as file_yml:
             params_ = yaml.safe_load(file_yml)
         params = LSMParams(**params_)
         self.params =params.params
         self.setting_modem =params.setting_modem
         #print(self.params)
-        with open(".\\config\\address.yml", 'r',  encoding='utf8') as file_yml:
+        with open("./config/address.yml", 'r',  encoding='utf8') as file_yml:
             address_ = yaml.safe_load(file_yml)
         self.address = Addresses(**address_)
         #print(self.params)
@@ -100,7 +100,7 @@ class LSM:
 
     def _ComLsm(self, com_name, count_run, params):
         logger.info(f'Отправка команды {com_name}')
-        if self.current_address is not None:
+        if True or self.current_address is not None:
             for i in range(count_run):
                 res = self.port.send_command(self.current_address, com_name , params)
                 if res is not None:

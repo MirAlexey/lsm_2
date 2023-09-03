@@ -52,8 +52,11 @@ class Port:
         self._param_name= [p.name for p in params]
         #print('f',self.params)
         self._command_name = [com.name for com in self._commands]
+        self.is_test = True
 
     def init_param(self, baudrate, port, timeout):
+        if self.is_test:
+            return True
         self.usb = serial.Serial()
         self.usb.baudrate = baudrate
         self.usb.port = port
@@ -63,6 +66,8 @@ class Port:
         return res
 
     def is_open(self):
+        if self.is_test:
+            return True
         return self.usb.is_open()
 
     def checkEventMsg(self):
@@ -72,10 +77,14 @@ class Port:
         return self._commands[self._command_name.index(name)]
 
     def send_command(self, address, command_name, params_value, postfix_param_name = ''):
+        import pdb; pdb.set_trace()
         command = self._get_command(command_name)
         str_command, time_out, len_response = self._build_command(address, command, params_value, postfix_param_name)
         #res = self._write_and_read_test(str_command, time_out, len_response)
-        res = self._write_and_read(str_command, time_out, len_response)
+        if self.is_test:
+            res = self._write_and_read_test(str_command, time_out, len_response)
+        else:
+            res = self._write_and_read(str_command, time_out, len_response)
         res_str = [f'{r:0>2x}' for r in res ]
         #print(len_response)
         if len(res) != len_response:
@@ -148,19 +157,31 @@ class Port:
 
     def _get_data(self, data, params_value, address, postfix_param_name):
         res = ''
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         params_v = [self._get_param_setting(v) for v in data.values]
+        import pdb; pdb.set_trace()
+        values_v = [self._get_param_value(pv, address, params_value, postfix_param_name) for pv in params_v]
 
-        for com_v in data.values:
-            params_v = self._get_param_setting(com_v)
-            values_v = self._get_param_value(com_v, address, params_value, postfix_param_name)
-            rv= 0b00000000
+        # res_str = ''
+        # for pv in params_v:
+        #     res_str +=  ''
+
+        # for com_v in data.values:
+        #     params_v = self._get_param_setting(com_v)
+        #     values_v = self._get_param_value(com_v, address, params_value, postfix_param_name)
+        rv=[None] * data.len
             #print(params_v)
             #print(values_v)
-            import pdb; pdb.set_trace()
-            for pv, vv in zip(params_v, values_v):
-                rv |= get_param_obj(pv['type']).encode(pv['params'],vv)
-            res+=f'{rv:0>x}'
+        import pdb; pdb.set_trace()
+        
+        for i, (pv_l, vv_l) in enumerate(zip(params_v, values_v)):
+            for pv, vv in zip(pv_l, vv_l):
+                cur_vv = get_param_obj(pv['type']).encode(pv['params'],vv)
+                if pv['type'] == 'str':
+                    rv[i] = cur_vv
+                else:
+                    rv[pv['number']] = cur_vv    
+        res+=f'{rv:x}'
         return res
 
     def _get_param_setting(self, com_val):
@@ -193,14 +214,15 @@ class Port:
 
     def _get_param_value(self, val, address, params_value, postfix_param_name):
         res = []
-        #for v in val.values:
-        v = val
-        for p in v.values:
-            source = self._get_current_dest(v.type, p)
-            try:
-                res.append(p if source == 'str' else params_value[source])
-            except Exception:
-                print(params_value, source)    
+        for v in val:
+        #v = val
+            import pdb; pdb.set_trace()
+            for p in v['values']:
+                source = self._get_current_dest(v['type'], p)
+                try:
+                    res.append(p if source == 'str' else params_value[source])
+                except Exception:
+                    print(params_value, source)    
         return res
 
     def _parse_response(self, res, address, command):
